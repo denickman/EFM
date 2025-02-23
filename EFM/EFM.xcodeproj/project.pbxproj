@@ -6,236 +6,194 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8590F1CD2D6B4A6F006FC9EC /* EFM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8590F1C42D6B4A6F006FC9EC /* EFM.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
-		8590F16F2D69E002006FC9EC /* PBXContainerItemProxy */ = {
+		8590F1CE2D6B4A6F006FC9EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8590F1502D69E000006FC9EC /* Project object */;
+			containerPortal = 8590F1BB2D6B4A6F006FC9EC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8590F1572D69E000006FC9EC;
-			remoteInfo = EFM;
-		};
-		8590F1792D69E002006FC9EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8590F1502D69E000006FC9EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8590F1572D69E000006FC9EC;
+			remoteGlobalIDString = 8590F1C32D6B4A6F006FC9EC;
 			remoteInfo = EFM;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8590F1582D69E000006FC9EC /* EFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8590F16E2D69E002006FC9EC /* EFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8590F1782D69E002006FC9EC /* EFMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8590F1C42D6B4A6F006FC9EC /* EFM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8590F1CC2D6B4A6F006FC9EC /* EFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8590F1802D69E002006FC9EC /* Exceptions for "EFM" folder in "EFM" target */ = {
+		8590F1D42D6B4A6F006FC9EC /* Exceptions for "EFM" folder in "EFM" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
+			publicHeaders = (
+				EFM.h,
 			);
-			target = 8590F1572D69E000006FC9EC /* EFM */;
+			target = 8590F1C32D6B4A6F006FC9EC /* EFM */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8590F15A2D69E000006FC9EC /* EFM */ = {
+		8590F1C62D6B4A6F006FC9EC /* EFM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				8590F1802D69E002006FC9EC /* Exceptions for "EFM" folder in "EFM" target */,
+				8590F1D42D6B4A6F006FC9EC /* Exceptions for "EFM" folder in "EFM" target */,
 			);
 			path = EFM;
 			sourceTree = "<group>";
 		};
-		8590F1712D69E002006FC9EC /* EFMTests */ = {
+		8590F1D02D6B4A6F006FC9EC /* EFMTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = EFMTests;
-			sourceTree = "<group>";
-		};
-		8590F17B2D69E002006FC9EC /* EFMUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EFMUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8590F1552D69E000006FC9EC /* Frameworks */ = {
+		8590F1C12D6B4A6F006FC9EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8590F16B2D69E002006FC9EC /* Frameworks */ = {
+		8590F1C92D6B4A6F006FC9EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8590F1752D69E002006FC9EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8590F1CD2D6B4A6F006FC9EC /* EFM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8590F14F2D69E000006FC9EC = {
+		8590F1BA2D6B4A6F006FC9EC = {
 			isa = PBXGroup;
 			children = (
-				8590F15A2D69E000006FC9EC /* EFM */,
-				8590F1712D69E002006FC9EC /* EFMTests */,
-				8590F17B2D69E002006FC9EC /* EFMUITests */,
-				8590F1592D69E000006FC9EC /* Products */,
+				8590F1C62D6B4A6F006FC9EC /* EFM */,
+				8590F1D02D6B4A6F006FC9EC /* EFMTests */,
+				8590F1C52D6B4A6F006FC9EC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8590F1592D69E000006FC9EC /* Products */ = {
+		8590F1C52D6B4A6F006FC9EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8590F1582D69E000006FC9EC /* EFM.app */,
-				8590F16E2D69E002006FC9EC /* EFMTests.xctest */,
-				8590F1782D69E002006FC9EC /* EFMUITests.xctest */,
+				8590F1C42D6B4A6F006FC9EC /* EFM.framework */,
+				8590F1CC2D6B4A6F006FC9EC /* EFMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8590F1BF2D6B4A6F006FC9EC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		8590F1572D69E000006FC9EC /* EFM */ = {
+		8590F1C32D6B4A6F006FC9EC /* EFM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8590F1812D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFM" */;
+			buildConfigurationList = 8590F1D52D6B4A6F006FC9EC /* Build configuration list for PBXNativeTarget "EFM" */;
 			buildPhases = (
-				8590F1542D69E000006FC9EC /* Sources */,
-				8590F1552D69E000006FC9EC /* Frameworks */,
-				8590F1562D69E000006FC9EC /* Resources */,
+				8590F1BF2D6B4A6F006FC9EC /* Headers */,
+				8590F1C02D6B4A6F006FC9EC /* Sources */,
+				8590F1C12D6B4A6F006FC9EC /* Frameworks */,
+				8590F1C22D6B4A6F006FC9EC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				8590F15A2D69E000006FC9EC /* EFM */,
+				8590F1C62D6B4A6F006FC9EC /* EFM */,
 			);
 			name = EFM;
 			packageProductDependencies = (
 			);
 			productName = EFM;
-			productReference = 8590F1582D69E000006FC9EC /* EFM.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 8590F1C42D6B4A6F006FC9EC /* EFM.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		8590F16D2D69E002006FC9EC /* EFMTests */ = {
+		8590F1CB2D6B4A6F006FC9EC /* EFMTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8590F1862D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFMTests" */;
+			buildConfigurationList = 8590F1DA2D6B4A6F006FC9EC /* Build configuration list for PBXNativeTarget "EFMTests" */;
 			buildPhases = (
-				8590F16A2D69E002006FC9EC /* Sources */,
-				8590F16B2D69E002006FC9EC /* Frameworks */,
-				8590F16C2D69E002006FC9EC /* Resources */,
+				8590F1C82D6B4A6F006FC9EC /* Sources */,
+				8590F1C92D6B4A6F006FC9EC /* Frameworks */,
+				8590F1CA2D6B4A6F006FC9EC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8590F1702D69E002006FC9EC /* PBXTargetDependency */,
+				8590F1CF2D6B4A6F006FC9EC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8590F1712D69E002006FC9EC /* EFMTests */,
+				8590F1D02D6B4A6F006FC9EC /* EFMTests */,
 			);
 			name = EFMTests;
 			packageProductDependencies = (
 			);
 			productName = EFMTests;
-			productReference = 8590F16E2D69E002006FC9EC /* EFMTests.xctest */;
+			productReference = 8590F1CC2D6B4A6F006FC9EC /* EFMTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8590F1772D69E002006FC9EC /* EFMUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8590F1892D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFMUITests" */;
-			buildPhases = (
-				8590F1742D69E002006FC9EC /* Sources */,
-				8590F1752D69E002006FC9EC /* Frameworks */,
-				8590F1762D69E002006FC9EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8590F17A2D69E002006FC9EC /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8590F17B2D69E002006FC9EC /* EFMUITests */,
-			);
-			name = EFMUITests;
-			packageProductDependencies = (
-			);
-			productName = EFMUITests;
-			productReference = 8590F1782D69E002006FC9EC /* EFMUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8590F1502D69E000006FC9EC /* Project object */ = {
+		8590F1BB2D6B4A6F006FC9EC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					8590F1572D69E000006FC9EC = {
+					8590F1C32D6B4A6F006FC9EC = {
 						CreatedOnToolsVersion = 16.2;
 					};
-					8590F16D2D69E002006FC9EC = {
+					8590F1CB2D6B4A6F006FC9EC = {
 						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 8590F1572D69E000006FC9EC;
-					};
-					8590F1772D69E002006FC9EC = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 8590F1572D69E000006FC9EC;
 					};
 				};
 			};
-			buildConfigurationList = 8590F1532D69E000006FC9EC /* Build configuration list for PBXProject "EFM" */;
+			buildConfigurationList = 8590F1BE2D6B4A6F006FC9EC /* Build configuration list for PBXProject "EFM" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 8590F14F2D69E000006FC9EC;
+			mainGroup = 8590F1BA2D6B4A6F006FC9EC;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 8590F1592D69E000006FC9EC /* Products */;
+			productRefGroup = 8590F1C52D6B4A6F006FC9EC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8590F1572D69E000006FC9EC /* EFM */,
-				8590F16D2D69E002006FC9EC /* EFMTests */,
-				8590F1772D69E002006FC9EC /* EFMUITests */,
+				8590F1C32D6B4A6F006FC9EC /* EFM */,
+				8590F1CB2D6B4A6F006FC9EC /* EFMTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8590F1562D69E000006FC9EC /* Resources */ = {
+		8590F1C22D6B4A6F006FC9EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8590F16C2D69E002006FC9EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8590F1762D69E002006FC9EC /* Resources */ = {
+		8590F1CA2D6B4A6F006FC9EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -245,21 +203,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8590F1542D69E000006FC9EC /* Sources */ = {
+		8590F1C02D6B4A6F006FC9EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8590F16A2D69E002006FC9EC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8590F1742D69E002006FC9EC /* Sources */ = {
+		8590F1C82D6B4A6F006FC9EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,74 +220,79 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8590F1702D69E002006FC9EC /* PBXTargetDependency */ = {
+		8590F1CF2D6B4A6F006FC9EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8590F1572D69E000006FC9EC /* EFM */;
-			targetProxy = 8590F16F2D69E002006FC9EC /* PBXContainerItemProxy */;
-		};
-		8590F17A2D69E002006FC9EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8590F1572D69E000006FC9EC /* EFM */;
-			targetProxy = 8590F1792D69E002006FC9EC /* PBXContainerItemProxy */;
+			target = 8590F1C32D6B4A6F006FC9EC /* EFM */;
+			targetProxy = 8590F1CE2D6B4A6F006FC9EC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		8590F1822D69E002006FC9EC /* Debug */ = {
+		8590F1D62D6B4A6F006FC9EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EFM/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFM;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		8590F1832D69E002006FC9EC /* Release */ = {
+		8590F1D72D6B4A6F006FC9EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EFM/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFM;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		8590F1842D69E002006FC9EC /* Debug */ = {
+		8590F1D82D6B4A6F006FC9EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -370,6 +326,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -388,18 +345,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		8590F1852D69E002006FC9EC /* Release */ = {
+		8590F1D92D6B4A6F006FC9EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -433,6 +392,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -445,124 +405,76 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		8590F1872D69E002006FC9EC /* Debug */ = {
+		8590F1DB2D6B4A6F006FC9EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EFM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EFM";
 			};
 			name = Debug;
 		};
-		8590F1882D69E002006FC9EC /* Release */ = {
+		8590F1DC2D6B4A6F006FC9EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EFM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EFM";
-			};
-			name = Release;
-		};
-		8590F18A2D69E002006FC9EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EFM;
-			};
-			name = Debug;
-		};
-		8590F18B2D69E002006FC9EC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EFMUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EFM;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8590F1532D69E000006FC9EC /* Build configuration list for PBXProject "EFM" */ = {
+		8590F1BE2D6B4A6F006FC9EC /* Build configuration list for PBXProject "EFM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8590F1842D69E002006FC9EC /* Debug */,
-				8590F1852D69E002006FC9EC /* Release */,
+				8590F1D82D6B4A6F006FC9EC /* Debug */,
+				8590F1D92D6B4A6F006FC9EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8590F1812D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFM" */ = {
+		8590F1D52D6B4A6F006FC9EC /* Build configuration list for PBXNativeTarget "EFM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8590F1822D69E002006FC9EC /* Debug */,
-				8590F1832D69E002006FC9EC /* Release */,
+				8590F1D62D6B4A6F006FC9EC /* Debug */,
+				8590F1D72D6B4A6F006FC9EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8590F1862D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFMTests" */ = {
+		8590F1DA2D6B4A6F006FC9EC /* Build configuration list for PBXNativeTarget "EFMTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8590F1872D69E002006FC9EC /* Debug */,
-				8590F1882D69E002006FC9EC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8590F1892D69E002006FC9EC /* Build configuration list for PBXNativeTarget "EFMUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8590F18A2D69E002006FC9EC /* Debug */,
-				8590F18B2D69E002006FC9EC /* Release */,
+				8590F1DB2D6B4A6F006FC9EC /* Debug */,
+				8590F1DC2D6B4A6F006FC9EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8590F1502D69E000006FC9EC /* Project object */;
+	rootObject = 8590F1BB2D6B4A6F006FC9EC /* Project object */;
 }
