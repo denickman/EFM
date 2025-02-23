@@ -25,22 +25,9 @@
 		8590F1CC2D6B4A6F006FC9EC /* EFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8590F1D42D6B4A6F006FC9EC /* Exceptions for "EFM" folder in "EFM" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				EFM.h,
-			);
-			target = 8590F1C32D6B4A6F006FC9EC /* EFM */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8590F1C62D6B4A6F006FC9EC /* EFM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8590F1D42D6B4A6F006FC9EC /* Exceptions for "EFM" folder in "EFM" target */,
-			);
 			path = EFM;
 			sourceTree = "<group>";
 		};
@@ -159,6 +146,7 @@
 				TargetAttributes = {
 					8590F1C32D6B4A6F006FC9EC = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 					};
 					8590F1CB2D6B4A6F006FC9EC = {
 						CreatedOnToolsVersion = 16.2;
@@ -232,6 +220,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -256,6 +245,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -264,6 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
