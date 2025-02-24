@@ -8,9 +8,12 @@
 import Foundation
 import EFM
 
+protocol FeedImageView {
+    associatedtype Image
+    func display(_ viewModel: FeedImageViewModel<Image>)
+}
+
 final class FeedImagePresenter<View: FeedImageView, Image> where View.Image == Image {
-    
-    private struct ImvalidImageDataError: Error {}
     
     private let view: View
     private let imageTransformer: (Data) -> Image?
@@ -21,20 +24,41 @@ final class FeedImagePresenter<View: FeedImageView, Image> where View.Image == I
     }
     
     func didStartLoadingImageData(for model: FeedImage) {
-        view.display(FeedImageViewModel(description: model.description, location: model.location, image: nil, isLoading: true, shouldRetry: false))
+        view.display(
+            .init(
+                description: model.description,
+                location: model.location,
+                image: nil,
+                isLoading: true,
+                shouldRetry: false
+            )
+        )
     }
     
     func didFinishLoadingImageData(with data: Data, for model: FeedImage) {
-        guard let image = imageTransformer(data) else {
-            return didFinishLoadingImageData(with: ImvalidImageDataError(), for: model)
-        }
+        let image = imageTransformer(data)
         
-        view.display(FeedImageViewModel(description: model.description, location: model.location, image: image, isLoading: false, shouldRetry: false))
+        view.display(
+            .init(
+                description: model.description,
+                location: model.location,
+                image: image,
+                isLoading: false,
+                shouldRetry: false
+            )
+        )
     }
     
     func didFinishLoadingImageData(with error: Error, for model: FeedImage) {
-        view.display(.init(description: model.description, location: model.location, image: nil, isLoading: false, shouldRetry: true))
+        view.display(
+            .init(
+                description: model.description,
+                location: model.location,
+                image: nil,
+                isLoading: false,
+                shouldRetry: true
+            )
+        )
     }
-    
     
 }

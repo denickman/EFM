@@ -6,31 +6,34 @@
 //
 
 import UIKit
+import EFM
+
+protocol FeedViewControllerDelegate {
+    func didRequestFeedRefresh()
+}
 
 public final class FeedViewController: UITableViewController {
+    
+    @IBOutlet private(set) public var errorView: ErrorView?
     
     var tableModels = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
     
-    private var refreshController: FeedRefreshController?
-    
-    convenience init(refreshController: FeedRefreshController) {
-        self.init()
-        self.refreshController = refreshController
-    }
+    var delegate: FeedViewControllerDelegate?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.prefetchDataSource = self
-        refreshControl = refreshController?.view
-        refreshController?.refresh()
+        refresh()
     }
     
     private func cellController(at indexPath: IndexPath) -> FeedImageCellController {
         tableModels[indexPath.row]
     }
     
+    private func refresh() {
+        delegate?.didRequestFeedRefresh()
+    }
 }
 
 extension FeedViewController {
@@ -40,7 +43,7 @@ extension FeedViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let view = cellController(at: indexPath).view()
+        let view = cellController(at: indexPath).view(in: tableView)
         return view
     }
     
@@ -65,5 +68,17 @@ extension FeedViewController: UITableViewDataSourcePrefetching {
         indexPaths.forEach {
             cellController(at: $0).cancelLoad()
         }
+    }
+}
+
+extension FeedViewController: FeedLoadingView {
+    public func display(_ viewModel: FeedLoadingViewModel) {
+        refreshControl?.update(isRefreshing: viewModel.isLoading)
+    }
+}
+
+extension FeedViewController: FeedErrorView {
+    public func display(_ viewModel: FeedErrorViewModel) {
+        errorView?.message = viewModel.message
     }
 }
