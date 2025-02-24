@@ -34,6 +34,36 @@
             endingLineNumber = "100"
             landmarkName = "test_load_devliersItemsOn200HTTPResponseWithValidData()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C359BE11-E630-4609-A088-038990760D7E - df8995d326405792"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.LoadFeedFromRemoteUseCaseTests.test_load_devliersItemsOn200HTTPResponseWithValidData() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/FeedViewControllerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100">
+               </Location>
+               <Location
+                  uuid = "C359BE11-E630-4609-A088-038990760D7E - cffb9dc09917e08c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in EFMTests.LoadFeedFromRemoteUseCaseTests.test_load_devliersItemsOn200HTTPResponseWithValidData() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/FeedViewControllerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -50,6 +80,36 @@
             endingLineNumber = "149"
             landmarkName = "expect(_:toCompleteWith:when:file:line:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "18DE48BA-8D4F-4B3E-BB3C-C770037640A3 - f34d4e929c2ee210"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.LoadFeedFromRemoteUseCaseTests.expect(_: EFM.RemoteFeedLoader, toCompleteWith: Swift.Result&lt;Swift.Array&lt;EFM.FeedImage&gt;, Swift.Error&gt;, when: () -&gt; (), file: Swift.StaticString, line: Swift.UInt) -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/FeedViewControllerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149">
+               </Location>
+               <Location
+                  uuid = "18DE48BA-8D4F-4B3E-BB3C-C770037640A3 - 29396296a5014bdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;EFM.FeedImage&gt;, Swift.Error&gt;) -&gt; () in EFMTests.LoadFeedFromRemoteUseCaseTests.expect(_: EFM.RemoteFeedLoader, toCompleteWith: Swift.Result&lt;Swift.Array&lt;EFM.FeedImage&gt;, Swift.Error&gt;, when: () -&gt; (), file: Swift.StaticString, line: Swift.UInt) -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/FeedViewControllerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,6 +158,36 @@
             endingLineNumber = "26"
             landmarkName = "load(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3343BF72-87F2-4657-A910-E463B09F0473 - 7dc4eb4f6647dcf1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFM.RemoteFeedLoader.load(completion: (Swift.Result&lt;Swift.Array&lt;EFM.FeedImage&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "EFM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFM/Feed%20API/RemoteFeedLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+               <Location
+                  uuid = "3343BF72-87F2-4657-A910-E463B09F0473 - eda7c77b56c7cc29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;) -&gt; () in EFM.RemoteFeedLoader.load(completion: (Swift.Result&lt;Swift.Array&lt;EFM.FeedImage&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "EFM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFM/Feed%20API/RemoteFeedLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -226,6 +316,36 @@
             endingLineNumber = "29"
             landmarkName = "map(_:response:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9213DB8F-6D28-4AF0-AA2A-2DB402E39CB2 - c6bb8998fe9fe996"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static EFM.FeedItemsMapper.map(_: Foundation.Data, response: __C.NSHTTPURLResponse) throws -&gt; Swift.Array&lt;EFM.RemoteFeedItem&gt;"
+                  moduleName = "EFM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFM/Feed%20API/FeedItemsMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29">
+               </Location>
+               <Location
+                  uuid = "9213DB8F-6D28-4AF0-AA2A-2DB402E39CB2 - c6bb8998fe9fe996"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static EFM.FeedItemsMapper.map(_: Foundation.Data, response: __C.NSHTTPURLResponse) throws -&gt; Swift.Array&lt;EFM.RemoteFeedItem&gt;"
+                  moduleName = "EFM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFM/Feed%20API/FeedItemsMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -306,6 +426,796 @@
             endingLineNumber = "184"
             landmarkName = "makeItem(id:description:location:imageURL:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71A2F0B7-9450-4E77-BCDD-C8B8F38332DB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "test_getFromURL_performsGETRequestWithURL()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "71A2F0B7-9450-4E77-BCDD-C8B8F38332DB - 69b69c5abdf6d4e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.test_getFromURL_performsGETRequestWithURL() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33">
+               </Location>
+               <Location
+                  uuid = "71A2F0B7-9450-4E77-BCDD-C8B8F38332DB - ca528a05159f2192"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;) -&gt; () in EFMTests.URLSessionHTTPClientTests.test_getFromURL_performsGETRequestWithURL() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "18EFA77C-D1A6-42B9-8F63-DF575EE1DA23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "test_getFromURL_performsGETRequestWithURL()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08B45BFE-6AD2-4659-BECE-6D07A0238AAB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "test_getFromURL_performsGETRequestWithURL()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08B45BFE-6AD2-4659-BECE-6D07A0238AAB - 69b69c5abdf6d32b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.test_getFromURL_performsGETRequestWithURL() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27">
+               </Location>
+               <Location
+                  uuid = "08B45BFE-6AD2-4659-BECE-6D07A0238AAB - 1b119b9a889c9a15"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URLRequest) -&gt; () in EFMTests.URLSessionHTTPClientTests.test_getFromURL_performsGETRequestWithURL() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A5FBEEF-C40E-458D-8682-830893F246C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "observeRequest(observer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA5C9397-988D-454B-8CF3-7BBA59EFD743"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "canInit(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E7964BB-F36E-4318-861E-954875C90504"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "canonicalRequest(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "590BB9AD-AF3D-4B31-AC85-90C9A732022A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB1432FD-857C-4364-9C91-BB6FB9BD8E79"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "575C6685-3618-4A4F-BCC1-ED387E8A0764"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14BC47AE-B4C0-4C9A-A23B-795B33F94115"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "URLProtocolStub"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95422F50-2804-4E8F-B2D6-15396382B665"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(session:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06D31CB0-CDA1-4EAA-8020-402EFC2D79A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "581CBA01-335F-4B18-914E-548373246D04"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2CBD76E-CB20-4888-9D0F-4080C681F510"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC2D21A6-D2F2-4DBB-8B21-13E6C1162087"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8165B9AE-DBF3-43D4-9FDB-48CB129B3D50"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFM/Feed API/URLSessionHTTPClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A09842D2-375A-4912-BE21-374EB31E9274"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "test_getFromURL_failsOnRequestError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DA4B31A-E0ED-4D7C-8A93-BCBBA6BA92BD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "test_getFromURL_failsOnRequestError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70087DF6-4778-4088-AB6F-A977F2686549"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "test_getFromURL_failsOnRequestError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39B4B02E-70D2-4D84-9A5F-8D5B555BD3EF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "test_getFromURL_failsOnAllInvalidRepresentationCases()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5530922-D275-4178-BA79-0FB4613809EC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A802FF0-AC1A-4E4C-B582-09129197A96C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E869823-09A9-4324-B413-EE8C50C50C5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB35C22C-26B2-4CA6-B589-DE52844EE0B2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "test_getFromURL_suceedsWithEmptyDataOnHTTPURLResponseWithNilData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C11A0EF-5572-4A20-85A1-181AA3A97B2B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "test_getFromURL_suceedsWithEmptyDataOnHTTPURLResponseWithNilData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C306ACD2-6043-4137-8C0E-FDDB835562BF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/FeedViewControllerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "complete(withCode:data:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DC0C376-4629-4681-87B7-74C192A2D43D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/FeedViewControllerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "complete(withError:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "688D9F2C-AF45-47C1-8329-9A0AD13BCDDB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/FeedViewControllerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "complete(withCode:data:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DF92506-B98A-4E69-95F1-8A42B97DB3C4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/FeedViewControllerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "get(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04F5DE16-CE7C-49AF-9B59-C7CDAD19E779"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "resultValueFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2CF05ABF-0697-43E3-ACA9-749BBF300FE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "resultValueFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93D11073-1FA4-4D68-9771-F954E97FA838"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "496B07BD-FE52-468B-AA77-796AA900A3A4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "496B07BD-FE52-468B-AA77-796AA900A3A4 - dd27ddbd8823b52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.resultFor(data: Swift.Optional&lt;Foundation.Data&gt;, response: Swift.Optional&lt;__C.NSURLResponse&gt;, error: Swift.Optional&lt;Swift.Error&gt;, file: Swift.StaticString, line: Swift.UInt) -&gt; Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109">
+               </Location>
+               <Location
+                  uuid = "496B07BD-FE52-468B-AA77-796AA900A3A4 - 72fb331e32a3bf62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;) -&gt; () in EFMTests.URLSessionHTTPClientTests.resultFor(data: Swift.Optional&lt;Foundation.Data&gt;, response: Swift.Optional&lt;__C.NSURLResponse&gt;, error: Swift.Optional&lt;Swift.Error&gt;, file: Swift.StaticString, line: Swift.UInt) -&gt; Swift.Result&lt;(Foundation.Data, __C.NSHTTPURLResponse), Swift.Error&gt;"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B00736A-032C-4BB5-8D97-AC7F93107D7A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "102A070B-ED07-4535-8A14-C2120A2BDFDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "test_getFromURL_suceedsWithEmptyDataOnHTTPURLResponseWithNilData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43C05274-0880-482B-B0A3-EBA24B992865"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "resultValueFor(data:response:error:file:line:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "43C05274-0880-482B-B0A3-EBA24B992865 - 9944ddf6c09976fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.resultValueFor(data: Swift.Optional&lt;Foundation.Data&gt;, response: Swift.Optional&lt;__C.NSURLResponse&gt;, error: Swift.Optional&lt;Swift.Error&gt;, file: Swift.StaticString, line: Swift.UInt) -&gt; Swift.Optional&lt;(data: Foundation.Data, response: __C.NSHTTPURLResponse)&gt;"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129">
+               </Location>
+               <Location
+                  uuid = "43C05274-0880-482B-B0A3-EBA24B992865 - 9944ddf6c09976fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.resultValueFor(data: Swift.Optional&lt;Foundation.Data&gt;, response: Swift.Optional&lt;__C.NSURLResponse&gt;, error: Swift.Optional&lt;Swift.Error&gt;, file: Swift.StaticString, line: Swift.UInt) -&gt; Swift.Optional&lt;(data: Foundation.Data, response: __C.NSHTTPURLResponse)&gt;"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEB7119A-4B76-47C0-8867-C39E80C998F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A7C7AE9-7297-4646-AC43-9B6EEC5F2361"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3C95638-7455-499C-9EFE-5E399A172523"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "resultFor(data:response:error:file:line:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52F374FF-E0B7-48AB-8177-D64BFDA8E678"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EFMTests/Feed API/URLSessionHTTPClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "52F374FF-E0B7-48AB-8177-D64BFDA8E678 - ba696d40bf591521"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.URLProtocolStub.startLoading() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202">
+               </Location>
+               <Location
+                  uuid = "52F374FF-E0B7-48AB-8177-D64BFDA8E678 - ba696d40bf591521"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EFMTests.URLSessionHTTPClientTests.URLProtocolStub.startLoading() -&gt; ()"
+                  moduleName = "EFMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denisyaremenko/Desktop/iOS/Education/2025/Caio%20&amp;%20Mike/EF%20Manually/EFM/EFM/EFMTests/Feed%20API/URLSessionHTTPClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
