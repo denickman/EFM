@@ -90,7 +90,7 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     func test_delete_deliversErrorOnDeletionError() {
         //        let noDeletePermissionURL = cachesDirectory()
         //        let sut = makeSUT(url: noDeletePermissionURL)
-        //        
+        //
         //        assertThatDeleteDeliversErrorOnDeletionError(on: sut)
     }
     
