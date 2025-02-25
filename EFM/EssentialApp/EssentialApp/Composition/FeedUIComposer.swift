@@ -7,19 +7,17 @@
 
 import UIKit
 import EFM
+import EFMiOS
 
 public final class FeedUIComposer {
     
     private init() {}
     
-    static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
+    public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
 
         let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader)
-        
         let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
-        
         let imageLoaderDecorator = MainQueueDispatchDecorator(decoratee: imageLoader)
-        
         let feedViewAdapter = FeedViewAdapter(controller: feedController, imageLoader: imageLoaderDecorator)
         
         let feedPresenter = FeedPresenter(

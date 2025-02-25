@@ -8,7 +8,7 @@
 import UIKit
 import EFM
 
-protocol FeedViewControllerDelegate {
+public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
@@ -16,11 +16,11 @@ public final class FeedViewController: UITableViewController {
     
     @IBOutlet private(set) public var errorView: ErrorView?
     
-    var tableModels = [FeedImageCellController]() {
+    public var tableModels = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
     
-    var delegate: FeedViewControllerDelegate?
+    public var delegate: FeedViewControllerDelegate?
     
     public override func viewDidLoad() {
         super.viewDidLoad()

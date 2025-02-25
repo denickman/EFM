@@ -9,5 +9,5 @@ import Foundation
 import EFM
 
 public struct FeedViewModel {
-    var feed: [FeedImage]
+    public var feed: [FeedImage]
 }

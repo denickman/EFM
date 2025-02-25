@@ -58,6 +58,33 @@
 		8590F1CC2D6B4A6F006FC9EC /* EFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		855696B52D6DEA2800AFA083 /* Exceptions for "EFM" folder in "EFM" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Feed Presentation/FeedImagePresenter.swift",
+				"Feed Presentation/FeedPresenter.swift",
+				"Feed Presentation/Models/FeedErrorViewModel.swift",
+				"Feed Presentation/Models/FeedImageCellViewModel.swift",
+				"Feed Presentation/Models/FeedLoadingViewModel.swift",
+				"Feed Presentation/Models/FeedViewModel.swift",
+			);
+			target = 8590F1C32D6B4A6F006FC9EC /* EFM */;
+		};
+		855696B62D6DEA2800AFA083 /* Exceptions for "EFM" folder in "EFMiOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Feed Presentation/FeedImagePresenter.swift",
+				"Feed Presentation/FeedPresenter.swift",
+				"Feed Presentation/Models/FeedErrorViewModel.swift",
+				"Feed Presentation/Models/FeedImageCellViewModel.swift",
+				"Feed Presentation/Models/FeedLoadingViewModel.swift",
+				"Feed Presentation/Models/FeedViewModel.swift",
+			);
+			target = 850343902D6B77E400375ABC /* EFMiOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		850343922D6B77E400375ABC /* EFMiOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -71,6 +98,10 @@
 		};
 		8590F1C62D6B4A6F006FC9EC /* EFM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				855696B52D6DEA2800AFA083 /* Exceptions for "EFM" folder in "EFM" target */,
+				855696B62D6DEA2800AFA083 /* Exceptions for "EFM" folder in "EFMiOS" target */,
+			);
 			path = EFM;
 			sourceTree = "<group>";
 		};

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import EFMiOS
+import EFM
 
 final class WeakRefVirtualProxy<T: AnyObject> {
     
