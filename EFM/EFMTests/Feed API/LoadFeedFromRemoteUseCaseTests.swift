@@ -1,5 +1,5 @@
 //
-//  FeedViewControllerTests.swift
+//  LoadFeedFromRemoteUseCaseTests.swift
 //  EFMiOSTests
 //
 //  Created by Denis Yaremenko on 24.02.2025.

@@ -62,7 +62,7 @@ public final class CodableFeedStore: FeedStore {
     
     public func delete(completion: @escaping DeletionCompletion) {
         let storeURL = self.storeURL
-        
+        print(storeURL.path)
         queue.async(flags: .barrier) {
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 completion(.success(()))
@@ -80,17 +80,21 @@ public final class CodableFeedStore: FeedStore {
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
         let storeURL = self.storeURL
-        
+
         queue.async {
+            guard let data = try? Data(contentsOf: storeURL) else {
+                return completion(.success(.none))
+            }
+            
             do {
                 let decoder = JSONDecoder()
-                let data = try Data(contentsOf: storeURL)
                 let cache = try decoder.decode(Cache.self, from: data)
-                completion(.success(.init(feed: cache.localFeed, timestamp: cache.timestamp)))
+                completion(.success(CachedFeed(feed: cache.localFeed, timestamp: cache.timestamp)))
             } catch {
                 completion(.failure(error))
             }
         }
+
     }
   
 }
