@@ -17,7 +17,13 @@ public final class FeedViewController: UITableViewController {
     @IBOutlet private(set) public var errorView: ErrorView?
     
     public var tableModels = [FeedImageCellController]() {
-        didSet { tableView.reloadData() }
+        didSet {
+            // TODO: - Check logic
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+           // tableView.reloadData()
+        }
     }
     
     public var delegate: FeedViewControllerDelegate?
@@ -31,7 +37,7 @@ public final class FeedViewController: UITableViewController {
         tableModels[indexPath.row]
     }
     
-    private func refresh() {
+    @IBAction private func refresh() {
         delegate?.didRequestFeedRefresh()
     }
 }
