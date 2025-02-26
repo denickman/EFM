@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EFM
 
 public final class LocalFeedLoader: FeedLoader {
     
@@ -35,10 +36,11 @@ public final class LocalFeedLoader: FeedLoader {
     }
 }
 
-extension LocalFeedLoader {
-    typealias SaveResult = Result<Void, Error>
+extension LocalFeedLoader: FeedCache {
+
+    public typealias SaveResult = Result<Void, Error>
     
-    func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
+    public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.delete { [weak self] deletionResult in
             
             guard let self else { return }
@@ -59,11 +61,7 @@ extension LocalFeedLoader {
             completion(result)
         })
     }
-    
 }
-    
-
-
 
 private extension Array where Element == LocalFeedImage {
     func toModels() -> [FeedImage] {

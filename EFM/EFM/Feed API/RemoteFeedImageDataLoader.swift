@@ -10,11 +10,11 @@ import Foundation
 public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
     
     // MARK: - HTTPClientTaskWrapper
-    
     private final class HTTPClientTaskWrapper: FeedImageDataLoaderTask {
-        private var completion: ((FeedImageDataLoader.Result) -> Void)?
         
         var wrapped: HTTPClientTask?
+        
+        private var completion: ((FeedImageDataLoader.Result) -> Void)?
         
         init(_ completion: @escaping (FeedImageDataLoader.Result) -> Void) {
             self.completion = completion
@@ -51,7 +51,8 @@ public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
         
         task.wrapped = client.get(from: url) { [weak self] result in
             guard self != nil else { return }
-            
+            /// flatMap позволяет вам выполнить сложную логику (например, проверку данных) и вернуть результат, который является типом результата для вашего запроса (например, .success или .failure).
+            ///В отличие от обычного .map, .flatMap может работать с асинхронными операциями или возвращать значения, которые могут быть преобразованы в результат с типом Result.
             task.complete(with: result
                 .mapError { _ in Error.connectivity }
                 .flatMap { (data, response) in
