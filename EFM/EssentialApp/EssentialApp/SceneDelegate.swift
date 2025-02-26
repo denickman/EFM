@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
 
         let session = URLSession(configuration: .ephemeral)
-        let client = URLSessionHTTPClient(session: session)
+        let client = makeRemoteClient() // URLSessionHTTPClient(session: session)
         
         let feedLoader = RemoteFeedLoader(url: url, client: client)
         let imageLoader = RemoteFeedImageDataLoader(client: client)
@@ -34,6 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = feedViewController
             window.makeKeyAndVisible()
             self.window = window
+    }
+    
+    func makeRemoteClient() -> HTTPClient {
+        URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }
 }
 
