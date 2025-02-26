@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import EFM
 
 public final class LocalFeedLoader: FeedLoader {
     
@@ -62,6 +61,29 @@ extension LocalFeedLoader: FeedCache {
         })
     }
 }
+
+
+extension LocalFeedLoader {
+    public typealias ValidationResult = Result<Void, Error>
+
+    public func validateCache(completion: @escaping (ValidationResult) -> Void) {
+        store.retrieve { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .failure:
+                self.store.delete(completion: completion)
+                
+            case let .success(.some(cache)) where !FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+                self.store.delete(completion: completion)
+                
+            case .success:
+                completion(.success(()))
+            }
+        }
+    }
+}
+
 
 private extension Array where Element == LocalFeedImage {
     func toModels() -> [FeedImage] {

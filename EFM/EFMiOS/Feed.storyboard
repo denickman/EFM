@@ -159,17 +159,16 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="bxZ-RI-Uda">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh" destination="d54-zn-ZYd" eventType="valueChanged" id="1Lg-AN-rnC"/>
+                        </connections>
                     </refreshControl>
                     <connections>
                         <outlet property="errorView" destination="L7H-YG-eR1" id="dDs-VX-sfy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3u-7n-0w0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="4Tu-7G-cR8">
-                    <connections>
-                        <action selector="refresh" destination="d54-zn-ZYd" id="mIy-jK-eBk"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="4Tu-7G-cR8"/>
             </objects>
             <point key="canvasLocation" x="893.89312977099235" y="-48.591549295774648"/>
         </scene>

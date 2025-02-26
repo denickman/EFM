@@ -8,6 +8,8 @@
 import UIKit
 import EFM
 
+/*
+ 
 #if DEBUG
 
 final class DebuggingSceneDelegate: SceneDelegate {
@@ -27,6 +29,11 @@ final class DebuggingSceneDelegate: SceneDelegate {
         }
         return super.makeRemoteClient()
     }
+    
+    // shoud be in SceneDelegate superclass
+    //   func makeRemoteClient() -> HTTPClient {
+    // URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    // }
 }
 
 private class DebuggingHTTPClient: HTTPClient {
@@ -96,3 +103,6 @@ private class DebuggingHTTPClient: HTTPClient {
 
 
 #endif
+
+
+*/

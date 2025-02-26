@@ -19,10 +19,10 @@ public final class FeedViewController: UITableViewController {
     public var tableModels = [FeedImageCellController]() {
         didSet {
             // TODO: - Check logic
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-           // tableView.reloadData()
+//            DispatchQueue.main.async { [weak self] in
+//                self?.tableView.reloadData()
+//            }
+            tableView.reloadData()
         }
     }
     
