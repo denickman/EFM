@@ -7,8 +7,8 @@
 
 import Foundation
 
-
 public struct FeedErrorViewModel {
+    
     public let message: String?
     
     static var noError: FeedErrorViewModel {

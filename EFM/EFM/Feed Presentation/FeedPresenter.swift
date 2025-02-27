@@ -8,7 +8,6 @@
 import Foundation
 import EFM
 
-
 public protocol FeedErrorView {
     func display(_ viewModel: FeedErrorViewModel)
 }

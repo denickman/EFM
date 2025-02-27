@@ -83,11 +83,11 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVB-5V-8L0" userLabel="ImageContainer">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVB-5V-8L0" userLabel="ImageContainer">
                                                     <rect key="frame" x="0.0" y="46" width="353" height="353"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eHz-Zp-gl1">
-                                                            <rect key="frame" x="4" y="4" width="345" height="345"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eHz-Zp-gl1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="353"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-de-PWh">
                                                             <rect key="frame" x="0.0" y="0.0" width="353" height="353"/>
@@ -104,13 +104,13 @@
                                                     <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="g9a-de-PWh" firstAttribute="leading" secondItem="YVB-5V-8L0" secondAttribute="leading" id="2Z6-Pe-qsU"/>
-                                                        <constraint firstItem="eHz-Zp-gl1" firstAttribute="leading" secondItem="YVB-5V-8L0" secondAttribute="leading" constant="4" id="69x-iO-P8D"/>
-                                                        <constraint firstAttribute="trailing" secondItem="eHz-Zp-gl1" secondAttribute="trailing" constant="4" id="F7J-lK-Urf"/>
-                                                        <constraint firstAttribute="bottom" secondItem="eHz-Zp-gl1" secondAttribute="bottom" constant="4" id="Thi-GL-TPB"/>
+                                                        <constraint firstItem="eHz-Zp-gl1" firstAttribute="leading" secondItem="YVB-5V-8L0" secondAttribute="leading" id="69x-iO-P8D"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eHz-Zp-gl1" secondAttribute="trailing" id="F7J-lK-Urf"/>
+                                                        <constraint firstAttribute="bottom" secondItem="eHz-Zp-gl1" secondAttribute="bottom" id="Thi-GL-TPB"/>
                                                         <constraint firstAttribute="width" secondItem="YVB-5V-8L0" secondAttribute="height" multiplier="1:1" id="Xdb-4Z-ATp"/>
                                                         <constraint firstAttribute="bottom" secondItem="g9a-de-PWh" secondAttribute="bottom" id="Y1b-uh-ep6"/>
                                                         <constraint firstAttribute="trailing" secondItem="g9a-de-PWh" secondAttribute="trailing" id="imx-ji-9PM"/>
-                                                        <constraint firstItem="eHz-Zp-gl1" firstAttribute="top" secondItem="YVB-5V-8L0" secondAttribute="top" constant="4" id="jAt-Nq-kVl"/>
+                                                        <constraint firstItem="eHz-Zp-gl1" firstAttribute="top" secondItem="YVB-5V-8L0" secondAttribute="top" id="jAt-Nq-kVl"/>
                                                         <constraint firstItem="g9a-de-PWh" firstAttribute="top" secondItem="YVB-5V-8L0" secondAttribute="top" id="tR1-ns-IH6"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
