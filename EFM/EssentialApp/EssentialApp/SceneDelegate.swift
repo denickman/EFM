@@ -45,18 +45,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteURL = URL(string: "https://static1.squarespace.com/static/5891c5b8d1758ec68ef5dbc2/t/5db4155a4fbade21d17ecd28/1572083034355/essential_app_feed.json")!
         
         let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: httpClient)
-        let localImageLoader = LocalFeedImageDataLoader(store: store)
         
-        let feedLoaderCacheDecorator = FeedLoaderCacheDecorator(decoratee: remoteFeedLoader, cache: localFeedLoader)
-        let fallbackFeedLoader = FeedLoaderWithFallbackComposite(primary: feedLoaderCacheDecorator, fallback: localFeedLoader)
+        let feedLoaderCacheDecorator = FeedLoaderCacheDecorator(
+            decoratee: remoteFeedLoader,
+            cache: localFeedLoader
+        ) // гарантирует, что загруженные из сети данные будут сохранены в кэше.
         
+        let feedLoaderFallback = FeedLoaderWithFallbackComposite(
+            primary: feedLoaderCacheDecorator,
+            fallback: localFeedLoader
+        ) // если нет интернета, данные будут загружены из кэша.
         
         let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
+        let localImageLoader = LocalFeedImageDataLoader(store: store)
 
-        let imageLoderCacheDecorator = FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader)
-        let fallbackImageLoader = FeedImageDataLoaderWithFallbackComposite(primary: localImageLoader, fallback: imageLoderCacheDecorator)
+        let imageLoderCacheDecorator = FeedImageDataLoaderCacheDecorator(
+            decoratee: remoteImageLoader,
+            cache: localImageLoader
+        )
+        
+        let imageLoaderFallback = FeedImageDataLoaderWithFallbackComposite(
+            primary: localImageLoader, // Сначала пытается загрузить изображение из локального кеша
+            fallback: imageLoderCacheDecorator // Если в кэше нет изображения, запрашивает его у сети через
+        )
 
-        let feedViewCtrl = FeedUIComposer.feedComposedWith(feedLoader: fallbackFeedLoader, imageLoader: fallbackImageLoader)
+        let feedViewCtrl = FeedUIComposer.feedComposedWith(
+            feedLoader: feedLoaderFallback,
+            imageLoader: imageLoaderFallback
+        )
         
         window?.rootViewController = UINavigationController(rootViewController: feedViewCtrl)
     }

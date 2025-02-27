@@ -10,8 +10,8 @@ import EFM
 
 public final class FeedImageDataLoaderCacheDecorator: FeedImageDataLoader {
     
-    private let decoratee: FeedImageDataLoader
-    private let cache: FeedImageDataCache
+    private let decoratee: FeedImageDataLoader // RemoteFeedImageDataLoader
+    private let cache: FeedImageDataCache // LocalFeedImageDataLoader
     
     public init(
         decoratee: FeedImageDataLoader,

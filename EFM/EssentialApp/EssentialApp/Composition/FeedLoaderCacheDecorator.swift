@@ -10,8 +10,8 @@ import EFM
 
 public final class FeedLoaderCacheDecorator: FeedLoader {
     
-    private let decoratee: FeedLoader
-    private let cache: FeedCache
+    private let decoratee: FeedLoader // remote feed loader
+    private let cache: FeedCache // local feed loader
     
     public init(decoratee: FeedLoader, cache: FeedCache) {
         self.decoratee = decoratee

@@ -29,6 +29,7 @@ extension FeedImageDataLoaderPresentationAdapter: FeedImageCellControllerDelegat
         let model = self.model
         presenter?.didStartLoadingImageData(for: model)
         
+        // imageLoader.loadImageData -> FeedImageDataLoaderWithFallbackComposite
         task = imageLoader.loadImageData(from: model.url) { [weak self] result in
             switch result {
             case .success(let data):

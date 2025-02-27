@@ -62,7 +62,6 @@ public final class CodableFeedStore: FeedStore {
     
     public func delete(completion: @escaping DeletionCompletion) {
         let storeURL = self.storeURL
-        print(storeURL.path)
         queue.async(flags: .barrier) {
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 completion(.success(()))

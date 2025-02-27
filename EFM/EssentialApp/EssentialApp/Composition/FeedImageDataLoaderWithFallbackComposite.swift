@@ -19,8 +19,8 @@ public class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
         }
     }
     
-    private let primary: FeedImageDataLoader
-    private let fallback: FeedImageDataLoader
+    private let primary: FeedImageDataLoader // LocalFeedImageDataLoader
+    private let fallback: FeedImageDataLoader // FeedImageDataLoaderCacheDecorator
     
     public init(primary: FeedImageDataLoader, fallback: FeedImageDataLoader) {
         self.primary = primary
