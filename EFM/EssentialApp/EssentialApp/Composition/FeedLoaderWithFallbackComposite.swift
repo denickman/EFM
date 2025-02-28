@@ -10,8 +10,8 @@ import EFM
 
 public class FeedLoaderWithFallbackComposite: FeedLoader {
     
-    private let primary: FeedLoader
-    private let fallback: FeedLoader
+    private let primary: FeedLoader // FeedLoaderCacheDecorator
+    private let fallback: FeedLoader // localFeedLoader
     
     public init(primary: FeedLoader, fallback: FeedLoader) {
         self.primary = primary

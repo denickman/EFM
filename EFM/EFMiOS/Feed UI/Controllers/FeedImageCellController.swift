@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EFM
 
 public protocol FeedImageCellControllerDelegate {
     func didRequestImage()

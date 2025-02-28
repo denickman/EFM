@@ -14,7 +14,7 @@ final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image> w
     var presenter: FeedImagePresenter<View, Image>?
     
     private let model: FeedImage
-    private let imageLoader: FeedImageDataLoader
+    private let imageLoader: FeedImageDataLoader // FeedImageDataLoaderWithFallbackComposite
     private var task: FeedImageDataLoaderTask?
     
     init(model: FeedImage, imageLoader: FeedImageDataLoader) {

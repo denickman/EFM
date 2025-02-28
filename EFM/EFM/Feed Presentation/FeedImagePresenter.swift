@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import EFM
 
 public protocol FeedImageView {
     associatedtype Image

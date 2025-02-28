@@ -11,7 +11,7 @@ import EFMiOS
 
 final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
     
-    private let feedLoader: FeedLoader
+    private let feedLoader: FeedLoader // FeedLoaderWithFallbackComposite
     var presenter: FeedPresenter?
     
     init(feedLoader: FeedLoader) {

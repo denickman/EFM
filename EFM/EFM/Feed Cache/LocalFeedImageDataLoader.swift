@@ -75,17 +75,21 @@ extension LocalFeedImageDataLoader: FeedImageDataLoader {
     ) -> FeedImageDataLoaderTask {
         let task = LoadImageDataTask(completion)
         
-        store.retrieve(from: url) { [weak self] result in
+        store.retrieve(from: url) { [weak self] result in // Result<Data?, Error> либо Data?, либо Error.
             guard self != nil else { return }
             
-            task.complete(with: result
-                .mapError({ _ in
+            let mappedResult: LoadResult = result
+                .mapError { _ in // преобразует ошибку (Error) в другую ошибку.
                     LoadError.failed
-                })
-                    .flatMap({ data in
-                        data.map { .success($0)} ?? .failure(LoadError.notFound)
-                    })
-            )
+                }
+                .flatMap { data in
+                    /// data != nil, мы оборачиваем его в Result.success(data).
+                    /// data == nil, возвращаем .failure(LoadError.notFound).
+                    /// `data.map(Result.success)` is equal to `data != nil ? .success(data!) : nil`
+                    data.map(Result.success) ?? .failure(LoadError.notFound)
+                }
+            
+            task.complete(with: mappedResult)
         }
         return task
     }

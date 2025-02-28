@@ -37,46 +37,39 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(
-            sut,
-            toCompleteWith: failure(.connectivity),
-            when: {
-                let error = NSError(domain: "Test", code: 0)
-                client.complete(withError: error)
-            })
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
+        })
     }
     
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
-        
         let samples = [199, 201, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
-            expect(
-                sut,
-                toCompleteWith: failure(.invalidData),
-                when: {
-                    let json = makeItemsJson([])
-                    client.complete(withCode: code, data: json, at: index)
-                })
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
+                let json = makeItemsJson([])
+                client.complete(with: code, data: json, at: index)
+            })
         }
     }
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidData() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWith: failure(.invalidData)) {
-            let jsonData = Data("Invalid JSON".utf8)
-            client.complete(withCode: 200, data: jsonData)
-        }
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
+            let invalidData = Data("invalid_json".utf8)
+            client.complete(with: 200, data: invalidData)
+        })
     }
     
     func test_load_deliversNoItemsOn200HTTPResponseWithEmptyData() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: .success([])) {
-            let emtpyJson = makeItemsJson([])
-            client.complete(withCode: 200, data: emtpyJson)
+            let emtpyData = makeItemsJson([])
+            client.complete(with: 200, data: emtpyData)
         }
     }
     
@@ -98,28 +91,25 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let items = makeItemsJson([item1.json, item2.json])
         
         expect(sut, toCompleteWith: .success([item1.item, item2.item])) {
-            client.complete(withCode: 200, data: items)
+            client.complete(with: 200, data: items)
         }
     }
     
     func test_load_doesNotDeliverResultAfterSUTHasBeenDeallocated() {
-        let url = URL(string: "https://example.com/feed.xml")!
-        
+        let url = URL(string: "https://someanotherurl.com")!
         let client = HTTPClientSpy()
-        
         var sut: RemoteFeedLoader? = RemoteFeedLoader(url: url, client: client)
         
-        var expectedResult: FeedLoader.Result?
+        var capturedResults = [RemoteFeedLoader.Result]()
         
-        sut?.load(completion: { result in
-            expectedResult = result
-        })
+        sut?.load { result in
+            capturedResults.append(result)
+        }
         
         sut = nil
+        client.complete(with: 200, data: Data())
         
-        client.complete(withError: NSError(domain: "", code: 0))
-        
-        XCTAssertNil(expectedResult)
+        XCTAssertTrue(capturedResults.isEmpty)
     }
     
     // MARK: - Helpers
@@ -192,31 +182,5 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     private func failure(_ error: RemoteFeedLoader.Error) -> FeedLoader.Result {
         .failure(error)
     }
-    
-    // MARK: - HTTPClient
-    
-    private class HTTPClientSpy: HTTPClient {
-        
-        var requestedURLs: [URL] {
-            messages.map {
-                $0.url
-            }
-        }
-        
-        private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-        
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-            messages.append((url: url, completion: completion))
-        }
-        
-        func complete(withError error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withCode statusCode: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-            messages[index].completion(.success((data, response)))
-        }
-        
-    }
+
 }
