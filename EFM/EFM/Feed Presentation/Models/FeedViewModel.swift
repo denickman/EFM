@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import EFM
 
 public struct FeedViewModel {
     public var feed: [FeedImage]
