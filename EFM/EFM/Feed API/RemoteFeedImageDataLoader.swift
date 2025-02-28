@@ -10,9 +10,10 @@ import Foundation
 public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
     
     // MARK: - HTTPClientTaskWrapper
+    
     private final class HTTPClientTaskWrapper: FeedImageDataLoaderTask {
         
-        var wrapped: HTTPClientTask?
+        var wrapped: HTTPClientTask? // HTTPClientSpy -> Task: HTTPClientTask
         
         private var completion: ((FeedImageDataLoader.Result) -> Void)?
         

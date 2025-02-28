@@ -11,8 +11,12 @@ import EFM
 class HTTPClientSpy: HTTPClient {
     
     private struct Task: HTTPClientTask {
+        
         let callback: () -> Void
-        func cancel() { callback() }
+        
+        func cancel() {
+            callback()
+        }
     }
     
     private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
