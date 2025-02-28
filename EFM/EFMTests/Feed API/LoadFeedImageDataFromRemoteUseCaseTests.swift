@@ -4,7 +4,7 @@
 //
 //  Created by Denis Yaremenko on 28.02.2025.
 //
-git 
+
 import XCTest
 import EFM
 
