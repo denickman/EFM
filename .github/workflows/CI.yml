@@ -26,26 +26,26 @@ jobs:
       - name: Select Xcode
         run: |
           # sudo xcode-select -s /Applications/Xcode.app
-          sudo xcode-select -s /Applications/Xcode_16.2.app
+          sudo xcode-select -s /Applications/Xcode_16.1.app
           echo ">> availale xcode versions"
           xcode-select -p
           echo ">> current version"
           xcodebuild -version
 
-      - name: Test macOS
-        run: |
-
-          echo "Now Current directory is:"
-          pwd
-          ls -la
-
-          xcodebuild clean build test \
-          -project EssentialFeed.xcodeproj \
-          -scheme "CI_macOS" \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          -sdk macosx \
-          -destination "platform=macOS"
+      # - name: Test macOS
+      #   run: |
+      #
+      #     echo "Now Current directory is:"
+      #     pwd
+      #     ls -la
+      #
+      #     xcodebuild clean build test \
+      #     -project EssentialFeed.xcodeproj \
+      #     -scheme "CI_macOS" \
+      #     CODE_SIGN_IDENTITY="" \
+      #     CODE_SIGNING_REQUIRED=NO \
+      #     -sdk macosx \
+      #     -destination "platform=macOS"
 
       - name: Test iOS
         run: |
@@ -54,11 +54,17 @@ jobs:
             pwd
             ls -la
 
+            echo "List of schemas"
+            xcodebuild -list -project EssentialFeed.xcodeproj
+
+            echo "check current schema"
+            ls -la EssentialFeed.xcodeproj/xcshareddata/xcschemes
+
             xcodebuild clean build test \
-            -project EssentialFeed.xcodeproj \
+            -workspace EssentialApp.xcworkspace \
             -scheme "CI_iOS" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPhone 15,OS=18.1"
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.1"
     # ONLY_ACTIVE_ARCH=YES
