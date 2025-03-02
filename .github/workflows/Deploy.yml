@@ -26,8 +26,10 @@ jobs:
 
       - name: Install certificates
         run: |
+          echo "GPG"
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
-          security import prod_certificate.p12 -k ~/Library/Keychains/login.keychain
+          # echo "SEC"
+          # security import prod_certificate.p12 -k ~/Library/Keychains/login.keychain
 
           echo "decryption prod_certificate.p12.gpg OK"
 
