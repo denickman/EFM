@@ -1,4 +1,4 @@
-
+#!/bin/bash
 name: Deploy to App Store
 # gpg --symmetric --cipher-algo AES256 --output prod_profile.mobileprovision.gpg prod_profile.mobileprovision
 
