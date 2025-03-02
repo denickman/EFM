@@ -89,13 +89,17 @@ jobs:
             -derivedDataPath /Users/runner/work/EFM/EFM/DerivedData \
             -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive | tee xcodebuild.log
 
-      - name: List Xcode projects
+      - name: List EssentialApp workspace Files
         run: |
           ls -la
           xcodebuild -list -workspace EssentialApp.xcworkspace
 
       - name: Export .ipa
         run: |
+
+          echo "Contents of the archive directory:"
+          ls -l /Users/runner/work/EFM/EFM/DerivedData/Archive
+
           xcodebuild -exportArchive \
             -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive \
             -exportOptionsPlist .github/deployment/ExportOptions.plist \
