@@ -48,9 +48,8 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-          
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
 
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
 
       - name: Select Xcode
         run: |
