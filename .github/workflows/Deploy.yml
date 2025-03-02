@@ -1,6 +1,8 @@
 
 name: Deploy to App Store
 # gpg --symmetric --cipher-algo AES256 --output prod_profile.mobileprovision.gpg prod_profile.mobileprovision
+# gpg --symmetric --cipher-algo AES256 --output prod_cert.p12.gpg prod_cert.p12
+
 
 on:
   push:
@@ -24,7 +26,7 @@ jobs:
 
       - name: Install certificates
         run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
           echo "decryption prod_certificate.p12.gpg OK"
 
           # Расшифровка dev_certificate.p12.gpg
