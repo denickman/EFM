@@ -73,12 +73,12 @@ jobs:
       - name: Clean Build
         run: |
             ls -la
-            xcodebuild clean -workspace EssentialFeed/EssentialApp.xcworkspace -scheme EssentialApp
+            xcodebuild clean -workspace EssentialApp.xcworkspace -scheme EssentialApp
 
       - name: Build and Archive
         run: |
-          cd EssentialApp
-          echo "show directory"
+
+
           ls -la
 
           xcodebuild clean archive \
@@ -91,7 +91,7 @@ jobs:
 
       - name: List Xcode projects
         run: |
-          cd EssentialApp
+          ls -la
           xcodebuild -list -workspace EssentialApp.xcworkspace
 
       - name: Export .ipa
