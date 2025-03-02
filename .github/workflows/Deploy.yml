@@ -26,7 +26,7 @@ jobs:
 
       - name: Install certificates
         run: |
-          gpg --quiet --batch --yes --decrypt --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
           echo "decryption prod_certificate.p12.gpg OK"
 
           # Расшифровка dev_certificate.p12.gpg
