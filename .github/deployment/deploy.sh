@@ -1,11 +1,10 @@
 
 name: Deploy to App Store
 # gpg --symmetric --cipher-algo AES256 --output prod_profile.mobileprovision.gpg prod_profile.mobileprovision
-# gpg --symmetric --cipher-algo AES256 --output prod_cert.p12.gpg prod_cert.p12
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ci_tests ]
 
 jobs:
   build-and-deploy:
@@ -15,26 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install provisioning profiles
-        run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-
-          echo "check !!!!"
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
-          security cms -D -i prod_profile.mobileprovision | plutil -p -
-
       - name: Install certificates
         run: |
-          echo "GPG"
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
-          # echo "SEC"
-
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_certificate.p12.gpg
           echo "decryption prod_certificate.p12.gpg OK"
 
           # Расшифровка dev_certificate.p12.gpg
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output dev_certificate.p12 .github/deployment/dev_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output dev_certificate.p12 .github/deployment/dev_certificate.p12.gpg
           echo "decryption dev_certificate.p12.gpg OK"
 
           # Создание ключницы
@@ -57,9 +43,13 @@ jobs:
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
 
+      - name: Install provisioning profiles
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
-          echo "check !!!!"
-          security find-identity -p codesigning
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
 
       - name: Select Xcode
         run: |
