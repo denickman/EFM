@@ -77,7 +77,7 @@ jobs:
 
       - name: Build and Archive
         run: |
-          cd EssentialFeed
+          cd EssentialApp
           echo "show directory"
           ls -la
 
@@ -91,7 +91,7 @@ jobs:
 
       - name: List Xcode projects
         run: |
-          cd EssentialFeed
+          cd EssentialApp
           xcodebuild -list -workspace EssentialApp.xcworkspace
 
       - name: Export .ipa
