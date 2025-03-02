@@ -37,7 +37,6 @@
 		8596F03C2D60FD4800A17090 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F03B2D60FD4800A17090 /* FeedCache.swift */; };
 		8596F0482D61068000A17090 /* FeedImageDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F0472D61068000A17090 /* FeedImageDataCache.swift */; };
 		85A90AB32D53906F006B468B /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080EDEF121B6DA7E00813479 /* EssentialFeed.framework */; platformFilter = ios; };
-		85A90AB42D53906F006B468B /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 080EDEF121B6DA7E00813479 /* EssentialFeed.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85D115FF2D5E050300CB76DD /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D115FE2D5E050300CB76DD /* HTTPURLResponse+StatusCode.swift */; };
 		85D116012D5E052100CB76DD /* RemoteFeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D116002D5E052100CB76DD /* RemoteFeedImageDataLoader.swift */; };
 		85D116092D5E078E00CB76DD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85D116082D5E078E00CB76DD /* README.md */; };
@@ -94,7 +93,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				85A90AB42D53906F006B468B /* EssentialFeed.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
