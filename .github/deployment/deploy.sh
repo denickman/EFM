@@ -14,17 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install provisioning profiles
-        run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-
       - name: Install certificates
         run: |
-          echo "decryption"
-
-          # Расшифровка prod_certificate.p12.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_certificate.p12.gpg
           echo "decryption prod_certificate.p12.gpg OK"
 
@@ -51,6 +42,15 @@ jobs:
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
+
+      - name: Install provisioning profiles
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
+
 
       - name: Select Xcode
         run: |
@@ -97,7 +97,7 @@ jobs:
 
       - name: Export .ipa
         run: |
-          cd EssentialApp
+
           ls -la
 
           xcodebuild -exportArchive \
