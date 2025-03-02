@@ -1,4 +1,4 @@
-#!/bin/bash
+
 name: Deploy to App Store
 # gpg --symmetric --cipher-algo AES256 --output prod_profile.mobileprovision.gpg prod_profile.mobileprovision
 
@@ -97,12 +97,12 @@ jobs:
 
       - name: Export .ipa
         run: |
-
+          cd EssentialApp
           ls -la
 
           xcodebuild -exportArchive \
             -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive \
-            -exportOptionsPlist ExportOptions.plist \
+            -exportOptionsPlist .github/deployment/ExportOptions.plist \
             -exportPath DerivedData/ipa | tee export.log
 
       - name: Save API Key to file
