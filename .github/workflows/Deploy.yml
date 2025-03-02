@@ -78,7 +78,7 @@ jobs:
       - name: Build and Archive
         run: |
 
-
+          pwd
           ls -la
 
           xcodebuild clean archive \
@@ -108,9 +108,9 @@ jobs:
           echo "Path and File Exist"
           ls -la ~/private_keys/
 
-      # - name: Inspect IPA Info.plist
-      #   run: |
-      #       unzip -p DerivedData/ipa/EssentialApp.ipa Payload/EssentialApp.app/Info.plist | plutil -p -
+      - name: Inspect IPA Info.plist
+        run: |
+            unzip -p DerivedData/ipa/EssentialApp.ipa Payload/EssentialApp.app/Info.plist | plutil -p -
 
       - name: Upload IPA to TestFlight
         run: |
