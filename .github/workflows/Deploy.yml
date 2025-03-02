@@ -18,7 +18,7 @@ jobs:
 
       - name: Install provisioning profiles
         run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
@@ -27,14 +27,13 @@ jobs:
       - name: Install certificates
         run: |
           echo "GPG"
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
           # echo "SEC"
-          # security import prod_certificate.p12 -k ~/Library/Keychains/login.keychain
 
           echo "decryption prod_certificate.p12.gpg OK"
 
           # Расшифровка dev_certificate.p12.gpg
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output dev_certificate.p12 .github/deployment/dev_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET }}" --output dev_certificate.p12 .github/deployment/dev_cert.p12.gpg
           echo "decryption dev_certificate.p12.gpg OK"
 
           # Создание ключницы
