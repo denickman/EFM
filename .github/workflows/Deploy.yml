@@ -102,7 +102,7 @@ jobs:
 
           xcodebuild -exportArchive \
             -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive \
-            -exportOptionsPlist ExportOptions.plist \
+            -exportOptionsPlist .github/deployment/ExportOptions.plist \
             -exportPath DerivedData/ipa | tee export.log
 
       - name: Save API Key to file
