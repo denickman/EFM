@@ -64,7 +64,7 @@ jobs:
 
       - name: Increment Build Number with agvtool
         run: |
-            cd EssentialFeed/EssentialApp
+
             ls -la
             agvtool new-version -all $((GITHUB_RUN_NUMBER + 1))
             echo "New build number set to: $((GITHUB_RUN_NUMBER + 1))"
