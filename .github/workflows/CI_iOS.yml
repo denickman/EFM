@@ -1,8 +1,8 @@
 name: CI_iOS
 
 on:
-  push:
-    branches: [ ci_tests ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-test-macos:
