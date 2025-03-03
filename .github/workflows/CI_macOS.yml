@@ -1,7 +1,7 @@
 name: CI_macOS
 
 on:
-  pull_request:
+  push:
     branches: [ ci_tests ]
 
 jobs:
