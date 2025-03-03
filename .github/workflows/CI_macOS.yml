@@ -2,7 +2,7 @@ name: CI_macOS
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ ci_tests ]
 
 jobs:
   build-and-test-macos:
@@ -31,8 +31,6 @@ jobs:
         run: |
 
           echo "Now Current directory is:"
-          cd EssentialFeed
-          pwd
           ls -la
 
           xcodebuild clean build test \
