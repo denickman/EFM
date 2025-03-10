@@ -26,7 +26,7 @@ public class URLSessionHTTPClient: HTTPClient {
             } else {
                 completion(.failure(UnexpectedValueRepresentation()))
             }
-
         }
+        .resume()
     }
 }
