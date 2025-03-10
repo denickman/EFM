@@ -9,7 +9,7 @@ import Foundation
 
 public final class RemoteFeedLoader: FeedLoader {
     
-    private enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case connectivity, invalidData
     }
     
@@ -23,14 +23,14 @@ public final class RemoteFeedLoader: FeedLoader {
     
     public func load(completion: @escaping (FeedLoader.Result) -> Void) {
         client.get(from: url) { [weak self] result in
+            
             guard self != nil else { return }
             
             switch result {
             case .success((let data, let response)):
                 completion(RemoteFeedLoader.map(data, response: response))
   
-                
-            case .failure(let error):
+            case .failure:
                 completion(.failure(Error.connectivity))
             }
         }
