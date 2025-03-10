@@ -25,22 +25,9 @@
 		85D3E9052D7ECCE500717BF2 /* EFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		85D3E90D2D7ECCE500717BF2 /* Exceptions for "EFM" folder in "EFM" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				EFM.h,
-			);
-			target = 85D3E8FC2D7ECCE500717BF2 /* EFM */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		85D3E8FF2D7ECCE500717BF2 /* EFM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				85D3E90D2D7ECCE500717BF2 /* Exceptions for "EFM" folder in "EFM" target */,
-			);
 			path = EFM;
 			sourceTree = "<group>";
 		};
