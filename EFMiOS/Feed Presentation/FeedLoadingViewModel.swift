@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+public struct FeedLoadingViewModel {
+    let isLoading: Bool
+}

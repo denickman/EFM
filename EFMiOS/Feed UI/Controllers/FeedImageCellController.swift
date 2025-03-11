@@ -8,49 +8,47 @@
 import UIKit
 import EFM
 
-final class FeedImageCellController {
-    
+protocol FeedImageCellControllerDelegate {
+    func didRequestImage()
+    func didCancelImageRequest()
+}
+
+final class FeedImageCellController: FeedImageView {
+   
     // MARK: - Properties
     
-    private var task: FeedImageDataLoaderTask?
-    private let model: FeedImage
-    private let imageLoader: FeedImageDataLoader
+    private let delegate: FeedImageCellControllerDelegate
+    private lazy var cell = FeedImageCell()
     
     // MARK: - Init
     
-    init(model: FeedImage, imageLoader: FeedImageDataLoader) {
-        self.model = model
-        self.imageLoader = imageLoader
+    init(delegate: FeedImageCellControllerDelegate) {
+        self.delegate = delegate
     }
     
     func view() -> UITableViewCell {
-        let cell = FeedImageCell()
-        
-        cell.locationContainer.isHidden = (model.location == nil)
-        cell.locationLabel.text = model.location
-        cell.descriptionLabel.text = model.description
-        cell.feedImageView.image = nil
-        cell.feedImageRetryButton.isHidden = true
-        cell.feedImageContainer.startShimmering()
-        
-        let loadImage = self.imageLoader.loadImageData(from: model.url) { [weak cell] result in
-            let data = try? result.get()
-            let image = data.map(UIImage.init) ?? nil
-            cell?.feedImageView.image = image
-            cell?.feedImageRetryButton.isHidden = (image != nil)
-            cell?.feedImageContainer.stopShimmering()
-        }
-        
+        delegate.didRequestImage()
         return cell
     }
-    
+
     // MARK: - Methods
     
+    func display(_ viewModel: FeedImageViewModel<UIImage>) {
+        cell.locationContainer.isHidden = !viewModel.hasLocation
+        cell.locationLabel.text = viewModel.location
+        cell.descriptionLabel.text = viewModel.description
+        
+        cell.feedImageView.image = viewModel.image
+        cell.feedImageContainer.isShimmering = viewModel.isLoading
+        cell.feedImageRetryButton.isHidden = !viewModel.shouldRetry
+        cell.onRetry = delegate.didRequestImage
+    }
+    
     func preload() {
-        task = imageLoader.loadImageData(from: model.url, completion: { _ in })
+        delegate.didRequestImage()
     }
     
     func cancelLoad() {
-        task?.cancel()
+        delegate.didCancelImageRequest()
     }
 }

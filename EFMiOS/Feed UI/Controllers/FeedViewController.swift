@@ -8,9 +8,17 @@
 import UIKit
 import EFM
 
+protocol FeedViewControllerDelegate {
+    func didRequestFeedRefresh()
+}
+
 public final class FeedViewController: UITableViewController {
     
-    private var refreshController: FeedRefreshViewController?
+    // MARK: - Properties
+    
+    @IBOutlet private(set) public var errorView: ErrorView?
+    
+    var delegate: FeedViewControllerDelegate?
     
     var tableModel = [FeedImageCellController]() {
         didSet {
@@ -18,21 +26,23 @@ public final class FeedViewController: UITableViewController {
         }
     }
 
-    convenience init(refreshController: FeedRefreshViewController) {
-        self.init()
-        self.refreshController = refreshController
-    }
+    // MARK: - Lifecycle
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.prefetchDataSource = self
-        refreshControl = refreshController?.view
-        refreshController?.refresh()
+        refresh()
+    }
+    
+    // MARK: - Methods
+    
+    @IBAction func refresh() {
+        delegate?.didRequestFeedRefresh()
     }
     
     private func cellController(at indexPath: IndexPath) -> FeedImageCellController {
         tableModel[indexPath.row]
     }
+
 }
 
 extension FeedViewController {
@@ -64,7 +74,17 @@ extension FeedViewController: UITableViewDataSourcePrefetching {
             cellController(at: path).cancelLoad()
         }
     }
+}
+
+extension FeedViewController: FeedLoadingView {
+    public func display(_ viewModel: FeedLoadingViewModel) {
+        refreshControl?.update(isRefreshing: viewModel.isLoading)
+    }
     
- 
-    
+}
+
+extension FeedViewController: FeedErrorView {
+    public func display(_ viewModel: FeedErrorViewModel) {
+        errorView?.message = viewModel.message
+    }
 }
