@@ -7,6 +7,7 @@
 
 import UIKit
 import EFM
+import EFMiOS
 
 final class FeedViewAdapter: FeedView {
     

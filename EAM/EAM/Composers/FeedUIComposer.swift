@@ -7,6 +7,7 @@
 
 import UIKit
 import EFM
+import EFMiOS
 
 public final class FeedUIComposer {
     

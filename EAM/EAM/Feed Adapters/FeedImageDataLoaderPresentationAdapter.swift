@@ -7,6 +7,7 @@
 
 import Foundation
 import EFM
+import EFMiOS
 
 final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image> where View.Image == Image {
     

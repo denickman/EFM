@@ -7,6 +7,7 @@
 
 import Foundation
 import EFM
+import EFMiOS
 
 final class FeedLoaderPresentationAdapter {
     
@@ -17,7 +18,6 @@ final class FeedLoaderPresentationAdapter {
         self.feedLoader = feedLoader
     }
 }
-
 
 extension FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
     func didRequestFeedRefresh() {

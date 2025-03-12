@@ -66,7 +66,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-
 private extension SceneDelegate {
     func configureWindowInitialApproach() {
         let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!

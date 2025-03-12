@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import EFM
 
 public struct FeedViewModel {
-    let feed: [FeedImage]
+    public let feed: [FeedImage]
 }
