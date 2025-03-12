@@ -48,7 +48,6 @@ final class FeedPresenterTests: XCTestCase {
         return (sut, view)
     }
     
-    
     private func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
         let table = "Feed"
         let bundle = Bundle(for: FeedPresenter.self)
@@ -59,9 +58,7 @@ final class FeedPresenterTests: XCTestCase {
         return value
     }
     
-    
     // MARK: - ViewSpy
-    
     
     private class ViewSpy: FeedLoadingView, FeedView, FeedErrorView {
         
@@ -85,8 +82,6 @@ final class FeedPresenterTests: XCTestCase {
         func display(_ viewModel: FeedErrorViewModel) {
             messages.insert(.display(errorMessage: viewModel.message))
         }
-        
-        
     }
     
     
