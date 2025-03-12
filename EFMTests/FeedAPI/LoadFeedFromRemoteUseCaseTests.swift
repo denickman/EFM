@@ -12,7 +12,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
-        XCTAssertEqual(client.urls, [])
+        XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_load_requestsDataFromURL() {
@@ -21,7 +21,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         sut.load { _ in }
         
-        XCTAssertEqual(client.urls, [url])
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
@@ -31,7 +31,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         sut.load { _ in }
         
-        XCTAssertEqual(client.urls, [url, url])
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -39,7 +39,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let errorResult = RemoteFeedLoader.Error.connectivity
         
         expect(sut, toCompleteWith: .failure(errorResult)) {
-            client.completeWith(error: anyNSError())
+            client.complete(with: anyNSError())
         }
     }
     
@@ -51,7 +51,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         expect(sut, toCompleteWith: .failure(error)) {
             samples.enumerated().forEach { index, code in
-                client.completeWith(statusCode: code, data: json)
+                client.complete(with: code, data: json)
             }
         }
     }
@@ -62,7 +62,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let invalidData = Data("invalid_json".utf8)
         
         expect(sut, toCompleteWith: .failure(error)) {
-            client.completeWith(statusCode: 200, data: invalidData)
+            client.complete(with: 200, data: invalidData)
         }
     }
     
@@ -71,7 +71,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let emptyData = makeData(from: [])
         
         expect(sut, toCompleteWith: .success([])) {
-            client.completeWith(statusCode: 200, data: emptyData)
+            client.complete(with: 200, data: emptyData)
         }
     }
     
@@ -93,7 +93,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let data = makeData(from: [item1.json, item2.json])
         
         expect(sut, toCompleteWith: .success([item1.item, item2.item])) {
-            client.completeWith(statusCode: 200, data: data)
+            client.complete(with: 200, data: data)
         }
     }
     
@@ -110,7 +110,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         sut = nil
         
-        client.completeWith(error: URLError(.badServerResponse))
+        client.complete(with: URLError(.badServerResponse))
         
         XCTAssertNil(expectedResult, "Expected nil, got \(String(describing: expectedResult)) instead")
     }
@@ -176,27 +176,5 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     private func makeData(from json: [[String : Any]]) -> Data {
         let json = ["items" : json]
         return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
-    // MARK: - Spy
-    
-    private class HTTPClientSpy: HTTPClient {
-        
-        var urls: [URL] { messages.map { $0.url } }
-        
-        private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-        
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-            messages.append((url: url, completion: completion))
-        }
-        
-        func completeWith(statusCode: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: urls[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-            messages[index].completion(.success((data, response)))
-        }
-        
-        func completeWith(error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
     }
 }
