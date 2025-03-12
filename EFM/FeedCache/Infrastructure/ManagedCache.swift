@@ -8,26 +8,25 @@
 import Foundation
 import CoreData
 
+@objc(ManagedCache)
 class ManagedCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var feed: NSOrderedSet
 }
 
 extension ManagedCache {
-    
-    static func find(in ctx: NSManagedObjectContext) throws -> ManagedCache? {
+    static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
         let request = NSFetchRequest<ManagedCache>(entityName: entity().name!)
         request.returnsObjectsAsFaults = false
-        return try ctx.fetch(request).first
+        return try context.fetch(request).first
     }
     
-    static func newUniqueInstance(in ctx: NSManagedObjectContext) throws -> ManagedCache {
-        try find(in: ctx).map(ctx.delete)
-        return .init(context: ctx)
+    static func newUniqueInstance(in context: NSManagedObjectContext) throws -> ManagedCache {
+        try find(in: context).map(context.delete)
+        return ManagedCache(context: context)
     }
     
     var localFeed: [LocalFeedImage] {
         return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
     }
-
 }

@@ -37,7 +37,7 @@ extension LocalFeedLoader: FeedLoader {
     }
 }
 
-extension LocalFeedLoader {
+extension LocalFeedLoader: FeedCache {
     
     public typealias SaveResult = Result<Void, Error>
     

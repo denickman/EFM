@@ -1,5 +1,5 @@
 //
-//  FeedCache.swift
+//  FeedStore.swift
 //  EFM
 //
 //  Created by Denis Yaremenko on 10.03.2025.
