@@ -1,0 +1,42 @@
+name: CI_iOS
+
+on:
+  pull_request:
+    branches: [ feature_github_ci ]
+
+jobs:
+  build-and-test-macos:
+    runs-on: macos-latest
+    # timeout-minutes: 10
+    # concurrency:
+    #   group: "build-${{ github.ref }}"
+    #   cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Display Xcode version
+        run: xcodebuild -version
+
+      - name: Select Xcode
+        run: |
+          # sudo xcode-select -s /Applications/Xcode.app
+          sudo xcode-select -s /Applications/Xcode_16.1.app
+          echo ">> availale xcode versions"
+          xcode-select -p
+          echo ">> current version"
+          xcodebuild -version
+
+      - name: Test Workspace
+        run: |
+
+          echo "Now Current directory is:"
+          ls -la
+
+          xcodebuild clean build test \
+          -workspace EAM.xcworkspace \
+          -scheme "CI_iOS" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          -sdk iphonesimulator \
+          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.1" ONLY_ACTIVE_ARCH=YES
