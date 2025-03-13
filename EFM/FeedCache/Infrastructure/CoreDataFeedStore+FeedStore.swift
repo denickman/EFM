@@ -33,10 +33,13 @@ extension CoreDataFeedStore: FeedStore {
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
         perform { ctx in
+            
             do {
                 if let managedCache = try ManagedCache.find(in: ctx) {
                     let cachedFeed = CachedFeed(feed: managedCache.localFeed, timestamp: managedCache.timestamp)
                     completion(.success(cachedFeed))
+                } else {
+                    completion(.success(.none))
                 }
             } catch {
                 completion(.failure(error))
