@@ -14,14 +14,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		85198D1C2D806C43000C57B9 /* PBXContainerItemProxy */ = {
+		85CF10852D8308D7000F0C6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85198CFD2D806C41000C57B9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 85198D042D806C41000C57B9;
 			remoteInfo = EAM;
 		};
-		85198D262D806C43000C57B9 /* PBXContainerItemProxy */ = {
+		85CF10942D8308F1000F0C6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85198CFD2D806C41000C57B9 /* Project object */;
 			proxyType = 1;
@@ -47,10 +47,10 @@
 
 /* Begin PBXFileReference section */
 		85198D052D806C41000C57B9 /* EAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		85198D1B2D806C43000C57B9 /* EAMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85198D252D806C43000C57B9 /* EAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		851990892D807D23000C57B9 /* EFM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8519908A2D807D23000C57B9 /* EFMiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFMiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85CF10812D8308D7000F0C6A /* EAMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMUIAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -72,14 +72,14 @@
 			path = EAM;
 			sourceTree = "<group>";
 		};
-		85198D1E2D806C43000C57B9 /* EAMTests */ = {
+		85CF10822D8308D7000F0C6A /* EAMTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = EAMTests;
 			sourceTree = "<group>";
 		};
-		85198D282D806C43000C57B9 /* EAMUITests */ = {
+		85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EAMUITests;
+			path = EAMUIAcceptanceTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -94,14 +94,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D182D806C43000C57B9 /* Frameworks */ = {
+		85CF107E2D8308D7000F0C6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D222D806C43000C57B9 /* Frameworks */ = {
+		85CF108B2D8308F0000F0C6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,8 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				85198D072D806C41000C57B9 /* EAM */,
-				85198D1E2D806C43000C57B9 /* EAMTests */,
-				85198D282D806C43000C57B9 /* EAMUITests */,
+				85CF10822D8308D7000F0C6A /* EAMTests */,
+				85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */,
 				851990882D807D23000C57B9 /* Frameworks */,
 				85198D062D806C41000C57B9 /* Products */,
 			);
@@ -126,8 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				85198D052D806C41000C57B9 /* EAM.app */,
-				85198D1B2D806C43000C57B9 /* EAMTests.xctest */,
-				85198D252D806C43000C57B9 /* EAMUITests.xctest */,
+				85CF10812D8308D7000F0C6A /* EAMTests.xctest */,
+				85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,50 +167,50 @@
 			productReference = 85198D052D806C41000C57B9 /* EAM.app */;
 			productType = "com.apple.product-type.application";
 		};
-		85198D1A2D806C43000C57B9 /* EAMTests */ = {
+		85CF10802D8308D7000F0C6A /* EAMTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85198D332D806C43000C57B9 /* Build configuration list for PBXNativeTarget "EAMTests" */;
+			buildConfigurationList = 85CF10872D8308D7000F0C6A /* Build configuration list for PBXNativeTarget "EAMTests" */;
 			buildPhases = (
-				85198D172D806C43000C57B9 /* Sources */,
-				85198D182D806C43000C57B9 /* Frameworks */,
-				85198D192D806C43000C57B9 /* Resources */,
+				85CF107D2D8308D7000F0C6A /* Sources */,
+				85CF107E2D8308D7000F0C6A /* Frameworks */,
+				85CF107F2D8308D7000F0C6A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				85198D1D2D806C43000C57B9 /* PBXTargetDependency */,
+				85CF10862D8308D7000F0C6A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				85198D1E2D806C43000C57B9 /* EAMTests */,
+				85CF10822D8308D7000F0C6A /* EAMTests */,
 			);
 			name = EAMTests;
 			packageProductDependencies = (
 			);
 			productName = EAMTests;
-			productReference = 85198D1B2D806C43000C57B9 /* EAMTests.xctest */;
+			productReference = 85CF10812D8308D7000F0C6A /* EAMTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		85198D242D806C43000C57B9 /* EAMUITests */ = {
+		85CF108D2D8308F0000F0C6A /* EAMUIAcceptanceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85198D362D806C43000C57B9 /* Build configuration list for PBXNativeTarget "EAMUITests" */;
+			buildConfigurationList = 85CF10962D8308F1000F0C6A /* Build configuration list for PBXNativeTarget "EAMUIAcceptanceTests" */;
 			buildPhases = (
-				85198D212D806C43000C57B9 /* Sources */,
-				85198D222D806C43000C57B9 /* Frameworks */,
-				85198D232D806C43000C57B9 /* Resources */,
+				85CF108A2D8308F0000F0C6A /* Sources */,
+				85CF108B2D8308F0000F0C6A /* Frameworks */,
+				85CF108C2D8308F0000F0C6A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				85198D272D806C43000C57B9 /* PBXTargetDependency */,
+				85CF10952D8308F1000F0C6A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				85198D282D806C43000C57B9 /* EAMUITests */,
+				85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */,
 			);
-			name = EAMUITests;
+			name = EAMUIAcceptanceTests;
 			packageProductDependencies = (
 			);
-			productName = EAMUITests;
-			productReference = 85198D252D806C43000C57B9 /* EAMUITests.xctest */;
+			productName = EAMUIAcceptanceTests;
+			productReference = 85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -226,11 +226,11 @@
 					85198D042D806C41000C57B9 = {
 						CreatedOnToolsVersion = 16.2;
 					};
-					85198D1A2D806C43000C57B9 = {
+					85CF10802D8308D7000F0C6A = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 85198D042D806C41000C57B9;
 					};
-					85198D242D806C43000C57B9 = {
+					85CF108D2D8308F0000F0C6A = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 85198D042D806C41000C57B9;
 					};
@@ -251,8 +251,8 @@
 			projectRoot = "";
 			targets = (
 				85198D042D806C41000C57B9 /* EAM */,
-				85198D1A2D806C43000C57B9 /* EAMTests */,
-				85198D242D806C43000C57B9 /* EAMUITests */,
+				85CF10802D8308D7000F0C6A /* EAMTests */,
+				85CF108D2D8308F0000F0C6A /* EAMUIAcceptanceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,14 +265,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D192D806C43000C57B9 /* Resources */ = {
+		85CF107F2D8308D7000F0C6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D232D806C43000C57B9 /* Resources */ = {
+		85CF108C2D8308F0000F0C6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -289,14 +289,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D172D806C43000C57B9 /* Sources */ = {
+		85CF107D2D8308D7000F0C6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85198D212D806C43000C57B9 /* Sources */ = {
+		85CF108A2D8308F0000F0C6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -306,15 +306,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		85198D1D2D806C43000C57B9 /* PBXTargetDependency */ = {
+		85CF10862D8308D7000F0C6A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 85198D042D806C41000C57B9 /* EAM */;
-			targetProxy = 85198D1C2D806C43000C57B9 /* PBXContainerItemProxy */;
+			targetProxy = 85CF10852D8308D7000F0C6A /* PBXContainerItemProxy */;
 		};
-		85198D272D806C43000C57B9 /* PBXTargetDependency */ = {
+		85CF10952D8308F1000F0C6A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 85198D042D806C41000C57B9 /* EAM */;
-			targetProxy = 85198D262D806C43000C57B9 /* PBXContainerItemProxy */;
+			targetProxy = 85CF10942D8308F1000F0C6A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -490,14 +490,13 @@
 			};
 			name = Release;
 		};
-		85198D342D806C43000C57B9 /* Debug */ = {
+		85CF10882D8308D7000F0C6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,14 +507,13 @@
 			};
 			name = Debug;
 		};
-		85198D352D806C43000C57B9 /* Release */ = {
+		85CF10892D8308D7000F0C6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,14 +524,14 @@
 			};
 			name = Release;
 		};
-		85198D372D806C43000C57B9 /* Debug */ = {
+		85CF10972D8308F1000F0C6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMUIAcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -542,14 +540,14 @@
 			};
 			name = Debug;
 		};
-		85198D382D806C43000C57B9 /* Release */ = {
+		85CF10982D8308F1000F0C6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaremenko.denis.EAMUIAcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -579,20 +577,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85198D332D806C43000C57B9 /* Build configuration list for PBXNativeTarget "EAMTests" */ = {
+		85CF10872D8308D7000F0C6A /* Build configuration list for PBXNativeTarget "EAMTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				85198D342D806C43000C57B9 /* Debug */,
-				85198D352D806C43000C57B9 /* Release */,
+				85CF10882D8308D7000F0C6A /* Debug */,
+				85CF10892D8308D7000F0C6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85198D362D806C43000C57B9 /* Build configuration list for PBXNativeTarget "EAMUITests" */ = {
+		85CF10962D8308F1000F0C6A /* Build configuration list for PBXNativeTarget "EAMUIAcceptanceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				85198D372D806C43000C57B9 /* Debug */,
-				85198D382D806C43000C57B9 /* Release */,
+				85CF10972D8308F1000F0C6A /* Debug */,
+				85CF10982D8308F1000F0C6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

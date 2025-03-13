@@ -3,11 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
+	<dict/>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>EAM.xcscheme_^#shared#^_</key>
+		<key>85198D042D806C41000C57B9</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85198D1A2D806C43000C57B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85198D242D806C43000C57B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
