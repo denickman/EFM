@@ -99,5 +99,4 @@ class FeedAcceptanceTests: XCTestCase {
             ["id": UUID().uuidString, "image": "http://image.com"]
         ]])
     }
-    
 }

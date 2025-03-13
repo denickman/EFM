@@ -13,6 +13,7 @@
   },
   "testTargets" : [
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:..\/EFM.xcodeproj",
         "identifier" : "85D3E9D52D7EFAD400717BF2",

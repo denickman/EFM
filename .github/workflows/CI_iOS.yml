@@ -2,10 +2,13 @@ name: CI_iOS
 
 on:
   pull_request:
-    branches: [ feature_github_ci ]
+
+  # push:
+  #   branches: feature_github_ci
+  # '**'  # Для всех веток
 
 jobs:
-  build-and-test-macos:
+  build-and-test-ios:
     runs-on: macos-latest
     # timeout-minutes: 10
     # concurrency:
@@ -15,13 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Display Xcode version
-        run: xcodebuild -version
+      - name: All and Current xcode version
+
+        run: |
+            # xcodebuild -version
+             ls /Applications/ | grep Xcode
+
 
       - name: Select Xcode
         run: |
           # sudo xcode-select -s /Applications/Xcode.app
-          sudo xcode-select -s /Applications/Xcode_16.1.app
+          sudo xcode-select -s /Applications/Xcode_16.2.app
           echo ">> availale xcode versions"
           xcode-select -p
           echo ">> current version"
@@ -29,7 +36,7 @@ jobs:
 
       - name: Test Workspace
         run: |
-
+          cd EAM
           echo "Now Current directory is:"
           ls -la
 
@@ -39,4 +46,4 @@ jobs:
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
           -sdk iphonesimulator \
-          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.1" ONLY_ACTIVE_ARCH=YES
+          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" ONLY_ACTIVE_ARCH=YES

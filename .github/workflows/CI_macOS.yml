@@ -2,7 +2,10 @@ name: CI_macOS
 
 on:
   pull_request:
-    branches: [ feature_github_ci ]
+  #   branches: [ feature_github_ci ]
+
+  # push:
+  #   branches: feature_github_ci
 
 jobs:
   build-and-test-macos:
@@ -16,12 +19,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Display Xcode version
-        run: xcodebuild -version
+        run: |
+            # xcodebuild -version
+             ls /Applications/ | grep Xcode
+
+      - name: Software version
+        run: softwareupdate --list-full-installers
+
 
       - name: Select Xcode
         run: |
           # sudo xcode-select -s /Applications/Xcode.app
-          sudo xcode-select -s /Applications/Xcode_16.1.app
+          sudo xcode-select -s /Applications/Xcode_16.2.app
           echo ">> availale xcode versions"
           xcode-select -p
           echo ">> current version"

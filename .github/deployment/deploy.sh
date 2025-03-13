@@ -1,12 +1,10 @@
 
 name: Deploy to App Store
 # gpg --symmetric --cipher-algo AES256 --output prod_profile.mobileprovision.gpg prod_profile.mobileprovision
-# gpg --symmetric --cipher-algo AES256 --output prod_cert.p12.gpg prod_cert.p12
-
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ci_tests ]
 
 jobs:
   build-and-deploy:
@@ -16,26 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install provisioning profiles
-        run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output eam_prod_profile.mobileprovision .github/deployment/eam_prod_profile.mobileprovision.gpg
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp eam_prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-
-          echo "check !!!!"
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep eam_prod_profile.mobileprovision
-          security cms -D -i eam_prod_profile.mobileprovision | plutil -p -
-
       - name: Install certificates
         run: |
-          echo "GPG"
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_cert.p12.gpg
-          # echo "SEC"
-
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_certificate.p12 .github/deployment/prod_certificate.p12.gpg
           echo "decryption prod_certificate.p12.gpg OK"
 
           # Расшифровка dev_certificate.p12.gpg
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output dev_certificate.p12 .github/deployment/dev_cert.p12.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output dev_certificate.p12 .github/deployment/dev_certificate.p12.gpg
           echo "decryption dev_certificate.p12.gpg OK"
 
           # Создание ключницы
@@ -46,7 +31,7 @@ jobs:
           security import prod_certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P "${{ secrets.CERTIFICATE_PASSWORD }}" -A
           echo "import prod_certificate OK"
 
-          echo "try to import dev_certificate"
+          echo "import dev_certificate"
 
           # Импорт dev_certificate.p12 в ключницу
           security import dev_certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P "${{ secrets.CERTIFICATE_PASSWORD }}" -A
@@ -58,12 +43,17 @@ jobs:
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
 
-          echo "check !!!!"
-          security find-identity -p codesigning
+      - name: Install provisioning profiles
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output prod_profile.mobileprovision .github/deployment/prod_profile.mobileprovision.gpg
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp prod_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | grep prod_profile.mobileprovision
 
       - name: Select Xcode
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.2.app
+          sudo xcode-select -s /Applications/Xcode_16.1.app
           echo ">> availale xcode versions"
           xcode-select -p
           echo ">> current version"
@@ -74,8 +64,7 @@ jobs:
 
       - name: Increment Build Number with agvtool
         run: |
-            cd EAM
-            pwd
+            cd EssentialApp
             ls -la
             agvtool new-version -all $((GITHUB_RUN_NUMBER + 1))
             echo "New build number set to: $((GITHUB_RUN_NUMBER + 1))"
@@ -83,52 +72,37 @@ jobs:
 
       - name: Clean Build
         run: |
-            cd EAM
-            pwd
             ls -la
-            xcodebuild clean -workspace EAM.xcworkspace -scheme EAM
+            xcodebuild clean -workspace EssentialApp.xcworkspace -scheme EssentialApp
 
       - name: Build and Archive
         run: |
-          cd EAM
+
           pwd
           ls -la
 
           xcodebuild clean archive \
             -sdk iphoneos \
-            -workspace EAM.xcworkspace \
+            -workspace EssentialApp.xcworkspace \
             -configuration Release \
-            -scheme EAM \
-            -derivedDataPath DerivedData \
-            -archivePath DerivedData/Archive/EAM.xcarchive
+            -scheme EssentialApp \
+            -derivedDataPath /Users/runner/work/EFM/EFM/DerivedData \
+            -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive | tee xcodebuild.log
 
-
-            echo "Проверка наличия архива в DerivedData/Archive"
-            ls -la DerivedData/Archive
-
-            # ls -la /Users/runner/work/EFM/EFM/DerivedData/Archive
-
-      - name: List EAM workspace Files
+      - name: List EssentialApp workspace Files
         run: |
-          cd EAM
-          pwd
           ls -la
-          xcodebuild -list -workspace EAM.xcworkspace
+          xcodebuild -list -workspace EssentialApp.xcworkspace
 
       - name: Export .ipa
         run: |
 
-          pwd
-          echo "now directories"
           ls -la
 
-          # echo "github directories"
-          # ls -l .github/deployment
-
           xcodebuild -exportArchive \
-            -archivePath EAM/DerivedData/Archive/EAM.xcarchive \
+            -archivePath /Users/runner/work/EFM/EFM/DerivedData/Archive/EssentialApp.xcarchive \
             -exportOptionsPlist .github/deployment/ExportOptions.plist \
-            -exportPath EAM/DerivedData/ipa | tee export.log
+            -exportPath DerivedData/ipa | tee export.log
 
       - name: Save API Key to file
         run: |
@@ -139,15 +113,12 @@ jobs:
 
       - name: Inspect IPA Info.plist
         run: |
-            echo "Derived Data"
-            ls -la
-
-            unzip -p EAM/DerivedData/ipa/EAM.ipa Payload/EAM.app/Info.plist | plutil -p -
+            unzip -p DerivedData/ipa/EssentialApp.ipa Payload/EssentialApp.app/Info.plist | plutil -p -
 
       - name: Upload IPA to TestFlight
         run: |
           xcrun altool --upload-app --type ios \
-            --file EAM/DerivedData/ipa/EAM.ipa \
+            --file DerivedData/ipa/EssentialApp.ipa \
             --apiKey "${{ secrets.APP_STORE_KEY_ID }}" \
             --apiIssuer "${{ secrets.APP_STORE_ISSUER_ID }}" \
             --authKeyPath "$HOME/private_keys/AuthKey_PV59767J7K.p8" \
