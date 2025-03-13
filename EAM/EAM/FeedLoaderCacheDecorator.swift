@@ -21,20 +21,16 @@ public final class FeedLoaderCacheDecorator: FeedLoader {
     
     public func load(completion: @escaping (FeedLoader.Result) -> Void) {
         decoratee.load {  [weak self] result in
-            
-            if let feed = try? result.get() {
-                self?.cache.saveIgnoringResult(feed)
-                completion(result)
-            }
-            
-//            if case .success(let feed) = result {
+            // не подходит поскольку не вызывает комплишн и сработает только в случае .success
+//            if let feed = try? result.get() {
 //                self?.cache.saveIgnoringResult(feed)
+//                completion(result)
 //            }
             
-//            completion(result.map { feed in
-//                self?.cache.saveIgnoringResult(feed)
-//                return feed
-//            })
+            completion(result.map { feed in
+                self?.cache.saveIgnoringResult(feed)
+                return feed
+            })
         }
     }
 }

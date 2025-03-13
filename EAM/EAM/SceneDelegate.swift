@@ -31,13 +31,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalFeedLoader(store: store, currentDate: Date.init)
     }()
     
-#if DEBUG
+    // MARK: - Init
+    
     convenience init(httpClient: HTTPClient, store: FeedStore & FeedImageDataStore) {
         self.init()
         self.httpClient = httpClient
         self.store = store
     }
-#endif
+    
+    // MARK: - Lifecycle
+    
+    func sceneWillResignActive(_ scene: UIScene) {
+        localFeedLoader.validateCache { _ in }
+    }
     
     // MARK: - Lifecycle
     
@@ -47,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         configureWindow()
     }
     
-    private func configureWindow() {
+    func configureWindow() {
         let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         
         let remoteFeedLoader = RemoteFeedLoader(url: url, client: httpClient)
@@ -61,7 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoaderFallback, imageLoader: imageLoaderFallback)
         
-        window?.rootViewController = feedViewController
+        window?.rootViewController = UINavigationController(rootViewController: feedViewController)
         window?.makeKeyAndVisible()
     }
 }
