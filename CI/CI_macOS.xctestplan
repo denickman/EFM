@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "224449A4-7EEA-422A-A059-4CD637B0DE55",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EFM.xcodeproj",
+        "identifier" : "85D3E9042D7ECCE500717BF2",
+        "name" : "EFMTests"
+      }
+    }
+  ],
+  "version" : 1
+}

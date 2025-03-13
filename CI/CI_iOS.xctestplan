@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "0656E99E-BDCF-48DD-930C-A529D6CF72B4",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/EFM.xcodeproj",
+        "identifier" : "85D3E9D52D7EFAD400717BF2",
+        "name" : "EFMiOSTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EAM.xcodeproj",
+        "identifier" : "85CF108D2D8308F0000F0C6A",
+        "name" : "EAMUIAcceptanceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EAM.xcodeproj",
+        "identifier" : "85CF10802D8308D7000F0C6A",
+        "name" : "EAMTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/EFM.xcodeproj",
+        "identifier" : "85D3E9042D7ECCE500717BF2",
+        "name" : "EFMTests"
+      }
+    }
+  ],
+  "version" : 1
+}
