@@ -62,14 +62,14 @@ extension Publisher where Output == Data {
 }
 
 extension Publisher where Output == [FeedImage] {
-    
+    /// Если основной Future завершился успешно, то handleEvents сработает и данные попадут в кеш.
+    /// Если основной Future завершился с ошибкой, то handleEvents(receiveOutput:) не вызовется (так как нет успешного результата).
     func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { feed in
             cache.saveIgnoringResult(feed)
         })
         .eraseToAnyPublisher() 
     }
-    
 }
 
 
@@ -77,8 +77,10 @@ extension Publisher {
     func fallback(to fallbackPublisher: @escaping () -> AnyPublisher<Output, Failure>) -> AnyPublisher<Output, Failure> {
         // `self` is the primary
         // `fallbackPublisher` is the fallback
+       
         self.catch { _ in
-            fallbackPublisher()
+            
+            return fallbackPublisher()
         }.eraseToAnyPublisher()
     }
 }

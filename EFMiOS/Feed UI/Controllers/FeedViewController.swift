@@ -20,7 +20,7 @@ public final class FeedViewController: UITableViewController {
     
     public var delegate: FeedViewControllerDelegate?
     
-    public var tableModel = [FeedImageCellController]() {
+    private var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
     
