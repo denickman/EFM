@@ -51,7 +51,6 @@
 		8519908A2D807D23000C57B9 /* EFMiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFMiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CF10812D8308D7000F0C6A /* EAMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMUIAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85CF136F2D831F39000F0C6A /* CI_macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_macOS.xctestplan; path = ../CI/CI_macOS.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -115,7 +114,6 @@
 		85198CFC2D806C41000C57B9 = {
 			isa = PBXGroup;
 			children = (
-				85CF136F2D831F39000F0C6A /* CI_macOS.xctestplan */,
 				85198D072D806C41000C57B9 /* EAM */,
 				85CF10822D8308D7000F0C6A /* EAMTests */,
 				85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */,
