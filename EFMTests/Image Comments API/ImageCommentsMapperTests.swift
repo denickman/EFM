@@ -12,7 +12,7 @@ import Foundation
 struct ImageCommentsMapperTests {
     
     @Test(arguments: [199, 150, 300, 400, 500])
-    func test_map_throwsErrorOnNon2xxHTTPResponse(statusCode: Int) throws {
+    func map_throwsErrorOnNon2xxHTTPResponse(statusCode: Int) throws {
  
         let data = makeItemsJSON([])
 
@@ -23,7 +23,7 @@ struct ImageCommentsMapperTests {
     }
     
     @Test(arguments: [199, 150, 300, 400, 500])
-    func test_map_throwsErrorOn2xxHTTPResponseWithInvalidData(statusCode: Int) throws {
+    func map_throwsErrorOn2xxHTTPResponseWithInvalidData(statusCode: Int) throws {
         let data = Data("invalid_json".utf8)
 
         #expect(throws: ImageCommentsMapper.Error.invalidData, "Error not thrown in bad status response and bad data") {
@@ -33,7 +33,7 @@ struct ImageCommentsMapperTests {
     }
     
     @Test(arguments: [200, 201, 250, 280, 299])
-    func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyData(statusCode: Int) throws {
+    func map_deliversNoItemsOn2xxHTTPResponseWithEmptyData(statusCode: Int) throws {
         let emtpyData = makeItemsJSON([])
         
         let response = HTTPURLResponse(statusCode: statusCode)
@@ -43,7 +43,7 @@ struct ImageCommentsMapperTests {
     }
     
     @Test(arguments: [200, 201, 250, 280, 299])
-    func test_map_devliersItemsOn2xxHTTPResponseWithJSONItems(statusCode: Int) throws {
+    func map_devliersItemsOn2xxHTTPResponseWithJSONItems(statusCode: Int) throws {
         
         let item1 = makeItem(
                     id: UUID(),
