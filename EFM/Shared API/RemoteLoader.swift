@@ -9,7 +9,8 @@ import Foundation
 
 public final class RemoteLoader<Resource> {
     
-    public typealias Result = Swift.Result<Resource, Error> // [FeedImage], [Comment]
+    // here you should be very careful, since you use your custom error, type `Result` think to use your `Error` type intead of system one
+    public typealias Result = Swift.Result<Resource, Swift.Error> // [FeedImage], [Comment]
     public typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
     
     public enum Error: Swift.Error {

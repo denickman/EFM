@@ -27,9 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .appendingPathComponent("feed-store.sqlite"))
     }()
     
-    private lazy var remoteFeedLoader: RemoteFeedLoader = {
+    private lazy var remoteFeedLoader: RemoteLoader = {
         let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
-        return .init(url: url, client: httpClient)
+        return .init(url: url, client: httpClient, mapper: FeedItemsMapper.map)
     }()
     
     private lazy var localFeedLoader: LocalFeedLoader = {
@@ -90,6 +90,11 @@ private extension SceneDelegate {
             }
     }
 }
+
+extension RemoteLoader: FeedLoader where Resource == [FeedImage] {
+  /// since RemoteLoader `load` method has the same signature as FeedLoader-protocol `load` method, we do not need to apply it here
+}
+
 
 
 /*

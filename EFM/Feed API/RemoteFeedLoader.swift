@@ -5,6 +5,7 @@
 //  Created by Denis Yaremenko on 10.03.2025.
 //
 
+/*
 import Foundation
 
 public final class RemoteFeedLoader: FeedLoader {
@@ -53,3 +54,4 @@ private extension Array where Element == RemoteFeedItem {
         }
     }
 }
+*/
