@@ -21,7 +21,7 @@ class HTTPClientSpy: HTTPClient {
     private(set) var cancelledURLs = [URL]()
     
     var requestedURLs: [URL] {
-        messages.map(\.url)
+        messages.map { $0.url }
     }
 
     func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
