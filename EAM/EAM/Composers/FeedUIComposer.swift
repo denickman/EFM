@@ -19,47 +19,25 @@ public final class FeedUIComposer {
         imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher
     ) -> FeedViewController {
         
-        let presentationAdapter = FeedLoaderPresentationAdapter {
+        let presentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>(loader: {
             feedLoader().dispatchOnMainQueue()
-        }
+        })
         
         let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
 
         let feedViewAdapter = FeedViewAdapter(controller: feedController, imageLoader: imageLoader)
         
-        let feedPresenter = FeedPresenter(
+        let feedPresenter = LoadResourcePresenter(
+            resourceView: feedViewAdapter,
             loadingView: WeakRefVirtualProxy(feedController),
-            feedView: feedViewAdapter,
-            errorView: WeakRefVirtualProxy(feedController)
+            errorView: WeakRefVirtualProxy(feedController),
+            mapper: FeedPresenter.map
         )
         
         presentationAdapter.presenter = feedPresenter
         
         return feedController
     }
-
-    
-    /***
-    public static func feedComposedUsingLoadersWith(
-        feedLoader: FeedLoader,
-        imageLoader: FeedImageDataLoader
-    ) -> FeedViewController {
-        
-        let feedLoaderDecorator = MainQueueDispatchDecorator(feedLoader)
-        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoaderDecorator)
-
-        let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
-        
-        let imageLoaderDecorator = MainQueueDispatchDecorator(imageLoader)
-        let feedViewAdapter = FeedViewAdapter(controller: feedController, imageLoader: imageLoaderDecorator)
-        
-        let feedPresenter = FeedPresenter(loadingView: WeakRefVirtualProxy(feedController), feedView: feedViewAdapter, errorView: WeakRefVirtualProxy(feedController))
-        
-        presentationAdapter.presenter = feedPresenter
-        
-        return feedController
-    }
-    ***/
     
     private static func makeFeedViewController(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
         let bundle = Bundle(for: FeedViewController.self)
@@ -70,3 +48,27 @@ public final class FeedUIComposer {
         return feedViewController
     }
 }
+
+
+
+/***
+public static func feedComposedUsingLoadersWith(
+    feedLoader: FeedLoader,
+    imageLoader: FeedImageDataLoader
+) -> FeedViewController {
+    
+    let feedLoaderDecorator = MainQueueDispatchDecorator(feedLoader)
+    let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoaderDecorator)
+
+    let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
+    
+    let imageLoaderDecorator = MainQueueDispatchDecorator(imageLoader)
+    let feedViewAdapter = FeedViewAdapter(controller: feedController, imageLoader: imageLoaderDecorator)
+    
+    let feedPresenter = FeedPresenter(loadingView: WeakRefVirtualProxy(feedController), feedView: feedViewAdapter, errorView: WeakRefVirtualProxy(feedController))
+    
+    presentationAdapter.presenter = feedPresenter
+    
+    return feedController
+}
+***/

@@ -87,6 +87,5 @@ struct LoadResourcePresenterTests {
             messages.insert(.display(errorMessage: viewModel.message))
         }
     }
-
 }
 
