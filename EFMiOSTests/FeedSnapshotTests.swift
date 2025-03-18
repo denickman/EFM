@@ -101,34 +101,44 @@ class FeedSnapshotTests: XCTestCase {
     
 }
 
-private class ImageStub: FeedImageCellControllerDelegate {
-    
-    private let viewModel: FeedImageViewModel<UIImage>
-    weak var controller: FeedImageCellController?
-    
-    init(description: String?, location: String?, image: UIImage?) {
-        viewModel = .init(description: description, location: location, image: image, isLoading: false, shouldRetry: image == nil)
-    }
-    
-    func didRequestImage() {
-        controller?.display(viewModel)
-    }
-    
-    func didCancelImageRequest() {
-        
-    }
-}
 
 private extension FeedViewController {
     func display(_ stubs: [ImageStub]) {
-        let cells: [FeedImageCellController] = stubs.map {
-            let ctrl = FeedImageCellController(delegate: $0)
-            $0.controller = ctrl
-            return ctrl
+        let cells: [FeedImageCellController] = stubs.map { stub in
+            let cellController = FeedImageCellController(viewModel: stub.viewModel, delegate: stub)
+            stub.controller = cellController
+            return cellController
         }
-        
         display(cells)
     }
+}
+
+private class ImageStub: FeedImageCellControllerDelegate {
+    
+    let image: UIImage?
+    let viewModel: FeedImageViewModel
+    weak var controller: FeedImageCellController?
+    
+    init(description: String?, location: String?, image: UIImage?) {
+        self.viewModel = FeedImageViewModel(
+            description: description,
+            location: location
+        )
+        self.image = image
+    }
+    
+    func didRequestImage() {
+        controller?.display(ResourceLoadingViewModel(isLoading: false))
+        
+        if let image = image {
+            controller?.display(image)
+            controller?.display(ResourceErrorViewModel(message: .none))
+        } else {
+            controller?.display(ResourceErrorViewModel(message: "any"))
+        }
+    }
+    
+    func didCancelImageRequest() { }
 }
 
 // MARK: - Record and Assert Snapshots

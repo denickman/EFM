@@ -7,6 +7,16 @@
 
 import Foundation
 
+public struct FeedImageViewModel {
+    public let description: String?
+    public let location: String?
+    
+    public var hasLocation: Bool { location != nil }
+}
+
+
+
+/***
 public struct FeedImageViewModel<Image> {
 
     public let description: String?
@@ -17,3 +27,4 @@ public struct FeedImageViewModel<Image> {
      
     public var hasLocation: Bool { location != nil }
 }
+***/

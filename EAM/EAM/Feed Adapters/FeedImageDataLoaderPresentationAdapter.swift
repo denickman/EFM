@@ -11,6 +11,7 @@ import EFMiOS
 import Combine
 
 
+/***
 final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: FeedImageCellControllerDelegate where View.Image == Image {
     
     var presenter: FeedImagePresenter<View, Image>?
@@ -43,21 +44,12 @@ final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: 
             }
     }
     
-    
     func didCancelImageRequest() {
         cancellable?.cancel()
     }
-    
-    
+
 }
-
-
-
-
-
-
-
-
+***/
 
 
 

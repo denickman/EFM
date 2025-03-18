@@ -19,8 +19,8 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     }
     
     // MARK: - Properties
-    
-    public typealias Mapper = (Resource) -> View.ResourceViewModel
+    // Типы выводятся из resourceView и mapper, поэтому явное указание при init не нужно.
+    public typealias Mapper = (Resource) throws -> View.ResourceViewModel
     
     private let resourceView: View
     private let loadingView: ResourceLoadingView
@@ -53,8 +53,14 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     // [ImageComment] -> creates view model -> sends to the UI
     // Resource -> ResourceViewModel -> sends to the UI
     public func didFinishLoading(with resource: Resource) {
-        resourceView.display(mapper(resource))
-        loadingView.display(.init(isLoading: false))
+        do {
+            resourceView.display(try mapper(resource))
+            // resource - feedImage/ mapper - передаст в FeedViewAdapter уже готовую FeedViewModel
+            // resource - data
+            loadingView.display(.init(isLoading: false))
+        } catch {
+            didFinishLoading(with: error)
+        }
     }
     
     // Error -> creates view model -> sends to the UI

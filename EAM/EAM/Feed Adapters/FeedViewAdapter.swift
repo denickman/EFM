@@ -14,23 +14,46 @@ final class FeedViewAdapter: ResourceView {
     private weak var controller: FeedViewController?
     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
     
+    public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
+    
     init(controller: FeedViewController? = nil, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
         self.controller = controller
         self.imageLoader = imageLoader
     }
     
     func display(_ viewModel: FeedViewModel) {
-        controller?.display(viewModel.feed.map { model in
+        let cellControllers = viewModel.feed.map { model in
             
-            let adapter = FeedImageDataLoaderPresentationAdapter<WeakRefVirtualProxy<FeedImageCellController>, UIImage>(model: model, imageLoader: imageLoader)
+            let adapter = ImageDataPresentationAdapter { [imageLoader] in
+                imageLoader(model.url)
+            }
             
-            let view = FeedImageCellController(delegate: adapter)
-
-            adapter.presenter = FeedImagePresenter(
-                view: WeakRefVirtualProxy(view),
-                transformer: UIImage.init)
-
+            let view = FeedImageCellController(viewModel: FeedImagePresenter.map(model), delegate: adapter)
+            
+            adapter.presenter = LoadResourcePresenter(
+                resourceView: WeakRefVirtualProxy(view),
+                loadingView: WeakRefVirtualProxy(view),
+                errorView: WeakRefVirtualProxy(view),
+                mapper: { data in
+                    return try UIImage.tryMake(data: data)
+                }
+            )
+            
             return view
-        })
+        }
+        
+        controller?.display(cellControllers)
+    }
+}
+
+
+extension UIImage {
+    struct InvalidImageData: Error {}
+    
+    static func tryMake(data: Data) throws -> UIImage {
+        guard let image = UIImage(data: data) else {
+            throw InvalidImageData()
+        }
+        return image
     }
 }

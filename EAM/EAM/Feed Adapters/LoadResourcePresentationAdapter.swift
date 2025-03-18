@@ -19,7 +19,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     private let loader: () -> AnyPublisher<Resource, Error>
     
     // MARK: - Init
-    
+    // Требует явного указания [FeedImage], FeedViewAdapter, при init так как loader — абстрактный тип.
     init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
         self.loader = loader
     }
@@ -44,5 +44,15 @@ extension LoadResourcePresentationAdapter: FeedViewControllerDelegate {
     func didRequestFeedRefresh() {
         loadResource()
     }
+}
 
+extension LoadResourcePresentationAdapter: FeedImageCellControllerDelegate {
+    func didRequestImage() {
+        loadResource()
+    }
+    
+    func didCancelImageRequest() {
+        cancellable?.cancel()
+        cancellable = nil
+    }
 }
