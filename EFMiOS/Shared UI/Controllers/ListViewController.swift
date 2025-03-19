@@ -50,7 +50,6 @@ public final class ListViewController: UITableViewController {
     }
 }
 
-
 extension ListViewController: UITableViewDataSourcePrefetching {
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

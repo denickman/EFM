@@ -83,7 +83,11 @@ private extension SceneDelegate {
         
         return httpClient
             .getPublisher(url: url)
-            .tryMap { (data, response) in
+            .tryMap { (data, response) in // .tryMap результат — это AnyPublisher<[FeedImage], Error>.
+                /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
+                  ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
+                  ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
+                  ///  handleEvents(receiveOutput:) срабатывает только если .tryMap завершился успешно (нет ошибки), потому что ошибки перехватываются раньше (например, в .fallback).
                 try FeedItemsMapper.map(data, from: response)
             }
             .caching(to: localFeedLoader)

@@ -14,12 +14,12 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     
     //MARK: - Properties
     
-    var presenter: LoadResourcePresenter<Resource, View>?
+    var presenter: LoadResourcePresenter<Resource, View>? // resource - data, 
     private var cancellable: Cancellable?
     private let loader: () -> AnyPublisher<Resource, Error>
     
     // MARK: - Init
-    // Требует явного указания [FeedImage], FeedViewAdapter, при init так как loader — абстрактный тип.
+    
     init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
         self.loader = loader
     }
@@ -34,7 +34,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
                 case let .failure(error):
                     self?.presenter?.didFinishLoading(with: error)
                 }
-            } receiveValue: { [weak self] resource in
+            } receiveValue: { [weak self] resource in // data or [feeditem]
                 self?.presenter?.didFinishLoading(with: resource)
             }
     }

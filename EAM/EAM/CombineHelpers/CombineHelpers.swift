@@ -86,7 +86,7 @@ private extension FeedImageDataCache {
 extension Publisher where Output == Data {
     func caching(to cache: FeedImageDataCache, using url: URL) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { data in
-                cache.saveIgnoringResult(data, for: url)
+              //  cache.saveIgnoringResult(data, for: url)
         })
         .eraseToAnyPublisher() // относится к Publisher а не к handleEvents
     }
@@ -97,7 +97,7 @@ extension Publisher where Output == [FeedImage] {
     /// Если основной Future завершился с ошибкой, то handleEvents(receiveOutput:) не вызовется (так как нет успешного результата).
     func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { feed in
-            cache.saveIgnoringResult(feed)
+           // cache.saveIgnoringResult(feed)
         })
         .eraseToAnyPublisher() 
     }
