@@ -29,7 +29,7 @@ public final class ImageCommentsMapper {
 
         var comments: [ImageComment] {
             items.map {
-                .init(id: $0.id, message: $0.message, username: $0.author.username, createdAt: $0.created_at)
+                .init(id: $0.id, message: $0.message, createdAt: $0.created_at, username: $0.author.username)
             }
         }
     }

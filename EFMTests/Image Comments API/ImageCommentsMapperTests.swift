@@ -74,7 +74,7 @@ struct ImageCommentsMapperTests {
         username: String
     ) -> (model: ImageComment, json: [String : Any]) {
         
-        let model = ImageComment(id: id, message: message, username: username, createdAt: createdAt.date)
+        let model = ImageComment(id: id, message: message, createdAt: createdAt.date, username: username)
         
         let json: [String : Any] = [
             "id" : id.uuidString,

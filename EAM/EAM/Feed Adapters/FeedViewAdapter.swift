@@ -11,15 +11,21 @@ import EFMiOS
 
 final class FeedViewAdapter: ResourceView {
     
-    private weak var controller: FeedViewController?
+    // MARK: - Properties
+    
+    private weak var controller: ListViewController?
     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
     
     public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
     
-    init(controller: FeedViewController? = nil, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
+    // MARK: - Init
+    
+    init(controller: ListViewController? = nil, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
         self.controller = controller
         self.imageLoader = imageLoader
     }
+    
+    // MARK: - Methods
     
     func display(_ viewModel: FeedViewModel) {
         let cellControllers = viewModel.feed.map { model in
@@ -45,7 +51,6 @@ final class FeedViewAdapter: ResourceView {
         controller?.display(cellControllers)
     }
 }
-
 
 extension UIImage {
     struct InvalidImageData: Error {}
