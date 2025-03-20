@@ -28,27 +28,35 @@ final class FeedViewAdapter: ResourceView {
     // MARK: - Methods
     
     func display(_ viewModel: FeedViewModel) {
-        let cellControllers = viewModel.feed.map { model in
+        controller?.display(viewModel.feed.map { model in
             
-            let adapter = ImageDataPresentationAdapter { [imageLoader] in
+            let adapter = ImageDataPresentationAdapter(loader: { [imageLoader] in
+                // partial application of a function
+                // adapting completion with params (url) to compeltion with no params ()
                 imageLoader(model.url)
-            }
+            })
             
-            let view = FeedImageCellController(viewModel: FeedImagePresenter.map(model), delegate: adapter)
+            let view = FeedImageCellController(
+                viewModel: FeedImagePresenter.map(model),
+                delegate: adapter
+            )
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(view),
                 loadingView: WeakRefVirtualProxy(view),
                 errorView: WeakRefVirtualProxy(view),
-                mapper: { data in
-                    return try UIImage.tryMake(data: data)
-                }
+                mapper: UIImage.tryMake
+//                mapper: { data in
+//                    guard let image = UIImage(data: data) else {
+//                        throw InvalidImageData()
+//                    }
+//                    return image
+//                }
             )
             
-            return view
-        }
-        
-        controller?.display(cellControllers)
+            /// since `model` is hashable and `id` is AnyHashable we can apply code like this
+            return CellController(id: model, view) // data source, delegate, prefetching
+        })
     }
 }
 

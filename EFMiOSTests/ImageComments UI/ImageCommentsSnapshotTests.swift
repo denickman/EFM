@@ -16,9 +16,9 @@ class ImageCommentsSnapshotTests: XCTestCase {
         
         sut.display(comments())
         
-        //        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_light")
-        //        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_dark")
-        //        record(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "IMAGE_COMMENTS_light_extraExtraExtraLarge")
+//        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_light")
+//        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_dark")
+//        record(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "IMAGE_COMMENTS_light_extraExtraExtraLarge")
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_dark")
@@ -30,14 +30,21 @@ class ImageCommentsSnapshotTests: XCTestCase {
     private func makeSUT() -> ListViewController {
         let bundle = Bundle(for: ListViewController.self)
         let storyboard = UIStoryboard(name: "ImageComments", bundle: bundle)
-        let ctrl = storyboard.instantiateInitialViewController() as! ListViewController
-        ctrl.loadViewIfNeeded()
-        ctrl.tableView.showsVerticalScrollIndicator = false
-        ctrl.tableView.showsHorizontalScrollIndicator = false
-        return ctrl
+        let controller = storyboard.instantiateInitialViewController() as! ListViewController
+        controller.loadViewIfNeeded()
+        controller.tableView.showsVerticalScrollIndicator = false
+        controller.tableView.showsHorizontalScrollIndicator = false
+        
+        return controller
     }
     
     private func comments() -> [CellController] {
+        commentControllers().map {
+            CellController(id: UUID(), $0)
+        }
+    }
+    
+    private func commentControllers() -> [ImageCommentCellController] {
         [
             ImageCommentCellController(
                 model: ImageCommentViewModel(

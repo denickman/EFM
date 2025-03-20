@@ -13,7 +13,7 @@ public protocol FeedImageCellControllerDelegate {
     func didCancelImageRequest()
 }
 
-public final class FeedImageCellController: CellController, ResourceView, ResourceLoadingView, ResourceErrorView {
+public final class FeedImageCellController: NSObject, ResourceView, ResourceLoadingView, ResourceErrorView {
     
     public typealias ResourceViewModel = UIImage
    
@@ -33,43 +33,10 @@ public final class FeedImageCellController: CellController, ResourceView, Resour
 
     // MARK: - Methods
     
-    public func view(in tableView: UITableView) -> UITableViewCell {
-        cell = tableView.dequeueReusableCell()
-        
-        cell?.locationContainer.isHidden = !viewModel.hasLocation
-        cell?.locationLabel.text = viewModel.location
-        cell?.descriptionLabel.text = viewModel.description
-        cell?.onRetry = delegate.didRequestImage
- 
-        cell?.onReuse = { [weak self] in
-            self?.releaseCellForReuse()
-        }
-        
-        delegate.didRequestImage()
-        
-        /// accessibilityIdentifier for EssentialAppUIAcceptanceTests
-        cell?.accessibilityIdentifier = "feed-image-cell"
-        cell?.feedImageView.accessibilityIdentifier = "feed-image-view"
-
-        return cell!
-    }
-    
-    public func preload() {
-        delegate.didRequestImage()
-    }
-    
     public func cancelLoad() {
         releaseCellForReuse()
         delegate.didCancelImageRequest()
     }
-    
-    func releaseCellForReuse() {
-        cell?.onReuse = nil
-        cell = nil
-    }
-    
-    /// in order to use shared logic we split into two `display` methods
-    /// splitting that unify all the states in one into multiple view model
 
     // ResourceView
     public func display(_ viewModel: UIImage) {
@@ -82,5 +49,63 @@ public final class FeedImageCellController: CellController, ResourceView, Resour
     
     public func display(_ viewModel: ResourceErrorViewModel) {
         cell?.feedImageRetryButton.isHidden = viewModel.message == nil
+    }
+    
+    private func releaseCellForReuse() {
+        cell?.onReuse = nil
+        cell = nil
+    }
+    
+}
+
+extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        cell = tableView.dequeueReusableCell()
+        
+        cell?.locationContainer.isHidden = !viewModel.hasLocation
+        cell?.locationLabel.text = viewModel.location
+        cell?.descriptionLabel.text = viewModel.description
+        
+        // always use a memory debugger in order to find out leaking cause
+        // due to potentian memory leak in FeedUIIntegrationTests we use a closure signature intead of equaling to delegate
+        // cell?.onRetry = delegate.didRequestImage
+        
+        cell?.onRetry = { [weak self] in
+            self?.delegate.didRequestImage()
+        }
+        
+        cell?.onReuse = { [weak self] in
+            self?.releaseCellForReuse()
+        }
+        
+        delegate.didRequestImage()
+
+        /// accessibilityIdentifier for EssentialAppUIAcceptanceTests
+        cell?.accessibilityIdentifier = "feed-image-cell"
+        cell?.feedImageView.accessibilityIdentifier = "feed-image-view"
+        
+        return cell!
+    }
+    
+    /// `cellForRowAt` be called a bunch of time ahead of time while `willDisplay` is only call when cell is about to be rendering
+    ///  if you don't have a good estimated size you can move your logic to load expesive resources here (estimatedRowHeight)
+    ///  if you have a good estimation you can do it in `cellForRow`
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {}
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        delegate.didRequestImage()
+    }
+    
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cancelLoad()
+    }
+    
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        cancelLoad()
     }
 }
