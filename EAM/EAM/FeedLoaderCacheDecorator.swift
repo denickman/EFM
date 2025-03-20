@@ -16,7 +16,7 @@ public final class FeedLoaderCacheDecorator: FeedLoader {
     
     public init(decoratee: FeedLoader, cache: FeedCache) {
         self.decoratee = decoratee
-        self.cache = cache
+        self.cache = cache  
     }
     
     public func load(completion: @escaping (FeedLoader.Result) -> Void) {

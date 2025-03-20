@@ -16,12 +16,11 @@ public protocol CellController {
 
 public final class ListViewController: UITableViewController {
     
-    @IBOutlet private(set) public var errorView: ErrorView?
-    
-    private var loadingControllers = [IndexPath: CellController]()
+    // MARK: - Properties
     
     public var onRefresh: (()->Void)?
-    
+    private(set) public var errorView = ErrorView()
+    private var loadingControllers = [IndexPath: CellController]()
     private var tableModel = [CellController]() {
         didSet { tableView.reloadData() }
     }
@@ -30,6 +29,7 @@ public final class ListViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        configureErrorView()
         refresh()
     }
     
@@ -43,6 +43,28 @@ public final class ListViewController: UITableViewController {
     public func display(_ cellControllers: [CellController]) {
         loadingControllers = [:]
         tableModel = cellControllers
+    }
+    
+    private func configureErrorView() {
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.addSubview(errorView)
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate ([
+            errorView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            errorView.topAnchor.constraint(equalTo: container.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        ])
+        
+        tableView.tableHeaderView = container
+        
+        errorView.onHide = { [weak self] in
+            self?.tableView.beginUpdates()
+            self?.tableView.sizeTableHeaderToFit()
+            self?.tableView.endUpdates()
+        }
     }
     
     @IBAction private func refresh() {
@@ -100,6 +122,11 @@ extension ListViewController: ResourceLoadingView {
 
 extension ListViewController: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {
-        errorView?.message = viewModel.message
+        
+        errorView.message = viewModel.message
+
+//        let view = UIView.init(frame: .init(x: 0, y: 0, width: 200, height: 200))
+//        view.backgroundColor = .red
+//        self.view.addSubview(view)
     }
 }
