@@ -11,18 +11,24 @@ import EFMiOS
 
 final class FeedViewAdapter: ResourceView {
     
+    public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
+
     // MARK: - Properties
     
     private weak var controller: ListViewController?
     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
-    
-    public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
+    private let selection: (FeedImage) -> Void
     
     // MARK: - Init
     
-    init(controller: ListViewController? = nil, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
+    init(
+        controller: ListViewController? = nil,
+        imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher,
+        selection: @escaping (FeedImage) -> Void
+    ) {
         self.controller = controller
         self.imageLoader = imageLoader
+        self.selection = selection
     }
     
     // MARK: - Methods
@@ -38,7 +44,10 @@ final class FeedViewAdapter: ResourceView {
             
             let view = FeedImageCellController(
                 viewModel: FeedImagePresenter.map(model),
-                delegate: adapter
+                delegate: adapter,
+                selectionComplete: { [selection] in
+                    selection(model)
+                }
             )
             
             adapter.presenter = LoadResourcePresenter(

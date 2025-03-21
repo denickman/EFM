@@ -16,7 +16,8 @@ public final class FeedUIComposer {
     
     public static func feedComposedWith(
         feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>,
-        imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher
+        imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher,
+        selection: @escaping (FeedImage) -> Void = { _ in }
     ) -> ListViewController {
         
         let presentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>(loader: {
@@ -27,10 +28,12 @@ public final class FeedUIComposer {
         let feedController = makeFeedViewController(title: FeedPresenter.title)
         
         feedController.onRefresh = presentationAdapter.loadResource
-
+        
         let feedViewAdapter = FeedViewAdapter(controller: feedController) { url in
             imageLoader(url)
                 .dispatchOnMainQueue()
+        } selection: { feedImage in
+            selection(feedImage)
         }
         
         let feedPresenter = LoadResourcePresenter(

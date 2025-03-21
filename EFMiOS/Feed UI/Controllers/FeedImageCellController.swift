@@ -16,28 +16,34 @@ public protocol FeedImageCellControllerDelegate {
 public final class FeedImageCellController: NSObject, ResourceView, ResourceLoadingView, ResourceErrorView {
     
     public typealias ResourceViewModel = UIImage
-   
+    
     // MARK: - Properties
     
     private let delegate: FeedImageCellControllerDelegate
     private var cell: FeedImageCell?
     private let viewModel: FeedImageViewModel
+    private let selectionComplete: () -> Void
     // the only things that will change is <UIImage> that will come asyncronously from the backend
     
     // MARK: - Init
     
-    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate) {
+    public init(
+        viewModel: FeedImageViewModel,
+        delegate: FeedImageCellControllerDelegate,
+        selectionComplete: @escaping () -> Void
+    ) {
         self.delegate = delegate
         self.viewModel = viewModel
+        self.selectionComplete = selectionComplete
     }
-
+    
     // MARK: - Methods
     
     public func cancelLoad() {
         releaseCellForReuse()
         delegate.didCancelImageRequest()
     }
-
+    
     // ResourceView
     public func display(_ viewModel: UIImage) {
         cell?.feedImageView.setImageAnimated(viewModel)
@@ -60,9 +66,7 @@ public final class FeedImageCellController: NSObject, ResourceView, ResourceLoad
 
 extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell()
@@ -84,7 +88,7 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         }
         
         delegate.didRequestImage()
-
+        
         /// accessibilityIdentifier for EssentialAppUIAcceptanceTests
         cell?.accessibilityIdentifier = "feed-image-cell"
         cell?.feedImageView.accessibilityIdentifier = "feed-image-view"
@@ -107,5 +111,9 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         cancelLoad()
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectionComplete()
     }
 }

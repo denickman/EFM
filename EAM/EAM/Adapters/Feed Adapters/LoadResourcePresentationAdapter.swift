@@ -14,7 +14,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     
     //MARK: - Properties
     
-    var presenter: LoadResourcePresenter<Resource, View>? // resource - data, 
+    var presenter: LoadResourcePresenter<Resource, View>? // resource - data,
     private var cancellable: Cancellable?
     private let loader: () -> AnyPublisher<Resource, Error>
     
@@ -28,6 +28,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
         presenter?.didStartLoading()
         
         cancellable = loader()
+            .dispatchOnMainQueue()
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break

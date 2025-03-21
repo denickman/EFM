@@ -37,16 +37,26 @@ public struct CellController {
     let delegate: UITableViewDelegate?
     let prefetching: UITableViewDataSourcePrefetching?
     
+//    public init(
+//        id: AnyHashable,
+//        dataSource: UITableViewDataSource,
+//        delegate: UITableViewDelegate?,
+//        prefetching: UITableViewDataSourcePrefetching?
+//    ) {
+//        self.id = id
+//        self.dataSource = dataSource
+//        self.delegate = delegate
+//        self.prefetching = prefetching
+//    }
+    
     public init(
         id: AnyHashable,
-        dataSource: UITableViewDataSource,
-        delegate: UITableViewDelegate?,
-        prefetching: UITableViewDataSourcePrefetching?
+        _ dataSource: UITableViewDataSource & UITableViewDelegate & UITableViewDataSourcePrefetching
     ) {
         self.id = id
         self.dataSource = dataSource
-        self.delegate = delegate
-        self.prefetching = prefetching
+        self.delegate = dataSource
+        self.prefetching = dataSource
     }
     
     // second convenience init
