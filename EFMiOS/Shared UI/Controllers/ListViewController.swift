@@ -21,8 +21,10 @@ public final class ListViewController: UITableViewController {
     
     private lazy var dataSource: UITableViewDiffableDataSource<Int, CellController> = {
         .init(tableView: tableView) { tableView, indexPath, controller in
+            // closure equal to cellForRowAt indexPath
+            // controller: Это объект CellController, извлеченный из снимка данных (NSDiffableDataSourceSnapshot<Int, CellController>).
             let ds = controller.dataSource
-            return ds.tableView(tableView, cellForRowAt: indexPath)
+            return ds.tableView(tableView, cellForRowAt: indexPath) // return ds.tableView(tableView, cellForRowAt: indexPath) делегирует создание ячейки объекту dataSource, который в вашем случае — FeedImageCellController
         }
     }()
     
@@ -60,7 +62,7 @@ public final class ListViewController: UITableViewController {
         snapshot.appendSections([0])
         snapshot.appendItems(cellControllers, toSection: 0)
         
-        if #available(iOS 15.0, *) {
+        if #available(iOS 15.0, *) { // полной перерисовке всех видимых ячеек без анимации.
             /// Используется applySnapshotUsingReloadData(snapshot).
             /// Это гарантирует полную перезагрузку таблицы, что может быть важно для сброса состояния или если diffing нежелателен (например, из-за особенностей CellController или логики приложения).
             dataSource.applySnapshotUsingReloadData(snapshot)
@@ -70,6 +72,7 @@ public final class ListViewController: UITableViewController {
             ///
             /// Метод apply(_:) в версиях iOS 13 и 14 не всегда строго выполнял diffing (сравнение старого и нового снимка). В некоторых случаях он мог перезагружать таблицу целиком (как reloadData()), особенно если изменения были сложными.
             /// Это поведение было непредсказуемым и зависело от внутренней реализации UIKit.
+            /// вы хотите плавно обновить таблицу с анимацией (например, при добавлении нового поста в ленту или удалении элемента).
             dataSource.apply(snapshot)
         }
     }
@@ -121,7 +124,7 @@ extension ListViewController {
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dl = cellController(at: indexPath)?.delegate
-        dl?.tableView?(tableView, didSelectRowAt: indexPath)
+        dl?.tableView?(tableView, didSelectRowAt: indexPath) // cell controller.tableView didSelect
     }
 }
 

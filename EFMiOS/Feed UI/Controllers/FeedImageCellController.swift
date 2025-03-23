@@ -32,7 +32,7 @@ public final class FeedImageCellController: NSObject, ResourceView, ResourceLoad
         delegate: FeedImageCellControllerDelegate,
         selectionComplete: @escaping () -> Void
     ) {
-        self.delegate = delegate
+        self.delegate = delegate // adapter
         self.viewModel = viewModel
         self.selectionComplete = selectionComplete
     }

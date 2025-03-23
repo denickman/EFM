@@ -41,7 +41,7 @@ public final class FeedUIComposer {
             loadingView: WeakRefVirtualProxy(feedController),
             errorView: WeakRefVirtualProxy(feedController),
             mapper: { feed in
-                return FeedPresenter.map(feed)
+                return FeedPresenter.map(feed) // FeedViewModel
             }
         )
         
@@ -58,7 +58,6 @@ public final class FeedUIComposer {
         return feedViewController
     }
 }
-
 
 
 /***

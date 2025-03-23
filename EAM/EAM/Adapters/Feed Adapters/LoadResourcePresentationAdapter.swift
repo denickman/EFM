@@ -10,11 +10,14 @@ import EFMiOS
 import EFM
 import Combine
 
+/// Роль: Управляет загрузкой данных и уведомляет Presenter о состоянии.
+/// Бизнес-логика: Нет, это просто "диспетчер". Логика в loader.
+
 final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     
     //MARK: - Properties
     
-    var presenter: LoadResourcePresenter<Resource, View>? // resource - data,
+    var presenter: LoadResourcePresenter<Resource, View>? // resource - data
     private var cancellable: Cancellable?
     private let loader: () -> AnyPublisher<Resource, Error>
     
@@ -35,7 +38,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
                 case let .failure(error):
                     self?.presenter?.didFinishLoading(with: error)
                 }
-            } receiveValue: { [weak self] resource in // data or [feeditem]
+            } receiveValue: { [weak self] resource in // data or [feeditem] or [comments]
                 self?.presenter?.didFinishLoading(with: resource)
             }
     }

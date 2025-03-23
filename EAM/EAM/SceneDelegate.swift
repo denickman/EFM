@@ -88,7 +88,7 @@ private extension SceneDelegate {
         
         return httpClient
             .getPublisher(url: url)
-            .tryMap { (data, response) in // .tryMap результат — это AnyPublisher<[FeedImage], Error>.
+            .tryMap { (data, response) in // .tryMap результат стертого Future — AnyPublisher<[FeedImage], Error>.
                 /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
                 ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
                 ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
@@ -130,25 +130,41 @@ extension RemoteLoader: FeedLoader where Resource == [FeedImage] {
 // MARK: - Comments Flow
 
 extension SceneDelegate {
-    private func showComments(for image: FeedImage) {
-        let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
-        let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: makeRemoteCommentsLoader(url: url))
-        navigationController.pushViewController(commentsCtrl, animated: true)
-    }
-    
-    private func makeRemoteCommentsLoader(url: URL) -> () -> AnyPublisher<[ImageComment], Error> {
-        /// Метод должен вернуть замыкание (() -> AnyPublisher), а не результат выполнения запроса сразу.
-        /// Это позволяет отложить саму загрузку данных до момента, когда кто-то вызовет это замыкание.
-        /// С [httpClient] ты захватываешь только то, что нужно — конкретный объект httpClient, минимизируя зависимости.
-        return { [httpClient] in
-            return httpClient
-                .getPublisher(url: url)
-                .tryMap(ImageCommentsMapper.map)
-                .eraseToAnyPublisher()
+    /// #option 1
+        private func showComments(for image: FeedImage) {
+            let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
+            let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: makeRemoteCommentsLoader(url: url))
+            navigationController.pushViewController(commentsCtrl, animated: true)
         }
-    }
+    
+        private func makeRemoteCommentsLoader(url: URL) -> () -> AnyPublisher<[ImageComment], Error> {
+            /// Метод должен вернуть замыкание (() -> AnyPublisher), а не результат выполнения запроса сразу.
+            /// Это позволяет отложить саму загрузку данных до момента, когда кто-то вызовет это замыкание.
+            /// С [httpClient] ты захватываешь только то, что нужно — конкретный объект httpClient, минимизируя зависимости.
+            return { [httpClient] in
+                return httpClient
+                    .getPublisher(url: url)
+                    .tryMap(ImageCommentsMapper.map)
+                    .eraseToAnyPublisher()
+            }
+        }
+    
+    /// #option 2
+//    private func showComments(for image: FeedImage) {
+//        let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
+//        let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: { [unowned self] in
+//            return self.makeRemoteCommentsLoader(url: url)
+//        })
+//        navigationController.pushViewController(commentsCtrl, animated: true)
+//    }
+//    
+//    private func makeRemoteCommentsLoader(url: URL) -> AnyPublisher<[ImageComment], Error> {
+//        httpClient
+//            .getPublisher(url: url)
+//            .tryMap(ImageCommentsMapper.map)
+//            .eraseToAnyPublisher()
+//    }
 }
-
 
 /*
  private extension SceneDelegate {

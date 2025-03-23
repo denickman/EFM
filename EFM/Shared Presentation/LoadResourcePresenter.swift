@@ -12,6 +12,8 @@ public protocol ResourceView {
     func display(_ viewModel: ResourceViewModel)
 }
 
+/// Роль: Преобразует данные в формат для UI (через mapper) и управляет состоянием загрузки/ошибок.
+/// Бизнес-логика: Нет, только логика представления.
 public final class LoadResourcePresenter<Resource, View: ResourceView> {
     
     public static var loadError: String {
@@ -54,7 +56,8 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     // Resource -> ResourceViewModel -> sends to the UI
     public func didFinishLoading(with resource: Resource) {
         do {
-            resourceView.display(try mapper(resource)) // resourceView - feed view adapterr
+            let model = try mapper(resource) // resource - [feedImage]
+            resourceView.display(model) // resourceView - feed view adapter
             // resource - feedImage/ mapper - передаст в FeedViewAdapter уже готовую FeedViewModel
             // resource - data
             loadingView.display(.init(isLoading: false))

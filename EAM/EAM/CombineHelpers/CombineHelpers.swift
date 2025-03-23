@@ -20,7 +20,9 @@ public extension HTTPClient {
                 task = self.get(from: url, completion: completion)
             }
         }
-        .handleEvents(receiveCancel: { task?.cancel() })
+        .handleEvents(receiveCancel: {
+            task?.cancel()
+        })
         .eraseToAnyPublisher()
     }
 }
@@ -66,7 +68,9 @@ public extension FeedImageDataLoader {
                 task = self.loadImageData(from: url, completion: completion)
             }
         }
-        .handleEvents(receiveCancel: { task?.cancel() })
+        .handleEvents(receiveCancel: {
+            task?.cancel()
+        })
         .eraseToAnyPublisher()
     }
 }

@@ -9,6 +9,9 @@ import UIKit
 import EFM
 import EFMiOS
 
+/// Роль: Адаптирует данные от Presenter для ListViewController.
+/// Бизнес-логика: Нет, только адаптация.
+///
 final class FeedViewAdapter: ResourceView {
     
     public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
@@ -31,10 +34,11 @@ final class FeedViewAdapter: ResourceView {
         self.selection = selection
     }
     
-    // MARK: - Methods
+    // MARK: - ResourceView
     
     func display(_ viewModel: FeedViewModel) {
-        controller?.display(viewModel.feed.map { model in
+        
+        let cellControllers = viewModel.feed.map { model in
             
             let adapter = ImageDataPresentationAdapter(loader: { [imageLoader] in
                 // partial application of a function
@@ -65,7 +69,9 @@ final class FeedViewAdapter: ResourceView {
             
             /// since `model` is hashable and `id` is AnyHashable we can apply code like this
             return CellController(id: model, view) // data source, delegate, prefetching
-        })
+        }
+        
+        controller?.display(cellControllers)
     }
 }
 
