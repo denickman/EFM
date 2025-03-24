@@ -13,6 +13,7 @@ public final class ListViewController: UITableViewController {
     // MARK: - Properties
     
     public var onRefresh: (() -> Void)?
+   
     private(set) public var errorView = ErrorView()
     
     // CellController should be Hashable so diffable data source can compare any change to the model,
