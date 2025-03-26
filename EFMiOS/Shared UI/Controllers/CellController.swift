@@ -29,25 +29,25 @@ import UIKit
 public struct CellController {
     
     // withoud id we cannot confirm to equatable or hasahble, so we need id
-   /// AnyHashable — это тип-обертка, позволяющий хранить любые Hashable значения внутри себя. [42, "Hello", UUID()]
-   /// Основное предназначение AnyHashable — работа с разными типами, соответствующими Hashable, в одной коллекции.
-
+    /// AnyHashable — это тип-обертка, позволяющий хранить любые Hashable значения внутри себя. [42, "Hello", UUID()]
+    /// Основное предназначение AnyHashable — работа с разными типами, соответствующими Hashable, в одной коллекции.
+    
     let id: AnyHashable // когда необходимо работать с hashable но без привязки к конкретному типу
     let dataSource: UITableViewDataSource
     let delegate: UITableViewDelegate?
     let prefetching: UITableViewDataSourcePrefetching?
     
-//    public init(
-//        id: AnyHashable,
-//        dataSource: UITableViewDataSource,
-//        delegate: UITableViewDelegate?,
-//        prefetching: UITableViewDataSourcePrefetching?
-//    ) {
-//        self.id = id
-//        self.dataSource = dataSource
-//        self.delegate = delegate
-//        self.prefetching = prefetching
-//    }
+    //    public init(
+    //        id: AnyHashable,
+    //        dataSource: UITableViewDataSource,
+    //        delegate: UITableViewDelegate?,
+    //        prefetching: UITableViewDataSourcePrefetching?
+    //    ) {
+    //        self.id = id
+    //        self.dataSource = dataSource
+    //        self.delegate = delegate
+    //        self.prefetching = prefetching
+    //    }
     
     public init(
         id: AnyHashable,
@@ -60,11 +60,18 @@ public struct CellController {
     }
     
     // second convenience init
+    //    public init(id: AnyHashable, _ dataSource: UITableViewDataSource) {
+    //        self.id = id
+    //        self.dataSource = dataSource
+    //        self.delegate = nil
+    //        self.prefetching = nil
+    //    }
+    
     public init(id: AnyHashable, _ dataSource: UITableViewDataSource) {
         self.id = id
         self.dataSource = dataSource
-        self.delegate = nil
-        self.prefetching = nil
+        self.delegate = dataSource as? UITableViewDelegate
+        self.prefetching = dataSource as? UITableViewDataSourcePrefetching
     }
 }
 

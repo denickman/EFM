@@ -7,6 +7,8 @@
 
 import Foundation
 
+/*
+
 public final class RemoteLoader<Resource> {
     
     // here you should be very careful, since you use your custom error, type `Result` think to use your `Error` type intead of system one
@@ -53,3 +55,4 @@ public final class RemoteLoader<Resource> {
     }
     
 }
+*/

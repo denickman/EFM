@@ -9,6 +9,42 @@ import Foundation
 import Combine
 import EFM
 
+public extension Paginated {
+    
+    // converting closure into publisher, bridging from a closure into a publisher
+    var loadMorePublisher: (() -> AnyPublisher<Self, Error>)? {
+        guard let loadMore = loadMore else { return nil }
+        return {
+            Deferred {
+                Future(loadMore) // Future(loadMore) срабатывает,
+                // потому что Future вызывает loadMore, передавая ему свой promise как completion.
+            }.eraseToAnyPublisher()
+        }
+    }
+    
+    // converting publisher into closure
+    init(items: [Item], loadMorePublisher: (() -> AnyPublisher<Self, Error>)?) {
+        guard let publisher = loadMorePublisher else { // check closure itself
+            self.init(items: items)
+            return
+        }
+        
+        self.init(items: items) { completion in
+            publisher()
+                .subscribe(Subscribers.Sink(receiveCompletion: { result in
+                    switch result {
+                    case .failure(let error):
+                        completion(.failure(error))
+                    case .finished:
+                        break
+                    }
+                }, receiveValue: { receivedValue in
+                    completion(.success(receivedValue))
+                }))
+        }
+    }
+}
+
 public extension HTTPClient {
     typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
     
@@ -43,7 +79,7 @@ public extension LocalFeedLoader {
 
 //public extension FeedLoader {
 //    typealias Publisher = AnyPublisher<[FeedImage], Error>
-//    
+//
 //    func loadPublisher() -> Publisher {
 //        Deferred {
 //            Future { completion in
@@ -79,6 +115,10 @@ private extension FeedCache {
     func saveIgnoringResult(_ feed: [FeedImage]) {
         save(feed) { _ in }
     }
+    
+    func saveIgnoringResult(_ page: Paginated<FeedImage>) {
+        saveIgnoringResult(page.items)
+    }
 }
 
 private extension FeedImageDataCache {
@@ -91,24 +131,36 @@ extension Publisher where Output == Data {
     func caching(to cache: FeedImageDataCache, using url: URL) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { data in
             // TODO: - Uncomment
-              //  cache.saveIgnoringResult(data, for: url)
+            //  cache.saveIgnoringResult(data, for: url)
         })
         .eraseToAnyPublisher() // относится к Publisher а не к handleEvents
     }
 }
 
+/* Old Fashion
+ 
 extension Publisher where Output == [FeedImage] {
     /// Если основной Future завершился успешно, то handleEvents сработает и данные попадут в кеш.
     /// Если основной Future завершился с ошибкой, то handleEvents(receiveOutput:) не вызовется (так как нет успешного результата).
     func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { feed in
             // TODO: - Uncomment
-           // cache.saveIgnoringResult(feed)
+            // cache.saveIgnoringResult(feed)
         })
-        .eraseToAnyPublisher() 
+        .eraseToAnyPublisher()
     }
 }
+ */
 
+extension Publisher {
+    func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> where Output == [FeedImage] {
+        handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    }
+    
+    func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> where Output == Paginated<FeedImage> {
+        handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    }
+}
 
 extension Publisher {
     func fallback(to fallbackPublisher: @escaping () -> AnyPublisher<Output, Failure>) -> AnyPublisher<Output, Failure> {
@@ -182,9 +234,9 @@ extension DispatchQueue {
         func schedule(after date: SchedulerTimeType, interval: SchedulerTimeType.Stride, tolerance: SchedulerTimeType.Stride, options: SchedulerOptions?, _ action: @escaping () -> Void) -> Cancellable {
             DispatchQueue.main.schedule(after: date, interval: interval, tolerance: tolerance, options: options, action)
         }
-       
+        
         private func isMainQueue() -> Bool {
-             DispatchQueue.getSpecific(key: Self.key) == Self.value
+            DispatchQueue.getSpecific(key: Self.key) == Self.value
         }
     }
 }

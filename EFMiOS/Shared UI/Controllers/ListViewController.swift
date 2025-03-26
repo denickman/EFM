@@ -58,24 +58,32 @@ public final class ListViewController: UITableViewController {
     
     // MARK: - Methods
     
-    public func display(_ cellControllers: [CellController]) {
+    /// Троеточие (...) позволяет передавать несколько аргументов типа [CellController] через запятую, которые внутри функции собираются в массив sections. Это делает вызов удобным и логичным для работы с множеством секций.
+    /// Без ... функция принимает только один массив, и передача через запятую невозможна — нужен единый массив.
+    /// В вашем случае ... даёт возможность сохранить разделение на секции (feedSection, loadMoreSection) и упрощает API для работы с NSDiffableDataSourceSnapshot.
+    public func display(_ sections: [CellController]...) { // [[CellController]]
         var snapshot = NSDiffableDataSourceSnapshot<Int, CellController>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(cellControllers, toSection: 0)
-        
-        if #available(iOS 15.0, *) { // полной перерисовке всех видимых ячеек без анимации.
-            /// Используется applySnapshotUsingReloadData(snapshot).
-            /// Это гарантирует полную перезагрузку таблицы, что может быть важно для сброса состояния или если diffing нежелателен (например, из-за особенностей CellController или логики приложения).
-            dataSource.applySnapshotUsingReloadData(snapshot)
-        } else {
-            /// Используется apply(snapshot).
-            /// Это компромисс, так как applySnapshotUsingReloadData недоступен. В этих версиях apply может либо выполнить diffing, либо перезагрузить таблицу целиком (зависит от UIKit).
-            ///
-            /// Метод apply(_:) в версиях iOS 13 и 14 не всегда строго выполнял diffing (сравнение старого и нового снимка). В некоторых случаях он мог перезагружать таблицу целиком (как reloadData()), особенно если изменения были сложными.
-            /// Это поведение было непредсказуемым и зависело от внутренней реализации UIKit.
-            /// вы хотите плавно обновить таблицу с анимацией (например, при добавлении нового поста в ленту или удалении элемента).
-            dataSource.apply(snapshot)
+
+        sections.enumerated().forEach { index, controllers in
+            snapshot.appendSections([index])
+            snapshot.appendItems(controllers, toSection: index)
         }
+        
+        dataSource.apply(snapshot)
+
+//        if #available(iOS 15.0, *) { // полной перерисовке всех видимых ячеек без анимации.
+//            /// Используется applySnapshotUsingReloadData(snapshot).
+//            /// Это гарантирует полную перезагрузку таблицы, что может быть важно для сброса состояния или если diffing нежелателен (например, из-за особенностей CellController или логики приложения).
+//            dataSource.applySnapshotUsingReloadData(snapshot)
+//        } else {
+//            /// Используется apply(snapshot).
+//            /// Это компромисс, так как applySnapshotUsingReloadData недоступен. В этих версиях apply может либо выполнить diffing, либо перезагрузить таблицу целиком (зависит от UIKit).
+//            ///
+//            /// Метод apply(_:) в версиях iOS 13 и 14 не всегда строго выполнял diffing (сравнение старого и нового снимка). В некоторых случаях он мог перезагружать таблицу целиком (как reloadData()), особенно если изменения были сложными.
+//            /// Это поведение было непредсказуемым и зависело от внутренней реализации UIKit.
+//            /// вы хотите плавно обновить таблицу с анимацией (например, при добавлении нового поста в ленту или удалении элемента).
+//            dataSource.apply(snapshot)
+//        }
     }
     
     private func configureErrorView() {
@@ -126,6 +134,11 @@ extension ListViewController {
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dl = cellController(at: indexPath)?.delegate
         dl?.tableView?(tableView, didSelectRowAt: indexPath) // cell controller.tableView didSelect
+    }
+    
+    public override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let dl = cellController(at: indexPath)?.delegate
+        dl?.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
     }
 }
 

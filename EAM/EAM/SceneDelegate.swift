@@ -82,25 +82,32 @@ private extension SceneDelegate {
     //            .fallback(to: localFeedLoader.loadPublisher)
     //    }
     
-    private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<[FeedImage], Error> {
-        
-        let url = FeedEndpoint.get.url(baseURL: baseURL)
-        
-        return httpClient
-            .getPublisher(url: url)
-            .tryMap { (data, response) in // .tryMap результат стертого Future — AnyPublisher<[FeedImage], Error>.
-                /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
-                ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
-                ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
-                ///  handleEvents(receiveOutput:) срабатывает только если .tryMap завершился успешно (нет ошибки), потому что ошибки перехватываются раньше (например, в .fallback).
-                try FeedItemsMapper.map(data, from: response)
+    private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Error> {
+        makeRemoteFeedLoader()
+            .caching(to: localFeedLoader) // side effect
+            .fallback(to: localFeedLoader.loadPublisher)
+            .map { feedImages in
+                self.makeFirstPage(items: feedImages) // $0 - [FeedImage] from .tryMap(FeedItemsMapper.map)
             }
-            .caching(to: localFeedLoader)
-            .fallback {
-                self.localFeedLoader.loadPublisher()
-            }
+            //.map(makeFirstPage)
+            .eraseToAnyPublisher()
+
+        /// #Option 1 - Old Version
+//        return httpClient
+//            .getPublisher(url: url)
+//            .tryMap { (data, response) in // .tryMap результат стертого Future — AnyPublisher<[FeedImage], Error>.
+//                /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
+//                ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
+//                ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
+//                ///  handleEvents(receiveOutput:) срабатывает только если .tryMap завершился успешно (нет ошибки), потому что ошибки перехватываются раньше (например, в .fallback).
+//                try FeedItemsMapper.map(data, from: response)
+//            }
+//            .caching(to: localFeedLoader)
+//            .fallback {
+//                self.localFeedLoader.loadPublisher()
+//            }
         
-        /// Option 2
+        /// #Option 2 - Old Version
         //        return httpClient
         //            .getPublisher(url: remoteURL) // side effect
         //            .delay(for: 2, scheduler: DispatchQueue.main)
@@ -123,9 +130,52 @@ private extension SceneDelegate {
     }
 }
 
-extension RemoteLoader: FeedLoader where Resource == [FeedImage] {
-    /// since RemoteLoader `load` method has the same signature as FeedLoader-protocol `load` method, we do not need to apply it here
+// MARK: - LoadMore feature
+
+extension SceneDelegate {
+
+    private func makeFirstPage(items: [FeedImage]) -> Paginated<FeedImage> {
+        print(">> loaded items: \(items.count)")
+        return makePage(items: items, last: items.last)
+    }
+    
+    private func makePage(items: [FeedImage], last: FeedImage?) -> Paginated<FeedImage> {
+        Paginated(
+                items: items,
+                loadMorePublisher: last != nil ? {
+                    print(">> load more items:")
+                    return self.makeRemoteLoadMoreLoader(items: items, last: last)
+                } : nil
+            )
+    }
+    
+    private func makeRemoteLoadMoreLoader(items: [FeedImage], last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
+        return makeRemoteFeedLoader(after: last)
+            .map { newItems in // receive new items
+                (items + newItems, newItems.last) // combine with existing items
+            }
+            .map(makePage)
+//            .delay(for: 2, scheduler: DispatchQueue.main)
+//            .flatMap { _ in
+//                Fail(error: NSError())
+//            }
+            .caching(to: localFeedLoader)
+    }
+    
+    private func makeRemoteFeedLoader(after image: FeedImage? = nil) -> AnyPublisher<[FeedImage], Error> {
+        let url = FeedEndpoint.get(after: image).url(baseURL: baseURL)
+        return httpClient
+            .getPublisher(url: url)
+            .tryMap { (data, response) in
+                try FeedItemsMapper.map(data, from: response)
+            }
+            .eraseToAnyPublisher()
+    }
 }
+
+//extension RemoteLoader: FeedLoader where Resource == [FeedImage] {
+//    /// since RemoteLoader `load` method has the same signature as FeedLoader-protocol `load` method, we do not need to apply it here
+//}
 
 // MARK: - Comments Flow
 

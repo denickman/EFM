@@ -14,7 +14,8 @@ import EFMiOS
 ///
 final class FeedViewAdapter: ResourceView {
     
-    public typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
+    private typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
+    private typealias LoadMorePresentationAdapter = LoadResourcePresentationAdapter<Paginated<FeedImage>, FeedViewAdapter>
 
     // MARK: - Properties
     
@@ -36,42 +37,53 @@ final class FeedViewAdapter: ResourceView {
     
     // MARK: - ResourceView
     
-    func display(_ viewModel: FeedViewModel) {
-        
-        let cellControllers = viewModel.feed.map { model in
+    func display(_ viewModel: Paginated<FeedImage>) {
+
+        let feedSection: [CellController] = viewModel.items.map { feedItem in
             
             let adapter = ImageDataPresentationAdapter(loader: { [imageLoader] in
-                // partial application of a function
-                // adapting completion with params (url) to compeltion with no params ()
-                imageLoader(model.url)
+                imageLoader(feedItem.url)
             })
-            
+                                                       
             let view = FeedImageCellController(
-                viewModel: FeedImagePresenter.map(model),
+                viewModel: FeedImagePresenter.map(feedItem),
                 delegate: adapter,
                 selectionComplete: { [selection] in
-                    selection(model)
-                }
-            )
+                    selection(feedItem)
+                })
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(view),
                 loadingView: WeakRefVirtualProxy(view),
                 errorView: WeakRefVirtualProxy(view),
-                mapper: UIImage.tryMake
-//                mapper: { data in
-//                    guard let image = UIImage(data: data) else {
-//                        throw InvalidImageData()
-//                    }
-//                    return image
-//                }
+                mapper: UIImage.tryMake // data -> UIImage
             )
             
-            /// since `model` is hashable and `id` is AnyHashable we can apply code like this
-            return CellController(id: model, view) // data source, delegate, prefetching
+            return CellController(id: feedItem, view)
         }
         
-        controller?.display(cellControllers)
+        guard let loadMorePublisher = viewModel.loadMorePublisher else {
+            controller?.display(feedSection)
+            return
+        }
+        
+        let loadMoreAdapter = LoadMorePresentationAdapter(loader: loadMorePublisher)
+        let loadMoreController = LoadMoreCellController(callback: loadMoreAdapter.loadResource) // callback trigger adapter
+        
+        loadMoreAdapter.presenter = LoadResourcePresenter(
+            resourceView: self,
+            loadingView: WeakRefVirtualProxy(loadMoreController),
+            errorView: WeakRefVirtualProxy(loadMoreController),
+            mapper: { resource in
+               // $0
+                print("resource", resource)
+                return resource
+            }
+        )
+        
+        let loadMoreSection = [CellController(id: UUID(), loadMoreController)]
+ 
+        controller?.display(feedSection, loadMoreSection)
     }
 }
 

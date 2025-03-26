@@ -24,6 +24,7 @@ public class LoadMoreCell: UITableViewCell {
             spinner.isAnimating
         }
         set {
+            
             if newValue {
                 spinner.startAnimating()
             } else {

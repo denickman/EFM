@@ -95,7 +95,6 @@ extension CodableFeedStore: FeedStore {
             do {
                 let jsonDecoder = JSONDecoder()
                 let cache = try jsonDecoder.decode(Cache.self, from: data)
-                print(">> cache", cache)
                 completion(.success(CachedFeed(feed: cache.localFeed, timestamp: cache.timestamp)))
                 
             } catch {

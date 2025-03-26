@@ -13,8 +13,6 @@ public final class FeedImagePresenter {
     }
 }
 
-
-
 /***
 public protocol FeedImageView {
     associatedtype Image
