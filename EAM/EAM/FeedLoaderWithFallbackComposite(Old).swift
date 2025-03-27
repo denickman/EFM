@@ -8,6 +8,12 @@
 import Foundation
 import EFM
 
+/*
+public protocol FeedLoader {
+    typealias Result = Swift.Result<[FeedImage], Error>
+    func load(completion: @escaping (Result) -> Void)
+}
+
 public class FeedLoaderWithFallbackComposite: FeedLoader {
 
     private let primary: FeedLoader
@@ -30,3 +36,4 @@ public class FeedLoaderWithFallbackComposite: FeedLoader {
         }
     }
 }
+*/

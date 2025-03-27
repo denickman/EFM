@@ -9,6 +9,12 @@ import Foundation
 import EFM
 import EFMiOS
 
+/*
+public protocol FeedLoader {
+    typealias Result = Swift.Result<[FeedImage], Error>
+    func load(completion: @escaping (Result) -> Void)
+}
+
 public final class FeedLoaderCacheDecorator: FeedLoader {
     
     private let decoratee: FeedLoader
@@ -40,3 +46,4 @@ private extension FeedCache {
         save(feed) { _ in }
     }
 }
+*/

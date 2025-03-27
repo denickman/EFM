@@ -18,8 +18,11 @@ public final class LocalFeedLoader {
     }
 }
 
-extension LocalFeedLoader: FeedLoader {
-    public func load(completion: @escaping (FeedLoader.Result) -> Void) {
+extension LocalFeedLoader: FeedCache {
+    
+    public typealias LoadResult = Swift.Result<[FeedImage], Error>
+    
+    public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard let self else { return }
             
@@ -37,7 +40,7 @@ extension LocalFeedLoader: FeedLoader {
     }
 }
 
-extension LocalFeedLoader: FeedCache {
+extension LocalFeedLoader {
     
     public typealias SaveResult = Result<Void, Error>
     

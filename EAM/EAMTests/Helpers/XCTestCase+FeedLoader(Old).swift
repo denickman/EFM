@@ -8,6 +8,7 @@
 import XCTest
 import EFM
 
+/*
 protocol FeedLoaderTestCase: XCTestCase {
     
 }
@@ -34,3 +35,4 @@ extension FeedLoaderTestCase {
     }
     
 }
+*/

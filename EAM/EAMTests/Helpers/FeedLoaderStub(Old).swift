@@ -6,7 +6,7 @@
 //
 
 import EFM
-
+/*
 class FeedLoaderStub: FeedLoader {
     
     private let result: FeedLoader.Result
@@ -19,3 +19,4 @@ class FeedLoaderStub: FeedLoader {
         completion(result)
     }
 }
+*/

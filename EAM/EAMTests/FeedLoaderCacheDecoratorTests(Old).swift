@@ -5,6 +5,7 @@
 //  Created by Denis Yaremenko on 13.03.2025.
 //
 
+/*
 import XCTest
 import EFM
 import EAM
@@ -70,3 +71,4 @@ final class FeedLoaderCacheDecoratorTests: XCTestCase, FeedLoaderTestCase {
         }
     }
 }
+*/
