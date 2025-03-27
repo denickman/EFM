@@ -28,9 +28,7 @@ public class LoadMoreCellController: NSObject, UITableViewDataSource {
     }
     
     private func reloadIfNeeded() {
-        print(">> cell is loading \(cell.isLoading)")
         guard !cell.isLoading else { return }
-        print(">> CALLBACK!")
         callback()
     }
 }
@@ -40,12 +38,10 @@ public class LoadMoreCellController: NSObject, UITableViewDataSource {
 extension LoadMoreCellController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(">> will display cell CHILD")
         reloadIfNeeded()
         
         offsetObserver = tableView.observe(\.contentOffset, options: .new) { [weak self] (tableView, value) in
             guard tableView.isDragging else { return } // прокручивает ли пользователь таблицу вручную
-            print(">> dragging...")
             self?.reloadIfNeeded()
         }
     }
@@ -61,7 +57,6 @@ extension LoadMoreCellController: UITableViewDelegate {
 
 extension LoadMoreCellController: ResourceLoadingView {
     public func display(_ viewModel: ResourceLoadingViewModel) {
-        print(">> cell is loading? \(cell.isLoading)")
         cell.isLoading = viewModel.isLoading
     }
 }

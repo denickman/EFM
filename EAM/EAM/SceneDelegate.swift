@@ -135,7 +135,7 @@ private extension SceneDelegate {
 extension SceneDelegate {
 
     private func makeFirstPage(items: [FeedImage]) -> Paginated<FeedImage> {
-        print(">> loaded items: \(items.count)")
+       
         return makePage(items: items, last: items.last)
     }
     
@@ -143,7 +143,6 @@ extension SceneDelegate {
         Paginated(
                 items: items,
                 loadMorePublisher: last != nil ? {
-                    print(">> load more items:")
                     return self.makeRemoteLoadMoreLoader(items: items, last: last)
                 } : nil
             )
@@ -151,10 +150,10 @@ extension SceneDelegate {
     
     private func makeRemoteLoadMoreLoader(items: [FeedImage], last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
         return makeRemoteFeedLoader(after: last)
-            .map { newItems in // receive new items
-                (items + newItems, newItems.last) // combine with existing items
+            .map { newItems in // [FeedImage]
+                (items + newItems, newItems.last) // ([FeedImage], feedImage)
             }
-            .map(makePage)
+            .map(makePage) // pass ([FeedImage], feedImage)
 //            .delay(for: 2, scheduler: DispatchQueue.main)
 //            .flatMap { _ in
 //                Fail(error: NSError())
@@ -167,7 +166,7 @@ extension SceneDelegate {
         return httpClient
             .getPublisher(url: url)
             .tryMap { (data, response) in
-                try FeedItemsMapper.map(data, from: response)
+                try FeedItemsMapper.map(data, from: response) // return [FeedItem]
             }
             .eraseToAnyPublisher()
     }

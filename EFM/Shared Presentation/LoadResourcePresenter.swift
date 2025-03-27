@@ -56,8 +56,8 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     // Resource -> ResourceViewModel -> sends to the UI
     public func didFinishLoading(with resource: Resource) {
         do {
-            let model = try mapper(resource) // resource - [feedImage]
-            resourceView.display(model) // resourceView - feed view adapter
+            let model = try mapper(resource) // resource - Paginated<FeedImage>
+            resourceView.display(model) // Paginated<FeedImage> - feed view adapter
             // resource - feedImage/ mapper - передаст в FeedViewAdapter уже готовую FeedViewModel
             // resource - data
             loadingView.display(.init(isLoading: false))

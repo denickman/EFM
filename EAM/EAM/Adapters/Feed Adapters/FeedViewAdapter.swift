@@ -74,10 +74,9 @@ final class FeedViewAdapter: ResourceView {
             resourceView: self,
             loadingView: WeakRefVirtualProxy(loadMoreController),
             errorView: WeakRefVirtualProxy(loadMoreController),
-            mapper: { resource in
+            mapper: { resource in // Paginated<FeedImage>
                // $0
-                print("resource", resource)
-                return resource
+                return resource // retrun the same  // Paginated<FeedImage> without an modification 
             }
         )
         
