@@ -10,6 +10,7 @@ import EFMiOS
 import EFM
 import CoreData
 import Combine
+import os
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -18,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     private lazy var baseURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed")!
+    private lazy var logger = Logger(subsystem: "com.yaremenko.denis.EAM", category: "main")
     
     private lazy var navigationController = UINavigationController(
         rootViewController: FeedUIComposer.feedComposedWith(
@@ -26,7 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             selection: showComments
         ))
     
-    private var httpClient: HTTPClient = {
+    private lazy var httpClient: HTTPClient = {
+        // без комбайна
+        // HTTPClientProfilingDecorator(decoratee: URLSessionHTTPClient(session: URLSession(configuration: .ephemeral)), logger: logger)
+        // с комбайном
         URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }()
     
@@ -37,7 +42,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .defaultDirectoryURL()
                     .appendingPathComponent("feed-store.sqlite"))
         } catch {
-            assertionFailure("Failed to instantiate CoreData store with error \(error)")
+            //assertionFailure("Failed to instantiate CoreData store with error \(error)")
+            logger.fault("Failed to instantiate CoreData store with error \(error)")
             return NullStore()
         }
     }()
@@ -94,23 +100,23 @@ private extension SceneDelegate {
             .map { feedImages in
                 self.makeFirstPage(items: feedImages) // $0 - [FeedImage] from .tryMap(FeedItemsMapper.map)
             }
-            //.map(makeFirstPage)
+        //.map(makeFirstPage)
             .eraseToAnyPublisher()
-
+        
         /// #Option 1 - Old Version
-//        return httpClient
-//            .getPublisher(url: url)
-//            .tryMap { (data, response) in // .tryMap результат стертого Future — AnyPublisher<[FeedImage], Error>.
-//                /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
-//                ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
-//                ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
-//                ///  handleEvents(receiveOutput:) срабатывает только если .tryMap завершился успешно (нет ошибки), потому что ошибки перехватываются раньше (например, в .fallback).
-//                try FeedItemsMapper.map(data, from: response)
-//            }
-//            .caching(to: localFeedLoader)
-//            .fallback {
-//                self.localFeedLoader.loadPublisher()
-//            }
+        //        return httpClient
+        //            .getPublisher(url: url)
+        //            .tryMap { (data, response) in // .tryMap результат стертого Future — AnyPublisher<[FeedImage], Error>.
+        //                /// Combine работает как конвейер: каждый оператор обрабатывает результат предыдущего.
+        //                ///  .tryMap изменяет тип Output с (Data, HTTPURLResponse) на [FeedImage].
+        //                ///  .caching(to:) принимает [FeedImage] и добавляет побочный эффект (сохранение в кэш) через handleEvents.
+        //                ///  handleEvents(receiveOutput:) срабатывает только если .tryMap завершился успешно (нет ошибки), потому что ошибки перехватываются раньше (например, в .fallback).
+        //                try FeedItemsMapper.map(data, from: response)
+        //            }
+        //            .caching(to: localFeedLoader)
+        //            .fallback {
+        //                self.localFeedLoader.loadPublisher()
+        //            }
         
         /// #Option 2 - Old Version
         //        return httpClient
@@ -122,14 +128,20 @@ private extension SceneDelegate {
     }
     
     private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
-        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
+        //        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
         let localImageLoader = LocalFeedImageDataLoader(store: store)
         
         return localImageLoader
             .loadImageDataPublisher(from: url)
-            .fallback {
-                remoteImageLoader
-                    .loadImageDataPublisher(from: url)
+            .fallback { [httpClient, logger] in
+                //                remoteImageLoader
+                //                    .loadImageDataPublisher(from: url)
+                //                    .caching(to: localImageLoader, using: url)
+                return httpClient
+                    .getPublisher(url: url)
+                    .logErrors(url: url, logger: logger)
+                    .logElapsedTime(url: url, logger: logger)
+                    .tryMap(FeedImageDataMapper.map)
                     .caching(to: localImageLoader, using: url)
             }
     }
@@ -138,19 +150,19 @@ private extension SceneDelegate {
 // MARK: - LoadMore feature
 
 extension SceneDelegate {
-
+    
     private func makeFirstPage(items: [FeedImage]) -> Paginated<FeedImage> {
-       
+        
         return makePage(items: items, last: items.last)
     }
     
     private func makePage(items: [FeedImage], last: FeedImage?) -> Paginated<FeedImage> {
         Paginated(
-                items: items,
-                loadMorePublisher: last != nil ? {
-                    return self.makeRemoteLoadMoreLoader(items: items, last: last)
-                } : nil
-            )
+            items: items,
+            loadMorePublisher: last != nil ? {
+                return self.makeRemoteLoadMoreLoader(items: items, last: last)
+            } : nil
+        )
     }
     
     private func makeRemoteLoadMoreLoader(items: [FeedImage], last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
@@ -159,10 +171,10 @@ extension SceneDelegate {
                 (items + newItems, newItems.last) // ([FeedImage], feedImage)
             }
             .map(makePage) // pass ([FeedImage], feedImage)
-//            .delay(for: 2, scheduler: DispatchQueue.main)
-//            .flatMap { _ in
-//                Fail(error: NSError())
-//            }
+        //            .delay(for: 2, scheduler: DispatchQueue.main)
+        //            .flatMap { _ in
+        //                Fail(error: NSError())
+        //            }
             .caching(to: localFeedLoader)
     }
     
@@ -185,75 +197,75 @@ extension SceneDelegate {
 
 extension SceneDelegate {
     /// #option 1
-        private func showComments(for image: FeedImage) {
-            let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
-            let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: makeRemoteCommentsLoader(url: url))
-            navigationController.pushViewController(commentsCtrl, animated: true)
-        }
+    private func showComments(for image: FeedImage) {
+        let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
+        let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: makeRemoteCommentsLoader(url: url))
+        navigationController.pushViewController(commentsCtrl, animated: true)
+    }
     
-        private func makeRemoteCommentsLoader(url: URL) -> () -> AnyPublisher<[ImageComment], Error> {
-            /// Метод должен вернуть замыкание (() -> AnyPublisher), а не результат выполнения запроса сразу.
-            /// Это позволяет отложить саму загрузку данных до момента, когда кто-то вызовет это замыкание.
-            /// С [httpClient] ты захватываешь только то, что нужно — конкретный объект httpClient, минимизируя зависимости.
-            return { [httpClient] in
-                return httpClient
-                    .getPublisher(url: url)
-                    .tryMap(ImageCommentsMapper.map)
-                    .eraseToAnyPublisher()
-            }
+    private func makeRemoteCommentsLoader(url: URL) -> () -> AnyPublisher<[ImageComment], Error> {
+        /// Метод должен вернуть замыкание (() -> AnyPublisher), а не результат выполнения запроса сразу.
+        /// Это позволяет отложить саму загрузку данных до момента, когда кто-то вызовет это замыкание.
+        /// С [httpClient] ты захватываешь только то, что нужно — конкретный объект httpClient, минимизируя зависимости.
+        return { [httpClient] in
+            return httpClient
+                .getPublisher(url: url)
+                .tryMap(ImageCommentsMapper.map)
+                .eraseToAnyPublisher()
         }
+    }
     
     /// #option 2
-//    private func showComments(for image: FeedImage) {
-//        let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
-//        let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: { [unowned self] in
-//            return self.makeRemoteCommentsLoader(url: url)
-//        })
-//        navigationController.pushViewController(commentsCtrl, animated: true)
-//    }
-//    
-//    private func makeRemoteCommentsLoader(url: URL) -> AnyPublisher<[ImageComment], Error> {
-//        httpClient
-//            .getPublisher(url: url)
-//            .tryMap(ImageCommentsMapper.map)
-//            .eraseToAnyPublisher()
-//    }
+    //    private func showComments(for image: FeedImage) {
+    //        let url = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
+    //        let commentsCtrl = CommentsUIComposer.commentsComposedWith(commentsLoader: { [unowned self] in
+    //            return self.makeRemoteCommentsLoader(url: url)
+    //        })
+    //        navigationController.pushViewController(commentsCtrl, animated: true)
+    //    }
+    //
+    //    private func makeRemoteCommentsLoader(url: URL) -> AnyPublisher<[ImageComment], Error> {
+    //        httpClient
+    //            .getPublisher(url: url)
+    //            .tryMap(ImageCommentsMapper.map)
+    //            .eraseToAnyPublisher()
+    //    }
 }
 
 /*
- private extension SceneDelegate {
- 
- func configureWindowInitialApproach() {
- let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
- 
- let session = URLSession(configuration: .ephemeral)
- let client = URLSessionHTTPClient(session: session)
- 
- let feedLoader = RemoteFeedLoader(url: url, client: client)
- let imageLoader = RemoteFeedImageDataLoader(client: client)
- 
- let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoader, imageLoader: imageLoader)
- 
- window?.rootViewController = feedViewController
- window?.makeKeyAndVisible()
- }
- 
- func configureWindow() {
- let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
- 
- let remoteFeedLoader = RemoteFeedLoader(url: url, client: httpClient)
- let feedLoaderCacheDecorator = FeedLoaderCacheDecorator(decoratee: remoteFeedLoader, cache: localFeedLoader)
- let feedLoaderFallback = FeedLoaderWithFallbackComposite(primary: feedLoaderCacheDecorator, fallback: localFeedLoader)
- 
- let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
- let localImageLoader = LocalFeedImageDataLoader(store: store)
- let imageLoaderCacheDecorator = FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader)
- let imageLoaderFallback = FeedImageDataLoaderWithFallbackComposite(primary: localImageLoader, fallback: imageLoaderCacheDecorator)
- 
- let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoaderFallback, imageLoader: imageLoaderFallback)
- 
- window?.rootViewController = UINavigationController(rootViewController: feedViewController)
- window?.makeKeyAndVisible()
- }
- }
- */
+private extension SceneDelegate {
+    
+    func configureWindowInitialApproach() {
+        let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
+        
+        let session = URLSession(configuration: .ephemeral)
+        let client = URLSessionHTTPClient(session: session)
+        
+        let feedLoader = RemoteFeedLoader(url: url, client: client)
+        let imageLoader = RemoteFeedImageDataLoader(client: client)
+        
+        let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoader, imageLoader: imageLoader)
+        
+        window?.rootViewController = feedViewController
+        window?.makeKeyAndVisible()
+    }
+    
+    func configureWindow() {
+        let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
+        
+        let remoteFeedLoader = RemoteFeedLoader(url: url, client: httpClient)
+        let feedLoaderCacheDecorator = FeedLoaderCacheDecorator(decoratee: remoteFeedLoader, cache: localFeedLoader)
+        let feedLoaderFallback = FeedLoaderWithFallbackComposite(primary: feedLoaderCacheDecorator, fallback: localFeedLoader)
+        
+        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
+        let localImageLoader = LocalFeedImageDataLoader(store: store)
+        let imageLoaderCacheDecorator = FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader)
+        let imageLoaderFallback = FeedImageDataLoaderWithFallbackComposite(primary: localImageLoader, fallback: imageLoaderCacheDecorator)
+        
+        let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoaderFallback, imageLoader: imageLoaderFallback)
+        
+        window?.rootViewController = UINavigationController(rootViewController: feedViewController)
+        window?.makeKeyAndVisible()
+    }
+}
+*/

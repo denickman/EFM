@@ -21,6 +21,7 @@ public final class CoreDataFeedStore {
     }
     
     public init(storeURL: URL) throws {
+        
         guard let model = CoreDataFeedStore.model else {
             throw StoreError.modelNotFound
         }
