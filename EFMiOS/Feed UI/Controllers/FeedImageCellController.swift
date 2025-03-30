@@ -13,7 +13,7 @@ public protocol FeedImageCellControllerDelegate {
     func didCancelImageRequest()
 }
 
-public final class FeedImageCellController: NSObject, ResourceView, ResourceLoadingView, ResourceErrorView {
+public final class FeedImageCellController: NSObject {
     
     public typealias ResourceViewModel = UIImage
     
@@ -43,8 +43,16 @@ public final class FeedImageCellController: NSObject, ResourceView, ResourceLoad
         releaseCellForReuse()
         delegate.didCancelImageRequest()
     }
+
+    private func releaseCellForReuse() {
+        cell?.onReuse = nil
+        cell = nil
+    }
     
-    // ResourceView
+}
+
+extension FeedImageCellController:  ResourceView, ResourceLoadingView, ResourceErrorView {
+    
     public func display(_ viewModel: UIImage) {
         cell?.feedImageView.setImageAnimated(viewModel)
     }
@@ -56,12 +64,6 @@ public final class FeedImageCellController: NSObject, ResourceView, ResourceLoad
     public func display(_ viewModel: ResourceErrorViewModel) {
         cell?.feedImageRetryButton.isHidden = viewModel.message == nil
     }
-    
-    private func releaseCellForReuse() {
-        cell?.onReuse = nil
-        cell = nil
-    }
-    
 }
 
 extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {

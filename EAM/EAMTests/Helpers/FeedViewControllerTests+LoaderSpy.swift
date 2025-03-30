@@ -68,6 +68,7 @@ extension FeedUIIntegrationTests {
                 })
             
             feedRequests[index].send(paginated)
+            feedRequests[index].send(completion: .finished)
         }
         
         func completeFeedLoadingWithError(at index: Int = 0) {
