@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import EFM
+import os
 
 public extension Paginated {
     
@@ -238,5 +239,15 @@ extension DispatchQueue {
         private func isMainQueue() -> Bool {
             DispatchQueue.getSpecific(key: Self.key) == Self.value
         }
+    }
+}
+
+extension Publisher {
+    func logCacheMisses(url: URL, logger: Logger) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveCompletion: { result in
+            if case .failure = result {
+                logger.trace("Logger: cache miss url: \(url)")
+            }
+        }).eraseToAnyPublisher()
     }
 }

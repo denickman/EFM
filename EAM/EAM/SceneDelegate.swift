@@ -133,6 +133,8 @@ private extension SceneDelegate {
         
         return localImageLoader
             .loadImageDataPublisher(from: url)
+            .logCacheMisses(url: url, logger: logger)
+        
             .fallback { [httpClient, logger] in
                 //                remoteImageLoader
                 //                    .loadImageDataPublisher(from: url)
