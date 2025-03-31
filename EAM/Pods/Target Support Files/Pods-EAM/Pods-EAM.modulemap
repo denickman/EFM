@@ -1,0 +1,6 @@
+module Pods_EAM {
+  umbrella header "Pods-EAM-umbrella.h"
+
+  export *
+  module * { export * }
+}

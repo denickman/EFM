@@ -11,6 +11,7 @@
 		8519908C2D807D23000C57B9 /* EFM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 851990892D807D23000C57B9 /* EFM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8519908D2D807D23000C57B9 /* EFMiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8519908A2D807D23000C57B9 /* EFMiOS.framework */; };
 		8519908E2D807D23000C57B9 /* EFMiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8519908A2D807D23000C57B9 /* EFMiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B6AB4148CD9B528570BD57C5 /* libPods-EAM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 200803E1ABB9085DA92B8EA8 /* libPods-EAM.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +47,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		200803E1ABB9085DA92B8EA8 /* libPods-EAM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EAM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85198D052D806C41000C57B9 /* EAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		851990892D807D23000C57B9 /* EFM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8519908A2D807D23000C57B9 /* EFMiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFMiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CF10812D8308D7000F0C6A /* EAMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EAMUIAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		974AF34F27EF3382AF91EE2F /* Pods-EAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EAM.debug.xcconfig"; path = "Target Support Files/Pods-EAM/Pods-EAM.debug.xcconfig"; sourceTree = "<group>"; };
+		D25E074A708AA3B4244E3EE3 /* Pods-EAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EAM.release.xcconfig"; path = "Target Support Files/Pods-EAM/Pods-EAM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -74,11 +78,15 @@
 		};
 		85CF10822D8308D7000F0C6A /* EAMTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = EAMTests;
 			sourceTree = "<group>";
 		};
 		85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = EAMUIAcceptanceTests;
 			sourceTree = "<group>";
 		};
@@ -91,6 +99,7 @@
 			files = (
 				8519908B2D807D23000C57B9 /* EFM.framework in Frameworks */,
 				8519908D2D807D23000C57B9 /* EFMiOS.framework in Frameworks */,
+				B6AB4148CD9B528570BD57C5 /* libPods-EAM.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +128,7 @@
 				85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */,
 				851990882D807D23000C57B9 /* Frameworks */,
 				85198D062D806C41000C57B9 /* Products */,
+				CCB13488275C217BCDDD8437 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,8 +147,18 @@
 			children = (
 				851990892D807D23000C57B9 /* EFM.framework */,
 				8519908A2D807D23000C57B9 /* EFMiOS.framework */,
+				200803E1ABB9085DA92B8EA8 /* libPods-EAM.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCB13488275C217BCDDD8437 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				974AF34F27EF3382AF91EE2F /* Pods-EAM.debug.xcconfig */,
+				D25E074A708AA3B4244E3EE3 /* Pods-EAM.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85198D2E2D806C43000C57B9 /* Build configuration list for PBXNativeTarget "EAM" */;
 			buildPhases = (
+				65CED673D1BE9D22A3CBBEDA /* [CP] Check Pods Manifest.lock */,
 				85198D012D806C41000C57B9 /* Sources */,
 				85198D022D806C41000C57B9 /* Frameworks */,
 				85198D032D806C41000C57B9 /* Resources */,
 				8519908F2D807D23000C57B9 /* Embed Frameworks */,
+				3DE274083019F7E2F5C1A516 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,8 +183,6 @@
 				85198D072D806C41000C57B9 /* EAM */,
 			);
 			name = EAM;
-			packageProductDependencies = (
-			);
 			productName = EAM;
 			productReference = 85198D052D806C41000C57B9 /* EAM.app */;
 			productType = "com.apple.product-type.application";
@@ -184,8 +204,6 @@
 				85CF10822D8308D7000F0C6A /* EAMTests */,
 			);
 			name = EAMTests;
-			packageProductDependencies = (
-			);
 			productName = EAMTests;
 			productReference = 85CF10812D8308D7000F0C6A /* EAMTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -207,8 +225,6 @@
 				85CF108F2D8308F1000F0C6A /* EAMUIAcceptanceTests */,
 			);
 			name = EAMUIAcceptanceTests;
-			packageProductDependencies = (
-			);
 			productName = EAMUIAcceptanceTests;
 			productReference = 85CF108E2D8308F0000F0C6A /* EAMUIAcceptanceTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -281,6 +297,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3DE274083019F7E2F5C1A516 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EAM/Pods-EAM-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EAM/Pods-EAM-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EAM/Pods-EAM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65CED673D1BE9D22A3CBBEDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EAM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		85198D012D806C41000C57B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -321,6 +379,7 @@
 /* Begin XCBuildConfiguration section */
 		85198D2F2D806C43000C57B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 974AF34F27EF3382AF91EE2F /* Pods-EAM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -353,6 +412,7 @@
 		};
 		85198D302D806C43000C57B9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D25E074A708AA3B4244E3EE3 /* Pods-EAM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
