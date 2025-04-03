@@ -40,48 +40,43 @@ extension LocalFeedImageDataLoader: FeedImageDataLoader {
     }
     
     public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-        
         let task = LoadImageDataTask(completion: completion)
         
-        store.retrieve(dataForURL: url) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case .success(let data):
-                if let data {
-                    task.complete(with: .success(data))
-                } else {
-                    task.complete(with: .failure(LoadError.notFound))
-                }
-                
-            case .failure:
-                task.complete(with: .failure(LoadError.failed))
-            }
+        task.complete(with: Swift.Result {
+            try store.retrieve(dataForURL: url)
         }
-        
+            .mapError {_ in LoadError.failed }
+            .flatMap { data in
+                data.map { .success($0)} ?? .failure(LoadError.notFound)
+            }
+        )
         return task
-        
-        /// option 2
-//        task.complete(with: result
-//            .mapError { _ in LoadError.failed }
-//            .flatMap { data in
-//                data.map { .success($0) } ?? .failure(LoadError.notFound)
-//            })
     }
 }
 
 extension LocalFeedImageDataLoader: FeedImageDataCache {
     
-    private enum Error: Swift.Error {
+    public typealias SaveResult = Result<Void, Error>
+    
+    public enum SaveError: Error {
         case failed
     }
     
-    public func save(_ data: Data, url: URL, completion: @escaping (FeedImageDataCache.Result) -> Void) {
-        store.insert(data, for: url) { [weak self] result in
-            guard self != nil else { return }
-            if case let .failure(error) = result {
-                completion(.failure(Error.failed))
-            }
-            /// completion(result.mapError { _ in SaveError.failed })
+    public func save(_ data: Data, url: URL, completion: @escaping (SaveResult) -> Void) {
+        completion(SaveResult {
+            // Здесь используется инициализатор Result, который принимает замыкание где
+            // Success — это тип возвращаемого значения (в данном случае Void, так как insert ничего не возвращает).
+            // Error — это тип ошибки, которая может быть выброшена.
+            
+            //            Замыкание { try store.insert(data, for: url) }:
+            //            Выполняет синхронный вызов store.insert(_:for:).
+            //            Если insert завершается успешно, результатом будет .success(()) (успех с пустым значением Void).
+            //            Если insert выбрасывает ошибку, результатом будет .failure(error) с этой ошибкой.
+            
+            try store.insert(data, for: url)
         }
+            .mapError { _ in SaveError.failed }
+        )
     }
 }
+    
