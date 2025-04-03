@@ -95,7 +95,7 @@ class XCRemoteLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteLoader<String>(url: url, client: client, mapper: mapper)
         
-        trackForMemoryLeaking(client, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaking(sut, file: file, line: line)
         
         return (sut, client)

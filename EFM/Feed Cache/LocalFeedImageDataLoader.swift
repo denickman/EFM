@@ -55,28 +55,19 @@ extension LocalFeedImageDataLoader: FeedImageDataLoader {
 }
 
 extension LocalFeedImageDataLoader: FeedImageDataCache {
-    
-    public typealias SaveResult = Result<Void, Error>
-    
+        
     public enum SaveError: Error {
         case failed
     }
     
-    public func save(_ data: Data, url: URL, completion: @escaping (SaveResult) -> Void) {
-        completion(SaveResult {
-            // Здесь используется инициализатор Result, который принимает замыкание где
-            // Success — это тип возвращаемого значения (в данном случае Void, так как insert ничего не возвращает).
-            // Error — это тип ошибки, которая может быть выброшена.
-            
-            //            Замыкание { try store.insert(data, for: url) }:
-            //            Выполняет синхронный вызов store.insert(_:for:).
-            //            Если insert завершается успешно, результатом будет .success(()) (успех с пустым значением Void).
-            //            Если insert выбрасывает ошибку, результатом будет .failure(error) с этой ошибкой.
-            
+    public func save(_ data: Data, for url: URL) throws {
+        do {
             try store.insert(data, for: url)
+        } catch {
+            throw SaveError.failed
         }
-            .mapError { _ in SaveError.failed }
-        )
     }
+    
+  
 }
     

@@ -124,7 +124,7 @@ private extension FeedCache {
 
 private extension FeedImageDataCache {
     func saveIgnoringResult(_ data: Data, for url: URL) {
-        save(data, url: url, completion: { _ in })
+        try? save(data, for: url)
     }
 }
 

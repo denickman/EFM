@@ -597,8 +597,8 @@ final class FeedUIIntegrationTests: XCTestCase {
             selection: selection
         )
         
-        trackForMemoryLeaking(loader, file: file, line: line)
-        trackForMemoryLeaking(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
     }
     

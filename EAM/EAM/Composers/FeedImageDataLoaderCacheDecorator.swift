@@ -5,6 +5,7 @@
 //  Created by Denis Yaremenko on 12.03.2025.
 //
 
+/*
 import Foundation
 import EFM
 
@@ -40,7 +41,8 @@ public final class FeedImageDataLoaderCacheDecorator: FeedImageDataLoader {
 
 public extension FeedImageDataCache {
     func saveIgnoringResult(_ data: Data, url: URL) {
-        save(data, url: url) { _ in }
+        try? save(data, for: url)
     }
 }
 
+*/
