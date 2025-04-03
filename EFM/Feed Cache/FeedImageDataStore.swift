@@ -10,22 +10,20 @@ import Foundation
 public protocol FeedImageDataStore {
     
     // async api
-    typealias RetrievalResult = Swift.Result<Data?, Error>
-    typealias InsertionResult = Swift.Result<Void, Error>
-    
-    @available(*, deprecated, message: "Use sync implementation instead")
-    func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void)
-    
-    @available(*, deprecated, message: "Use sync implementation instead")
-    func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void)
-    
-    
-    
+//    typealias RetrievalResult = Swift.Result<Data?, Error>
+//    typealias InsertionResult = Swift.Result<Void, Error>
+//    
+//    @available(*, deprecated, message: "Use sync implementation instead")
+//    func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void)
+//    
+//    @available(*, deprecated, message: "Use sync implementation instead")
+//    func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void)
+
     func insert(_ data: Data, for url: URL) throws
     func retrieve(dataForURL url: URL) throws -> Data?
 }
 
-
+/*
 public extension FeedImageDataStore {
     
     func insert(_ data: Data, for url: URL) throws {
@@ -63,3 +61,4 @@ public extension FeedImageDataStore {
     }
     
 }
+*/
