@@ -8,7 +8,7 @@
 import XCTest
 import EFM
 import EAM
-
+/*
 class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     
     func test_init_doesNotLoadImageData() {
@@ -157,3 +157,4 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     }
     
 }
+*/

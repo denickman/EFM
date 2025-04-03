@@ -18,6 +18,20 @@
         "identifier" : "85D3E9042D7ECCE500717BF2",
         "name" : "EFMTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EFM.xcodeproj",
+        "identifier" : "85DE7D9E2D9EA19800C6248D",
+        "name" : "EssentialFeedCacheIntegrationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EFM.xcodeproj",
+        "identifier" : "85DE7D8E2D9E9FEA00C6248D",
+        "name" : "EssentialFeedApiEndToEndTests"
+      }
     }
   ],
   "version" : 1

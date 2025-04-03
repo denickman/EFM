@@ -13,18 +13,10 @@
   },
   "testTargets" : [
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:..\/EFM.xcodeproj",
-        "identifier" : "85D3E9D52D7EFAD400717BF2",
-        "name" : "EFMiOSTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:EAM.xcodeproj",
-        "identifier" : "85CF108D2D8308F0000F0C6A",
-        "name" : "EAMUIAcceptanceTests"
+        "identifier" : "85D3E9042D7ECCE500717BF2",
+        "name" : "EFMTests"
       }
     },
     {
@@ -37,8 +29,29 @@
     {
       "target" : {
         "containerPath" : "container:..\/EFM.xcodeproj",
-        "identifier" : "85D3E9042D7ECCE500717BF2",
-        "name" : "EFMTests"
+        "identifier" : "85DE7D8E2D9E9FEA00C6248D",
+        "name" : "EssentialFeedApiEndToEndTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/EFM.xcodeproj",
+        "identifier" : "85D3E9D52D7EFAD400717BF2",
+        "name" : "EFMiOSTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/EFM.xcodeproj",
+        "identifier" : "85DE7D9E2D9EA19800C6248D",
+        "name" : "EssentialFeedCacheIntegrationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EAM.xcodeproj",
+        "identifier" : "85CF108D2D8308F0000F0C6A",
+        "name" : "EAMUIAcceptanceTests"
       }
     }
   ],

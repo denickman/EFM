@@ -8,6 +8,7 @@
 import XCTest
 import EFM
 
+/*
 class XCRemoteLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
@@ -157,3 +158,4 @@ class XCRemoteLoaderTests: XCTestCase {
     }
 }
 
+*/

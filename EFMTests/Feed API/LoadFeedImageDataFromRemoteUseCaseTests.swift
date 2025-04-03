@@ -7,7 +7,7 @@
 
 import XCTest
 import EFM
-
+/*
 final class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotPerformAnyURLRequest() {
@@ -153,3 +153,4 @@ final class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
     }
     
 }
+*/

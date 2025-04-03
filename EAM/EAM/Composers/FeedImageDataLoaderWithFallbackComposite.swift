@@ -9,6 +9,7 @@ import Foundation
 import EFM
 import EFMiOS
 
+/*
 public class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     
     private let primary: FeedImageDataLoader
@@ -45,3 +46,4 @@ public class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     }
   
 }
+*/
