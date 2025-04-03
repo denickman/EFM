@@ -23,8 +23,6 @@ class FeedImageDataStoreSpy: FeedImageDataStore {
     
     private var insertionResult: Result<Void, Error>?
     private var retrievalResult: Result<Data?, Error>?
-    
- 
 
     func insert(_ data: Data, for url: URL, completion: @escaping (FeedImageDataStore.InsertionResult) -> Void) {
         receivedMessages.append(.insert(data: data, for: url))

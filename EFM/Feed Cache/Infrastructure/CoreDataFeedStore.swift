@@ -7,21 +7,20 @@
 
 import CoreData
 
+
 public final class CoreDataFeedStore {
-    
     private static let modelName = "FeedStore"
     private static let model = NSManagedObjectModel.with(name: modelName, in: Bundle(for: CoreDataFeedStore.self))
     
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
-    
+
     enum StoreError: Error {
         case modelNotFound
         case failedToLoadPersistentContainer(Error)
     }
-    
+
     public init(storeURL: URL) throws {
-        
         guard let model = CoreDataFeedStore.model else {
             throw StoreError.modelNotFound
         }
@@ -34,11 +33,24 @@ public final class CoreDataFeedStore {
         }
     }
     
-    func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
+    // For Sync API
+    func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
+        let context = self.context
+        var result: Result<R, Error>!
+        
+        context.performAndWait { result = action(context) } // синхронный код
+        return try result.get()
+    }
+    
+    // For ASync API
+    func performAsync(_ action: @escaping (NSManagedObjectContext) -> Void) {
+        /// Обеспечивает безопасность потоков, так как NSManagedObjectContext нельзя использовать в другом потоке напрямую
+        ///  Избегает блокировок основного потока, так как все операции выполняются в фоновом контексте
+        /// Этот метод выполняет переданный блок асинхронно, т.е. код будет выполняться в контексте соответствующей очереди (например, в фоне, если это фоновой контекст). Это аналог асинхронного вызова, потому что блок будет выполнен в фоновом потоке, а выполнение метода продолжится сразу, не дожидаясь завершения операции.
         let context = self.context
         context.perform { action(context) }
     }
-    
+  
     private func cleanUpReferencesToPersistentStores() {
         context.performAndWait {
             let coordinator = self.container.persistentStoreCoordinator
@@ -49,91 +61,94 @@ public final class CoreDataFeedStore {
     deinit {
         cleanUpReferencesToPersistentStores()
     }
-    
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// Old version of `CoreDataFeedStore`
 /*
-
-public final class CoreDataFeedStore: FeedStore {
+public final class CoreDataFeedStore {
     
-    private let ctx: NSManagedObjectContext
+    enum StoreError: Error {
+             case modelNotFound
+             case failedToLoadPersistentContainer(Error)
+         }
+    
+     private static let modelName = "FeedStore"
+     private static let model = NSManagedObjectModel.with(name: modelName, in: Bundle(for: CoreDataFeedStore.self))
     private let container: NSPersistentContainer
+    private let context: NSManagedObjectContext
     
     public init(storeURL: URL, bundle: Bundle = .main) throws {
-        container = try NSPersistentContainer.load(modelName: "FeedStore", url: storeURL, bundle: bundle)
-        ctx = container.newBackgroundContext()
-    }
-    
-    public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-        perform { ctx in
-            do {
-                let managedCache = try ManagedCache.newUniqueInstance(in: ctx)
-                managedCache.timestamp = timestamp
-                managedCache.feed = ManagedFeedImage.images(from: feed, in: ctx)
-                try ctx.save()
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    public func delete(completion: @escaping DeletionCompletion) {
-        perform { ctx in
-            do {
-                try ManagedCache.find(in: ctx).map(ctx.delete).map(ctx.save)
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
-        }
+        container = try NSPersistentContainer.load(modelName: "FeedStore", url: storeURL, in: bundle)
+        context = container.newBackgroundContext()
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
-        perform { ctx in
-            do {
-                if let cache = try ManagedCache.find(in: ctx) {
-                    completion(.success(CachedFeed(feed: cache.localFeed, timestamp: cache.timestamp)))
-                } else {
-                    completion(.success(.none))
+        perform { context in
+            /// #option 1
+            //            do {
+            //                if let cache = try ManagedCache.find(in: context) {
+            //                    completion(.success(.some(CachedFeed(feed: cache.localFeed, timestamp: cache.timestamp))))
+            //                } else {
+            //                    completion(.success(.none))
+            //                }
+            //            } catch {
+            //                completion(.failure(error))
+            //            }
+            
+            /// #option 2
+            completion(Result {
+                try ManagedCache.find(in: context).map {
+                    return CachedFeed(feed: $0.localFeed, timestamp: $0.timestamp)
                 }
-            } catch {
-                completion(.failure(error))
-            }
+            })
         }
     }
     
-    private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
-        /// Вместо того чтобы в каждом методе дублировать ctx.perform { }, мы инкапсулируем эту логику в perform(_:)
-        let context = self.ctx
-        context.perform { action(context) }
+    public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
+        perform { context in
+            
+            /// #option 1
+            //            do {
+            //                let managedCache = try ManagedCache.newUniqueInstance(in: context)
+            //                managedCache.timestamp = timestamp
+            //                managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
+            //
+            //                try context.save()
+            //                completion(nil)
+            //            } catch {
+            //                completion(error)
+            //            }
+            
+            /// #option 2
+            completion(Result {
+                let managedCache = try ManagedCache.newUniqueInstance(in: context)
+                managedCache.timestamp = timestamp
+                managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
+                try context.save()
+            })
+        }
     }
     
+    public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+        perform { context in
+            /// #option 1
+            //            do {
+            //                try ManagedCache.find(in: context).map(context.delete).map(context.save)
+            //                completion(nil)
+            //            } catch {
+            //                completion(error)
+            //            }
+            
+            /// #option 2
+            completion(Result {
+                try ManagedCache.find(in: context).map(context.delete).map(context.save)
+            })
+        }
+    }
+
+    private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
+        let context = self.context
+        context.perform { action(context) }
+    }
 }
 */
