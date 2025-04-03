@@ -35,10 +35,14 @@ public final class CoreDataFeedStore {
     
     // For Sync API
     func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
+        print(">> Is main thread:?", Thread.isMainThread) // Main Queue
+
         let context = self.context
         var result: Result<R, Error>!
         
-        context.performAndWait { result = action(context) } // синхронный код
+        context.performAndWait {
+                   result = action(context)
+               } // синхронный код
         return try result.get()
     }
     
