@@ -24,7 +24,6 @@ final class FeedViewAdapter: ResourceView {
     private let selection: (FeedImage) -> Void
     private let currentFeed: [FeedImage : CellController]
     
-    
     // MARK: - Init
     
     init(
@@ -49,7 +48,7 @@ final class FeedViewAdapter: ResourceView {
         
         let feedSection: [CellController] = viewModel.items.map { model in
             if let ctrl = currentFeed[model] {
-                // if exist , do not need to re-create ctrl once again to prevent extra loading feed image process
+                // if exist, do not need to re-create ctrl once again to prevent extra loading feed image process
                 return ctrl
             }
             

@@ -109,11 +109,13 @@ public extension FeedImageDataLoader {
 
 private extension FeedCache {
     func saveIgnoringResult(_ feed: [FeedImage]) {
-        save(feed) { _ in }
+        // TODO: - Uncomment store in CD
+        // save(feed) { _ in }
     }
     
     func saveIgnoringResult(_ page: Paginated<FeedImage>) {
-        saveIgnoringResult(page.items)
+        // TODO: - Uncomment store in CD
+       // saveIgnoringResult(page.items)
     }
 }
 
@@ -246,8 +248,6 @@ extension Publisher {
         }).eraseToAnyPublisher()
     }
 }
-
-
 
 // craate own anyscheduler type erasure
 

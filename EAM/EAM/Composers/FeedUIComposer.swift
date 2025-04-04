@@ -22,8 +22,7 @@ public final class FeedUIComposer {
         selection: @escaping (FeedImage) -> Void = { _ in }
     ) -> ListViewController {
         
-        let presentationAdapter = FeedPresentationAdapter(
-            loader: {
+        let presentationAdapter = FeedPresentationAdapter(loader: {
                 feedLoader()
             }
         )

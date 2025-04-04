@@ -29,7 +29,6 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
     }
     
     func loadResource() {
-        
         guard !isLoading else { return }
  
         presenter?.didStartLoading()
@@ -40,7 +39,6 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
             .handleEvents(receiveCancel: { [weak self] in
                 self?.isLoading = false //  if we cancel the loading process set isLoading to false
             })
-        
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
@@ -52,7 +50,7 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
                 
                 self?.isLoading = false
                 
-            } receiveValue: { [weak self] resource in // data or [feeditem] or [comments]
+            } receiveValue: { [weak self] resource in // Data or Paginated
                 self?.presenter?.didFinishLoading(with: resource)
             }
     }

@@ -149,8 +149,8 @@ private extension SceneDelegate {
             .fallback(to: { [httpClient, logger, customScheduler] in
                 return httpClient
                     .getPublisher(url: url)
-                    .logErrors(url: url, logger: logger)
-                    .logElapsedTime(url: url, logger: logger)
+//                    .logErrors(url: url, logger: logger)
+//                    .logElapsedTime(url: url, logger: logger)
                     .tryMap(FeedImageDataMapper.map)
                     .caching(to: localImageLoader, using: url)
                     .subscribe(on: customScheduler)
