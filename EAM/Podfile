@@ -1,69 +1,27 @@
 
-# installer - object that has access to all the object in pod Specs
-# installer — объект, содержащий всю информацию об установке подов.
-# pre_install = launch before the dependecies are installed
-# installer.analysis_result.specifications — это массив всех подов, которые CocoaPods собирается установить.
-# each do |spec| — цикл, который перебирает каждый под.
-# spec.swift_version = '5.8'- Устанавливает версию Swift для пода Locksmith на 5.8"
-# def - is a ruby function name
 
 platform :ios, '18.0'
 
-# можно создавать функции для группировки самих подов
-def FirebasePods(version)
-  pod 'Firebase/AnalyticsWithoutAdIdSupport', version
-  pod 'Firebase/Performance', version
-  pod 'Firebase/Crashlytics', version
-  pod 'Firebase/Messaging', version
-end
 
 target 'EAM' do
 
-  #use_frameworks!
+  use_frameworks!
 
-  pod 'Alamofire'
-  pod 'CocoaLumberjack'
-# FirebasePods('~>8.6')
+  pod 'EssentialFeedPOD', :git => 'git@github.com:denickman/EssentialFeedPOD.git'
 
+  target 'EAMTests' do
 
+  end
 
-  # pod 'Locksmith' # currently not maintan, the latest locked version of supported swift in pod specs
-
-  # pre_install do |installer|
-  #   installer.analysis_result.specifications.each do |spec|
-  #     if spec.name == "Locksmith"
-  #       spec.swift_version = '5.8'
-  #     end
-  #   end
-  # end
 end
 
 post_install do |installer|
-  installer.pods_project.targets.each do |target| # for each target in the pods project
-    target.build_configurations.each do |config| # for each configuration
-      bumpDeploymentTargetIfNeeded(config)
-    end
-  end
-
   installer.pods_project.build_configurations.each do |config|
-    enableDeadCodeStripping(config)
-  end
-
-end
-
-
-def bumpDeploymentTargetIfNeeded(config)
-  unsupportedOSs = ["8.0", "9.8", "10.0", "11.0"]
-  # we can read / write value from the dictionary
-  if unsupportedOSs.include?(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
-    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    config.build_settings['DEAD_CODE_STRIPPING'] = "YES"
   end
 end
 
 
-def enableDeadCodeStripping(config)
-  config.build_settings["DEAD_CODE_STRIPPING"] = "YES"
-end
 
 
 
